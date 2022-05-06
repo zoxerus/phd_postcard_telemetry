@@ -1,0 +1,13 @@
+########################## How it Works ##########################
+1. When a packet is received the parser checks the destination IP address and
+        UDP port number to determine if it's a postcard (telemetry packet) and
+        sets a relevant flag in the local_metadata defined by the user.
+
+2. if it's a postcard then the parser goes to parse_postcard_header state to
+        extract the telemetry header.
+
+3. at the ingress if the flag is_postcard is set then the telemetry data is
+        stored in memory and a counter is increased up to a limit.
+
+4. when the counter reaches the specified limit, data is retrieved from the
+        memory and aggregated in one packet and forwarded to telemetry server

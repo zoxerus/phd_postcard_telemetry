@@ -1,0 +1,16 @@
+table_add ipv4_lpm ipv4_forward 10.30.2.173/32 => 20:1a:06:4e:99:fb 10
+
+
+table_add table_detect_postcard set_postcard_bit 10.30.2.173 54321 =>
+
+table_add table_postcard forward_postcard => 10.30.2.173 54321 20:1a:06:4e:99:fb 10
+
+table_add table_detect_flow select_flow_register 0 => 0
+table_add table_detect_flow select_flow_register 1 => 1
+table_add table_detect_flow select_flow_register 2 => 2
+table_add table_detect_flow select_flow_register 3 => 3
+
+table_add table_detect_switch select_switch_register 1.1.1.1 => 0
+table_add table_detect_switch select_switch_register 2.2.2.2 => 1
+table_add table_detect_switch select_switch_register 3.3.3.3 => 2
+table_add table_detect_switch select_switch_register 4.4.4.4 => 3

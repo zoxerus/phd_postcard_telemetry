@@ -1,0 +1,2802 @@
+{
+  "header_types" : [
+    {
+      "name" : "scalars_0",
+      "id" : 0,
+      "fields" : [
+        ["tmp", 224, false],
+        ["cursor_0", 32, false],
+        ["userMetadata.is_postcard", 1, false],
+        ["userMetadata.is_forwarded", 1, false],
+        ["_padding_0", 6, false]
+      ]
+    },
+    {
+      "name" : "standard_metadata",
+      "id" : 1,
+      "fields" : [
+        ["ingress_port", 9, false],
+        ["egress_spec", 9, false],
+        ["egress_port", 9, false],
+        ["instance_type", 32, false],
+        ["packet_length", 32, false],
+        ["enq_timestamp", 32, false],
+        ["enq_qdepth", 19, false],
+        ["deq_timedelta", 32, false],
+        ["deq_qdepth", 19, false],
+        ["ingress_global_timestamp", 48, false],
+        ["egress_global_timestamp", 48, false],
+        ["mcast_grp", 16, false],
+        ["egress_rid", 16, false],
+        ["checksum_error", 1, false],
+        ["parser_error", 32, false],
+        ["priority", 3, false],
+        ["_padding", 3, false]
+      ]
+    },
+    {
+      "name" : "ethernet_t",
+      "id" : 2,
+      "fields" : [
+        ["dst_addr", 48, false],
+        ["src_addr", 48, false],
+        ["ether_type", 16, false]
+      ]
+    },
+    {
+      "name" : "ipv4_t",
+      "id" : 3,
+      "fields" : [
+        ["version", 4, false],
+        ["ihl", 4, false],
+        ["diffserv", 8, false],
+        ["totalLen", 16, false],
+        ["identification", 16, false],
+        ["flags", 3, false],
+        ["fragOffset", 13, false],
+        ["ttl", 8, false],
+        ["protocol", 8, false],
+        ["hdrChecksum", 16, false],
+        ["srcAddr", 32, false],
+        ["dstAddr", 32, false]
+      ]
+    },
+    {
+      "name" : "udp_t",
+      "id" : 4,
+      "fields" : [
+        ["src_port", 16, false],
+        ["dst_port", 16, false],
+        ["udp_length", 16, false],
+        ["checksum", 16, false]
+      ]
+    },
+    {
+      "name" : "int_xd_t",
+      "id" : 5,
+      "fields" : [
+        ["switch_id", 32, false],
+        ["flow_id", 32, false],
+        ["ttl", 8, false],
+        ["ingress_tstamp", 48, false],
+        ["egress_tstamp", 48, false],
+        ["deq_depth", 19, false],
+        ["enq_depth", 19, false],
+        ["ingress_port", 9, false],
+        ["egress_port", 9, false]
+      ]
+    },
+    {
+      "name" : "telemetry_aggregated_header_t",
+      "id" : 6,
+      "fields" : [
+        ["one_field", 224, false]
+      ]
+    }
+  ],
+  "headers" : [
+    {
+      "name" : "scalars",
+      "id" : 0,
+      "header_type" : "scalars_0",
+      "metadata" : true,
+      "pi_omit" : true
+    },
+    {
+      "name" : "standard_metadata",
+      "id" : 1,
+      "header_type" : "standard_metadata",
+      "metadata" : true,
+      "pi_omit" : true
+    },
+    {
+      "name" : "ethernet",
+      "id" : 2,
+      "header_type" : "ethernet_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "ipv4",
+      "id" : 3,
+      "header_type" : "ipv4_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "udp",
+      "id" : 4,
+      "header_type" : "udp_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "int_xd",
+      "id" : 5,
+      "header_type" : "int_xd_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[0]",
+      "id" : 6,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[1]",
+      "id" : 7,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[2]",
+      "id" : 8,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[3]",
+      "id" : 9,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[4]",
+      "id" : 10,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[5]",
+      "id" : 11,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[6]",
+      "id" : 12,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[7]",
+      "id" : 13,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[8]",
+      "id" : 14,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[9]",
+      "id" : 15,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[10]",
+      "id" : 16,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[11]",
+      "id" : 17,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[12]",
+      "id" : 18,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[13]",
+      "id" : 19,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[14]",
+      "id" : 20,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_aggregated_header[15]",
+      "id" : 21,
+      "header_type" : "telemetry_aggregated_header_t",
+      "metadata" : false,
+      "pi_omit" : true
+    }
+  ],
+  "header_stacks" : [
+    {
+      "name" : "telemetry_aggregated_header",
+      "id" : 0,
+      "header_type" : "telemetry_aggregated_header_t",
+      "size" : 16,
+      "header_ids" : [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+    }
+  ],
+  "header_union_types" : [],
+  "header_unions" : [],
+  "header_union_stacks" : [],
+  "field_lists" : [],
+  "errors" : [
+    ["NoError", 0],
+    ["PacketTooShort", 1],
+    ["NoMatch", 2],
+    ["StackOutOfBounds", 3],
+    ["HeaderTooShort", 4],
+    ["ParserTimeout", 5],
+    ["ParserInvalidArgument", 6]
+  ],
+  "enums" : [],
+  "parsers" : [
+    {
+      "name" : "parser",
+      "id" : 0,
+      "init_state" : "start",
+      "parse_states" : [
+        {
+          "name" : "start",
+          "id" : 0,
+          "parser_ops" : [
+            {
+              "parameters" : [
+                {
+                  "type" : "regular",
+                  "value" : "ethernet"
+                }
+              ],
+              "op" : "extract"
+            }
+          ],
+          "transitions" : [
+            {
+              "type" : "hexstr",
+              "value" : "0x0800",
+              "mask" : null,
+              "next_state" : "parse_ipv4"
+            },
+            {
+              "type" : "default",
+              "value" : null,
+              "mask" : null,
+              "next_state" : null
+            }
+          ],
+          "transition_key" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "ether_type"]
+            }
+          ]
+        },
+        {
+          "name" : "parse_ipv4",
+          "id" : 1,
+          "parser_ops" : [
+            {
+              "parameters" : [
+                {
+                  "type" : "regular",
+                  "value" : "ipv4"
+                }
+              ],
+              "op" : "extract"
+            }
+          ],
+          "transitions" : [
+            {
+              "type" : "hexstr",
+              "value" : "0x0a1e02ad11",
+              "mask" : null,
+              "next_state" : "parse_postcard_udp"
+            },
+            {
+              "type" : "default",
+              "value" : null,
+              "mask" : null,
+              "next_state" : null
+            }
+          ],
+          "transition_key" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "dstAddr"]
+            },
+            {
+              "type" : "field",
+              "value" : ["ipv4", "protocol"]
+            }
+          ]
+        },
+        {
+          "name" : "parse_postcard_udp",
+          "id" : 2,
+          "parser_ops" : [
+            {
+              "parameters" : [
+                {
+                  "type" : "regular",
+                  "value" : "udp"
+                }
+              ],
+              "op" : "extract"
+            }
+          ],
+          "transitions" : [
+            {
+              "type" : "hexstr",
+              "value" : "0xd431",
+              "mask" : null,
+              "next_state" : "parse_postcard_header"
+            },
+            {
+              "type" : "default",
+              "value" : null,
+              "mask" : null,
+              "next_state" : null
+            }
+          ],
+          "transition_key" : [
+            {
+              "type" : "field",
+              "value" : ["udp", "dst_port"]
+            }
+          ]
+        },
+        {
+          "name" : "parse_postcard_header",
+          "id" : 3,
+          "parser_ops" : [
+            {
+              "parameters" : [
+                {
+                  "type" : "field",
+                  "value" : ["scalars", "userMetadata.is_postcard"]
+                },
+                {
+                  "type" : "hexstr",
+                  "value" : "0x01"
+                }
+              ],
+              "op" : "set"
+            },
+            {
+              "parameters" : [
+                {
+                  "type" : "regular",
+                  "value" : "int_xd"
+                }
+              ],
+              "op" : "extract"
+            }
+          ],
+          "transitions" : [
+            {
+              "type" : "default",
+              "value" : null,
+              "mask" : null,
+              "next_state" : null
+            }
+          ],
+          "transition_key" : []
+        }
+      ]
+    }
+  ],
+  "parse_vsets" : [],
+  "deparsers" : [
+    {
+      "name" : "deparser",
+      "id" : 0,
+      "source_info" : {
+        "filename" : "lib/packet_parsers.p4",
+        "line" : 54,
+        "column" : 8,
+        "source_fragment" : "PacketDeparser"
+      },
+      "order" : ["ethernet", "ipv4", "udp", "telemetry_aggregated_header[0]", "telemetry_aggregated_header[1]", "telemetry_aggregated_header[2]", "telemetry_aggregated_header[3]", "telemetry_aggregated_header[4]", "telemetry_aggregated_header[5]", "telemetry_aggregated_header[6]", "telemetry_aggregated_header[7]", "telemetry_aggregated_header[8]", "telemetry_aggregated_header[9]", "telemetry_aggregated_header[10]", "telemetry_aggregated_header[11]", "telemetry_aggregated_header[12]", "telemetry_aggregated_header[13]", "telemetry_aggregated_header[14]", "telemetry_aggregated_header[15]"],
+      "primitives" : []
+    }
+  ],
+  "meter_arrays" : [],
+  "counter_arrays" : [],
+  "register_arrays" : [
+    {
+      "name" : "MyIngress.packet_aggregator",
+      "id" : 0,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 38,
+        "column" : 56,
+        "source_fragment" : "packet_aggregator"
+      },
+      "size" : 16,
+      "bitwidth" : 224
+    },
+    {
+      "name" : "MyIngress.aggregator_pointer",
+      "id" : 1,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 42,
+        "column" : 29,
+        "source_fragment" : "aggregator_pointer"
+      },
+      "size" : 1,
+      "bitwidth" : 32
+    }
+  ],
+  "calculations" : [
+    {
+      "name" : "calc",
+      "id" : 0,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 148,
+        "column" : 1,
+        "source_fragment" : "update_checksum( ..."
+      },
+      "algo" : "csum16",
+      "input" : [
+        {
+          "type" : "field",
+          "value" : ["ipv4", "version"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "ihl"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "diffserv"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "totalLen"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "identification"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "flags"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "fragOffset"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "ttl"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "protocol"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "srcAddr"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "dstAddr"]
+        }
+      ]
+    }
+  ],
+  "learn_lists" : [],
+  "actions" : [
+    {
+      "name" : "NoAction",
+      "id" : 0,
+      "runtime_data" : [],
+      "primitives" : []
+    },
+    {
+      "name" : "NoAction",
+      "id" : 1,
+      "runtime_data" : [],
+      "primitives" : []
+    },
+    {
+      "name" : "MyIngress.ExportData.forward_postcard",
+      "id" : 2,
+      "runtime_data" : [
+        {
+          "name" : "srv_ip",
+          "bitwidth" : 32
+        },
+        {
+          "name" : "srv_port",
+          "bitwidth" : 16
+        },
+        {
+          "name" : "srv_mac",
+          "bitwidth" : 48
+        },
+        {
+          "name" : "egress_interface",
+          "bitwidth" : 9
+        }
+      ],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "egress_spec"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 3
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 21,
+            "column" : 8,
+            "source_fragment" : "standard_metadata.egress_spec = egress_interface"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "ethernet"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 23,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.setValid()"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "ether_type"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0800"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 24,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.ether_type = 0x0800"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "dst_addr"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 2
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 25,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.dst_addr = srv_mac"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "src_addr"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0a0a0a0b0b0b"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 26,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.src_addr = 0x0a0a0a0b0b0b"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "ipv4"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 29,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.setValid()"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "version"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x04"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 30,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.version = 4w4"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "ihl"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x05"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 31,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.ihl = 4w5"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "diffserv"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 32,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.diffserv = 8w0"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "totalLen"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x01dc"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 37,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.totalLen = (bit<16>)IPV4_MIN_HEAD_LEN + ..."
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "identification"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 40,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.identification = 0"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "flags"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 41,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.flags = 0"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "fragOffset"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 42,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.fragOffset = 0"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "srcAddr"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0a00000b"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 43,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.srcAddr = 0x0a00000b"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "dstAddr"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 0
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 44,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.dstAddr = srv_ip"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "ttl"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x40"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 45,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.ttl = 64"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "protocol"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x11"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 46,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.protocol = 8w17"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "udp"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 49,
+            "column" : 8,
+            "source_fragment" : "hdr.udp.setValid()"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["udp", "src_port"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x56ce"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 50,
+            "column" : 8,
+            "source_fragment" : "hdr.udp.src_port = 22222"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["udp", "dst_port"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 1
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 51,
+            "column" : 8,
+            "source_fragment" : "hdr.udp.dst_port = srv_port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["udp", "udp_length"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x01c8"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 52,
+            "column" : 8,
+            "source_fragment" : "hdr.udp.udp_length = (bit<16>)UDP_HEADER_LEN + telemetryLength"
+          }
+        },
+        {
+          "op" : "truncate",
+          "parameters" : [
+            {
+              "type" : "hexstr",
+              "value" : "0x000001ea"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 55,
+            "column" : 8,
+            "source_fragment" : "truncate((bit<32>)hdr.ipv4.totalLen + (bit<32>) ETH_HEADER_LEN)"
+          }
+        },
+        {
+          "op" : "log_msg",
+          "parameters" : [
+            {
+              "type" : "string",
+              "value" : "postcard forwarded"
+            },
+            {
+              "type" : "parameters_vector",
+              "value" : {
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 56,
+            "column" : 8,
+            "source_fragment" : "        log_msg(\\\"postcard forwarded\\\");"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "MyIngress.Forwarding.ipv4_forward",
+      "id" : 3,
+      "runtime_data" : [
+        {
+          "name" : "mac",
+          "bitwidth" : 48
+        },
+        {
+          "name" : "port",
+          "bitwidth" : 9
+        }
+      ],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "egress_spec"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 1
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/ipv4_lpm.p4",
+            "line" : 9,
+            "column" : 8,
+            "source_fragment" : "standard_metadata.egress_spec = port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "src_addr"]
+            },
+            {
+              "type" : "field",
+              "value" : ["ethernet", "dst_addr"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/ipv4_lpm.p4",
+            "line" : 10,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.src_addr = hdr.ethernet.dst_addr"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "dst_addr"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 0
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/ipv4_lpm.p4",
+            "line" : 11,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.dst_addr = mac"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "ttl"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["ipv4", "ttl"]
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0xff"
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/ipv4_lpm.p4",
+            "line" : 12,
+            "column" : 8,
+            "source_fragment" : "hdr.ipv4.ttl = hdr.ipv4.ttl - 1"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "userMetadata.is_forwarded"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x01"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/ipv4_lpm.p4",
+            "line" : 13,
+            "column" : 8,
+            "source_fragment" : "local_metadata.is_forwarded = 1"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "MyIngress.Forwarding.drop",
+      "id" : 4,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "mark_to_drop",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "standard_metadata"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/ipv4_lpm.p4",
+            "line" : 18,
+            "column" : 8,
+            "source_fragment" : "mark_to_drop(standard_metadata)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch84",
+      "id" : 5,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[0]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 84,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[0].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[1]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 85,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[1].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[2]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 86,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[2].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[3]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 87,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[3].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[4]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 88,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[4].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[5]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 89,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[5].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[6]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 90,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[6].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[7]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 91,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[7].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[8]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 92,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[8].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[9]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 93,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[9].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[10]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 94,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[10].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[11]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 95,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[11].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[12]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 96,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[12].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[13]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 97,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[13].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[14]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 98,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[14].setValid()"
+          }
+        },
+        {
+          "op" : "add_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "telemetry_aggregated_header[15]"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 99,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[15].setValid()"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[0]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 104,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[0].one_field, 0)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[1]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000001"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 105,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[1].one_field, 1)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[2]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000002"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 106,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[2].one_field, 2)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[3]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000003"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 107,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[3].one_field, 3)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[4]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000004"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 108,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[4].one_field, 4)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[5]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000005"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 109,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[5].one_field, 5)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[6]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000006"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 110,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[6].one_field, 6)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[7]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000007"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 111,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[7].one_field, 7)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[8]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000008"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 112,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[8].one_field, 8)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[9]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000009"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 113,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[9].one_field, 9)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[10]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000000a"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 114,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[10].one_field, 10)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[11]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000000b"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 115,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[11].one_field, 11)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[12]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000000c"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 116,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[12].one_field, 12)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[13]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000000d"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 117,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[13].one_field, 13)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[14]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000000e"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 118,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[14].one_field, 14)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["telemetry_aggregated_header[15]", "one_field"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000000f"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 119,
+            "column" : 24,
+            "source_fragment" : "packet_aggregator.read( hdr.telemetry_aggregated_header[15].one_field, 15)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch127",
+      "id" : 6,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "cursor_0"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 127,
+            "column" : 24,
+            "source_fragment" : "cursor = 0"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch52",
+      "id" : 7,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "log_msg",
+          "parameters" : [
+            {
+              "type" : "string",
+              "value" : "postcard detected"
+            },
+            {
+              "type" : "parameters_vector",
+              "value" : {
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 52,
+            "column" : 20,
+            "source_fragment" : "                    log_msg(\\\"postcard detected\\\");"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "cursor_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.aggregator_pointer"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 55,
+            "column" : 20,
+            "source_fragment" : "aggregator_pointer.read(cursor, 0)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "|",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "&",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "<<",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "&",
+                              "left" : {
+                                "type" : "expression",
+                                "value" : {
+                                  "op" : "|",
+                                  "left" : {
+                                    "type" : "expression",
+                                    "value" : {
+                                      "op" : "&",
+                                      "left" : {
+                                        "type" : "expression",
+                                        "value" : {
+                                          "op" : "<<",
+                                          "left" : {
+                                            "type" : "expression",
+                                            "value" : {
+                                              "op" : "&",
+                                              "left" : {
+                                                "type" : "expression",
+                                                "value" : {
+                                                  "op" : "|",
+                                                  "left" : {
+                                                    "type" : "expression",
+                                                    "value" : {
+                                                      "op" : "&",
+                                                      "left" : {
+                                                        "type" : "expression",
+                                                        "value" : {
+                                                          "op" : "<<",
+                                                          "left" : {
+                                                            "type" : "expression",
+                                                            "value" : {
+                                                              "op" : "&",
+                                                              "left" : {
+                                                                "type" : "expression",
+                                                                "value" : {
+                                                                  "op" : "|",
+                                                                  "left" : {
+                                                                    "type" : "expression",
+                                                                    "value" : {
+                                                                      "op" : "&",
+                                                                      "left" : {
+                                                                        "type" : "expression",
+                                                                        "value" : {
+                                                                          "op" : "<<",
+                                                                          "left" : {
+                                                                            "type" : "expression",
+                                                                            "value" : {
+                                                                              "op" : "&",
+                                                                              "left" : {
+                                                                                "type" : "expression",
+                                                                                "value" : {
+                                                                                  "op" : "|",
+                                                                                  "left" : {
+                                                                                    "type" : "expression",
+                                                                                    "value" : {
+                                                                                      "op" : "&",
+                                                                                      "left" : {
+                                                                                        "type" : "expression",
+                                                                                        "value" : {
+                                                                                          "op" : "<<",
+                                                                                          "left" : {
+                                                                                            "type" : "expression",
+                                                                                            "value" : {
+                                                                                              "op" : "&",
+                                                                                              "left" : {
+                                                                                                "type" : "expression",
+                                                                                                "value" : {
+                                                                                                  "op" : "|",
+                                                                                                  "left" : {
+                                                                                                    "type" : "expression",
+                                                                                                    "value" : {
+                                                                                                      "op" : "&",
+                                                                                                      "left" : {
+                                                                                                        "type" : "expression",
+                                                                                                        "value" : {
+                                                                                                          "op" : "<<",
+                                                                                                          "left" : {
+                                                                                                            "type" : "expression",
+                                                                                                            "value" : {
+                                                                                                              "op" : "&",
+                                                                                                              "left" : {
+                                                                                                                "type" : "expression",
+                                                                                                                "value" : {
+                                                                                                                  "op" : "|",
+                                                                                                                  "left" : {
+                                                                                                                    "type" : "expression",
+                                                                                                                    "value" : {
+                                                                                                                      "op" : "&",
+                                                                                                                      "left" : {
+                                                                                                                        "type" : "expression",
+                                                                                                                        "value" : {
+                                                                                                                          "op" : "<<",
+                                                                                                                          "left" : {
+                                                                                                                            "type" : "expression",
+                                                                                                                            "value" : {
+                                                                                                                              "op" : "&",
+                                                                                                                              "left" : {
+                                                                                                                                "type" : "expression",
+                                                                                                                                "value" : {
+                                                                                                                                  "op" : "|",
+                                                                                                                                  "left" : {
+                                                                                                                                    "type" : "expression",
+                                                                                                                                    "value" : {
+                                                                                                                                      "op" : "&",
+                                                                                                                                      "left" : {
+                                                                                                                                        "type" : "expression",
+                                                                                                                                        "value" : {
+                                                                                                                                          "op" : "<<",
+                                                                                                                                          "left" : {
+                                                                                                                                            "type" : "expression",
+                                                                                                                                            "value" : {
+                                                                                                                                              "op" : "&",
+                                                                                                                                              "left" : {
+                                                                                                                                                "type" : "field",
+                                                                                                                                                "value" : ["int_xd", "switch_id"]
+                                                                                                                                              },
+                                                                                                                                              "right" : {
+                                                                                                                                                "type" : "hexstr",
+                                                                                                                                                "value" : "0xffffffffffffffff"
+                                                                                                                                              }
+                                                                                                                                            }
+                                                                                                                                          },
+                                                                                                                                          "right" : {
+                                                                                                                                            "type" : "hexstr",
+                                                                                                                                            "value" : "0x20"
+                                                                                                                                          }
+                                                                                                                                        }
+                                                                                                                                      },
+                                                                                                                                      "right" : {
+                                                                                                                                        "type" : "hexstr",
+                                                                                                                                        "value" : "0xffffffffffffffff"
+                                                                                                                                      }
+                                                                                                                                    }
+                                                                                                                                  },
+                                                                                                                                  "right" : {
+                                                                                                                                    "type" : "expression",
+                                                                                                                                    "value" : {
+                                                                                                                                      "op" : "&",
+                                                                                                                                      "left" : {
+                                                                                                                                        "type" : "expression",
+                                                                                                                                        "value" : {
+                                                                                                                                          "op" : "&",
+                                                                                                                                          "left" : {
+                                                                                                                                            "type" : "field",
+                                                                                                                                            "value" : ["int_xd", "flow_id"]
+                                                                                                                                          },
+                                                                                                                                          "right" : {
+                                                                                                                                            "type" : "hexstr",
+                                                                                                                                            "value" : "0xffffffffffffffff"
+                                                                                                                                          }
+                                                                                                                                        }
+                                                                                                                                      },
+                                                                                                                                      "right" : {
+                                                                                                                                        "type" : "hexstr",
+                                                                                                                                        "value" : "0x00000001ffffffff"
+                                                                                                                                      }
+                                                                                                                                    }
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              },
+                                                                                                                              "right" : {
+                                                                                                                                "type" : "hexstr",
+                                                                                                                                "value" : "0xffffffffffffffffff"
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          },
+                                                                                                                          "right" : {
+                                                                                                                            "type" : "hexstr",
+                                                                                                                            "value" : "0x8"
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      },
+                                                                                                                      "right" : {
+                                                                                                                        "type" : "hexstr",
+                                                                                                                        "value" : "0xffffffffffffffffff"
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  },
+                                                                                                                  "right" : {
+                                                                                                                    "type" : "expression",
+                                                                                                                    "value" : {
+                                                                                                                      "op" : "&",
+                                                                                                                      "left" : {
+                                                                                                                        "type" : "expression",
+                                                                                                                        "value" : {
+                                                                                                                          "op" : "&",
+                                                                                                                          "left" : {
+                                                                                                                            "type" : "field",
+                                                                                                                            "value" : ["int_xd", "ttl"]
+                                                                                                                          },
+                                                                                                                          "right" : {
+                                                                                                                            "type" : "hexstr",
+                                                                                                                            "value" : "0xffffffffffffffffff"
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      },
+                                                                                                                      "right" : {
+                                                                                                                        "type" : "hexstr",
+                                                                                                                        "value" : "0x0000000000000001ff"
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              },
+                                                                                                              "right" : {
+                                                                                                                "type" : "hexstr",
+                                                                                                                "value" : "0xffffffffffffffffffffffffffffff"
+                                                                                                              }
+                                                                                                            }
+                                                                                                          },
+                                                                                                          "right" : {
+                                                                                                            "type" : "hexstr",
+                                                                                                            "value" : "0x30"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "right" : {
+                                                                                                        "type" : "hexstr",
+                                                                                                        "value" : "0xffffffffffffffffffffffffffffff"
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  "right" : {
+                                                                                                    "type" : "expression",
+                                                                                                    "value" : {
+                                                                                                      "op" : "&",
+                                                                                                      "left" : {
+                                                                                                        "type" : "expression",
+                                                                                                        "value" : {
+                                                                                                          "op" : "&",
+                                                                                                          "left" : {
+                                                                                                            "type" : "field",
+                                                                                                            "value" : ["int_xd", "ingress_tstamp"]
+                                                                                                          },
+                                                                                                          "right" : {
+                                                                                                            "type" : "hexstr",
+                                                                                                            "value" : "0xffffffffffffffffffffffffffffff"
+                                                                                                          }
+                                                                                                        }
+                                                                                                      },
+                                                                                                      "right" : {
+                                                                                                        "type" : "hexstr",
+                                                                                                        "value" : "0x000000000000000001ffffffffffff"
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              },
+                                                                                              "right" : {
+                                                                                                "type" : "hexstr",
+                                                                                                "value" : "0xffffffffffffffffffffffffffffffffffffffffff"
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "right" : {
+                                                                                            "type" : "hexstr",
+                                                                                            "value" : "0x30"
+                                                                                          }
+                                                                                        }
+                                                                                      },
+                                                                                      "right" : {
+                                                                                        "type" : "hexstr",
+                                                                                        "value" : "0xffffffffffffffffffffffffffffffffffffffffff"
+                                                                                      }
+                                                                                    }
+                                                                                  },
+                                                                                  "right" : {
+                                                                                    "type" : "expression",
+                                                                                    "value" : {
+                                                                                      "op" : "&",
+                                                                                      "left" : {
+                                                                                        "type" : "expression",
+                                                                                        "value" : {
+                                                                                          "op" : "&",
+                                                                                          "left" : {
+                                                                                            "type" : "field",
+                                                                                            "value" : ["int_xd", "egress_tstamp"]
+                                                                                          },
+                                                                                          "right" : {
+                                                                                            "type" : "hexstr",
+                                                                                            "value" : "0xffffffffffffffffffffffffffffffffffffffffff"
+                                                                                          }
+                                                                                        }
+                                                                                      },
+                                                                                      "right" : {
+                                                                                        "type" : "hexstr",
+                                                                                        "value" : "0x000000000000000000000000000001ffffffffffff"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              "right" : {
+                                                                                "type" : "hexstr",
+                                                                                "value" : "0x07ffffffffffffffffffffffffffffffffffffffffffffff"
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          "right" : {
+                                                                            "type" : "hexstr",
+                                                                            "value" : "0x13"
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "right" : {
+                                                                        "type" : "hexstr",
+                                                                        "value" : "0x07ffffffffffffffffffffffffffffffffffffffffffffff"
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "right" : {
+                                                                    "type" : "expression",
+                                                                    "value" : {
+                                                                      "op" : "&",
+                                                                      "left" : {
+                                                                        "type" : "expression",
+                                                                        "value" : {
+                                                                          "op" : "&",
+                                                                          "left" : {
+                                                                            "type" : "field",
+                                                                            "value" : ["int_xd", "deq_depth"]
+                                                                          },
+                                                                          "right" : {
+                                                                            "type" : "hexstr",
+                                                                            "value" : "0x07ffffffffffffffffffffffffffffffffffffffffffffff"
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      "right" : {
+                                                                        "type" : "hexstr",
+                                                                        "value" : "0x0000000000000000000000000000000000000000000fffff"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
+                                                              "right" : {
+                                                                "type" : "hexstr",
+                                                                "value" : "0x3fffffffffffffffffffffffffffffffffffffffffffffffffff"
+                                                              }
+                                                            }
+                                                          },
+                                                          "right" : {
+                                                            "type" : "hexstr",
+                                                            "value" : "0x13"
+                                                          }
+                                                        }
+                                                      },
+                                                      "right" : {
+                                                        "type" : "hexstr",
+                                                        "value" : "0x3fffffffffffffffffffffffffffffffffffffffffffffffffff"
+                                                      }
+                                                    }
+                                                  },
+                                                  "right" : {
+                                                    "type" : "expression",
+                                                    "value" : {
+                                                      "op" : "&",
+                                                      "left" : {
+                                                        "type" : "expression",
+                                                        "value" : {
+                                                          "op" : "&",
+                                                          "left" : {
+                                                            "type" : "field",
+                                                            "value" : ["int_xd", "enq_depth"]
+                                                          },
+                                                          "right" : {
+                                                            "type" : "hexstr",
+                                                            "value" : "0x3fffffffffffffffffffffffffffffffffffffffffffffffffff"
+                                                          }
+                                                        }
+                                                      },
+                                                      "right" : {
+                                                        "type" : "hexstr",
+                                                        "value" : "0x00000000000000000000000000000000000000000000000fffff"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "right" : {
+                                                "type" : "hexstr",
+                                                "value" : "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                                              }
+                                            }
+                                          },
+                                          "right" : {
+                                            "type" : "hexstr",
+                                            "value" : "0x9"
+                                          }
+                                        }
+                                      },
+                                      "right" : {
+                                        "type" : "hexstr",
+                                        "value" : "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                                      }
+                                    }
+                                  },
+                                  "right" : {
+                                    "type" : "expression",
+                                    "value" : {
+                                      "op" : "&",
+                                      "left" : {
+                                        "type" : "expression",
+                                        "value" : {
+                                          "op" : "&",
+                                          "left" : {
+                                            "type" : "field",
+                                            "value" : ["int_xd", "ingress_port"]
+                                          },
+                                          "right" : {
+                                            "type" : "hexstr",
+                                            "value" : "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                                          }
+                                        }
+                                      },
+                                      "right" : {
+                                        "type" : "hexstr",
+                                        "value" : "0x0000000000000000000000000000000000000000000000000003ff"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0x9"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "&",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "field",
+                            "value" : ["int_xd", "egress_port"]
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x000000000000000000000000000000000000000000000000000003ff"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 70,
+            "column" : 61,
+            "source_fragment" : "data"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.packet_aggregator"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "cursor_0"]
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 70,
+            "column" : 20,
+            "source_fragment" : "packet_aggregator.write((bit<32>)cursor, data)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "cursor_0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "cursor_0"]
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x00000001"
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 74,
+            "column" : 20,
+            "source_fragment" : "cursor = cursor + 1"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch130",
+      "id" : 8,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.aggregator_pointer"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "cursor_0"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 130,
+            "column" : 20,
+            "source_fragment" : "aggregator_pointer.write(0,cursor)"
+          }
+        }
+      ]
+    }
+  ],
+  "pipelines" : [
+    {
+      "name" : "ingress",
+      "id" : 0,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 30,
+        "column" : 8,
+        "source_fragment" : "MyIngress"
+      },
+      "init_table" : "node_2",
+      "tables" : [
+        {
+          "name" : "tbl_switch52",
+          "id" : 0,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 52,
+            "column" : 20,
+            "source_fragment" : "                    log_msg(\\\"postcard detected\\\");"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [7],
+          "actions" : ["switch52"],
+          "base_default_next" : "node_5",
+          "next_tables" : {
+            "switch52" : "node_5"
+          },
+          "default_entry" : {
+            "action_id" : 7,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_switch84",
+          "id" : 1,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 84,
+            "column" : 24,
+            "source_fragment" : "hdr.telemetry_aggregated_header[0].setValid(); ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [5],
+          "actions" : ["switch84"],
+          "base_default_next" : "MyIngress.ExportData.table_postcard",
+          "next_tables" : {
+            "switch84" : "MyIngress.ExportData.table_postcard"
+          },
+          "default_entry" : {
+            "action_id" : 5,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "MyIngress.ExportData.table_postcard",
+          "id" : 2,
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 63,
+            "column" : 10,
+            "source_fragment" : "table_postcard"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [2, 0],
+          "actions" : ["MyIngress.ExportData.forward_postcard", "NoAction"],
+          "base_default_next" : "tbl_switch127",
+          "next_tables" : {
+            "MyIngress.ExportData.forward_postcard" : "tbl_switch127",
+            "NoAction" : "tbl_switch127"
+          },
+          "default_entry" : {
+            "action_id" : 0,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_switch127",
+          "id" : 3,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 127,
+            "column" : 31,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [6],
+          "actions" : ["switch127"],
+          "base_default_next" : "tbl_switch130",
+          "next_tables" : {
+            "switch127" : "tbl_switch130"
+          },
+          "default_entry" : {
+            "action_id" : 6,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_switch130",
+          "id" : 4,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 130,
+            "column" : 20,
+            "source_fragment" : "aggregator_pointer.write(0,cursor)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [8],
+          "actions" : ["switch130"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "switch130" : null
+          },
+          "default_entry" : {
+            "action_id" : 8,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "MyIngress.Forwarding.ipv4_lpm",
+          "id" : 5,
+          "source_info" : {
+            "filename" : "tables/ipv4_lpm.p4",
+            "line" : 21,
+            "column" : 10,
+            "source_fragment" : "ipv4_lpm"
+          },
+          "key" : [
+            {
+              "match_type" : "lpm",
+              "name" : "hdr.ipv4.dstAddr",
+              "target" : ["ipv4", "dstAddr"],
+              "mask" : null
+            }
+          ],
+          "match_type" : "lpm",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [3, 1, 4],
+          "actions" : ["MyIngress.Forwarding.ipv4_forward", "NoAction", "MyIngress.Forwarding.drop"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "MyIngress.Forwarding.ipv4_forward" : null,
+            "NoAction" : null,
+            "MyIngress.Forwarding.drop" : null
+          },
+          "default_entry" : {
+            "action_id" : 4,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        }
+      ],
+      "action_profiles" : [],
+      "conditionals" : [
+        {
+          "name" : "node_2",
+          "id" : 0,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 48,
+            "column" : 17,
+            "source_fragment" : "hdr.ipv4.isValid()"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "d2b",
+              "left" : null,
+              "right" : {
+                "type" : "field",
+                "value" : ["ipv4", "$valid$"]
+              }
+            }
+          },
+          "false_next" : null,
+          "true_next" : "node_3"
+        },
+        {
+          "name" : "node_3",
+          "id" : 1,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 51,
+            "column" : 20,
+            "source_fragment" : "local_metadata.is_postcard == 1"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "==",
+              "left" : {
+                "type" : "field",
+                "value" : ["scalars", "userMetadata.is_postcard"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x01"
+              }
+            }
+          },
+          "true_next" : "tbl_switch52",
+          "false_next" : "MyIngress.Forwarding.ipv4_lpm"
+        },
+        {
+          "name" : "node_5",
+          "id" : 2,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 80,
+            "column" : 24,
+            "source_fragment" : "cursor >= PACKET_AGGREGATOR_THRESHOLD"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : ">=",
+              "left" : {
+                "type" : "field",
+                "value" : ["scalars", "cursor_0"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x00000010"
+              }
+            }
+          },
+          "true_next" : "tbl_switch84",
+          "false_next" : "tbl_switch130"
+        }
+      ]
+    },
+    {
+      "name" : "egress",
+      "id" : 1,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 139,
+        "column" : 8,
+        "source_fragment" : "MyEgress"
+      },
+      "init_table" : null,
+      "tables" : [],
+      "action_profiles" : [],
+      "conditionals" : []
+    }
+  ],
+  "checksums" : [
+    {
+      "name" : "cksum",
+      "id" : 0,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 148,
+        "column" : 1,
+        "source_fragment" : "update_checksum( ..."
+      },
+      "target" : ["ipv4", "hdrChecksum"],
+      "type" : "generic",
+      "calculation" : "calc",
+      "verify" : false,
+      "update" : true,
+      "if_cond" : {
+        "type" : "expression",
+        "value" : {
+          "op" : "d2b",
+          "left" : null,
+          "right" : {
+            "type" : "field",
+            "value" : ["ipv4", "$valid$"]
+          }
+        }
+      }
+    }
+  ],
+  "force_arith" : [],
+  "extern_instances" : [],
+  "field_aliases" : [
+    [
+      "queueing_metadata.enq_timestamp",
+      ["standard_metadata", "enq_timestamp"]
+    ],
+    [
+      "queueing_metadata.enq_qdepth",
+      ["standard_metadata", "enq_qdepth"]
+    ],
+    [
+      "queueing_metadata.deq_timedelta",
+      ["standard_metadata", "deq_timedelta"]
+    ],
+    [
+      "queueing_metadata.deq_qdepth",
+      ["standard_metadata", "deq_qdepth"]
+    ],
+    [
+      "intrinsic_metadata.ingress_global_timestamp",
+      ["standard_metadata", "ingress_global_timestamp"]
+    ],
+    [
+      "intrinsic_metadata.egress_global_timestamp",
+      ["standard_metadata", "egress_global_timestamp"]
+    ],
+    [
+      "intrinsic_metadata.mcast_grp",
+      ["standard_metadata", "mcast_grp"]
+    ],
+    [
+      "intrinsic_metadata.egress_rid",
+      ["standard_metadata", "egress_rid"]
+    ],
+    [
+      "intrinsic_metadata.priority",
+      ["standard_metadata", "priority"]
+    ]
+  ],
+  "program" : ".//switch.p4i",
+  "__meta__" : {
+    "version" : [2, 23],
+    "compiler" : "https://github.com/p4lang/p4c"
+  }
+}

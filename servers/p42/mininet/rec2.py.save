@@ -1,0 +1,17 @@
+import socket, select
+x = 0
+def main():
+   s1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+   port = 54321
+   s1.bind(('0.0.0.0',port))
+   s2 = socket.socket(socket.AF_
+   #s2.bind(('0.0.0.0',port))
+   print('\r Server is listening on port: {}'.format(port))
+   try:
+      while(True):
+         print(s1.recvfrom(65536))
+   except:
+      print(' Exit\n')
+if __name__ == '__main__':
+   main()
+   print('\r Received: {} packets'.format(x))

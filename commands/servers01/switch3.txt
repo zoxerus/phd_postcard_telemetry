@@ -1,0 +1,15 @@
+mirroring_add 500 3
+
+
+table_add table_int_dstip clone_to_collector 10.0.40.0/24 =>
+
+table_add table_flow_id set_flow_id 10.0.10.10 1111 10.0.40.10 1234 => 0x00000001
+table_add table_flow_id set_flow_id 10.0.11.10 1111 10.0.40.10 1234 => 0x00000002
+table_add table_flow_id set_flow_id 10.0.10.10 1112 10.0.40.10 1234 => 0x00000003
+table_add table_flow_id set_flow_id 10.0.11.10 1112 10.0.40.10 1234 => 0x00000004
+
+table_add ipv4_lpm ipv4_forward 10.0.40.0/23 => 00:00:00:00:00:00  2
+table_add ipv4_lpm ipv4_forward 10.0.0.0/24 => 00:00:00:00:00:00  3
+table_add ipv4_lpm ipv4_forward 10.0.10.0/23 => 00:00:00:00:00:00 1
+
+table_add table_postcard forward_postcard => 3 3.3.3.3

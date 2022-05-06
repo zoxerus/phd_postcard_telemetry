@@ -1,0 +1,7 @@
+mirroring_add 500 1
+
+table_add ipv4_lpm ipv4_forward 10.0.0.10/32 => 00:00:00:00:00:10 1
+
+table_add table_detect_postcard set_postcard_bit 10.0.0.10 54321 =>
+
+table_add table_postcard forward_postcard => 1
