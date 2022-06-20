@@ -118,11 +118,13 @@ class P4Switch(Switch):
         for port, intf in self.intfs.items():
             if not intf.IP():
                 args.extend(['-i', str(port) + "@" + intf.name])
+
         """ This is to attach Switch S0 to a physical interface for
             communication with external hosts """
         if self.device_id == 0:
             print('ID: {}, SW: {}'.format(self.device_id, self.name))
             args.extend(['-i', str(10) + "@" + "enp0s31f6"])
+
         if self.pcap_dump:
             args.append("--pcap")
             # args.append("--useFiles")
