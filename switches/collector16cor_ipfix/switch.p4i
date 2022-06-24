@@ -911,7 +911,7 @@ header ethernet_t {
     bit<48> src_addr;
     bit<16> ether_type;
 }
-const bit<8> ETH_HEADER_LEN = 14;
+
 
 header ipv4_t {
     bit<4> version;
@@ -928,7 +928,6 @@ header ipv4_t {
     bit<32> dst_addr;
 }
 
-const bit<8> IPV4_MIN_HEAD_LEN = 20;
 
 header udp_t {
     bit<16> src_port;
@@ -937,70 +936,109 @@ header udp_t {
     bit<16> checksum;
 }
 
-const bit<8> UDP_HEADER_LEN = 8;
 
-header postcard_t {
-    bit<32> sw_id;
-    bit<32> flow_id;
-    bit<8> ttl;
-    bit<48> ingress_tstamp;
-    bit<48> egress_tstamp;
-    bit<19> deq_depth;
-    bit<19> enq_depth;
-    bit<9> ingress_port;
-    bit<9> egress_port;
-}
-
-
-
-header aggregation_postcard_t {
-    bit<8> ttl;
-    bit<48> ingress_tstamp;
-    bit<48> egress_tstamp;
-    bit<48> latency;
-    bit<19> deq_depth;
-    bit<19> enq_depth;
-    bit<9> ingress_port;
-    bit<9> egress_port;
+header tcp_t{
+    bit<16> src_port;
+    bit<16> dst_port;
+    bit<32> seqNo;
+    bit<32> ackNo;
+    bit<4> dataOffset;
+    bit<4> res;
+    bit<1> cwr;
+    bit<1> ece;
+    bit<1> urg;
+    bit<1> ack;
+    bit<1> psh;
+    bit<1> rst;
+    bit<1> syn;
+    bit<1> fin;
+    bit<16> window;
+    bit<16> checksum;
+    bit<16> urgentPtr;
 }
 
 
 
 
 
-header telemetry_sum_t{
-    bit<32> switch_id;
+
+// the main header of an IPFIX message
+struct ipfix_header_t{
+    bit<16> version_number;
+    bit<16> message_length;
+    bit<32> export_time;
+    bit<32> sequence_number;
+    bit<32> observation_domain;
+}
+
+// the header of a set contained in the IPFIX message
+struct set_header_t {
+    bit<16> set_id;
+    bit<16> set_length;
+}
+
+// header for a data record, that must be contained in the outward IPFIX message
+struct record_sum_t {
+    bit<32> collector_id;
     bit<32> flow_id;
+    bit<8> ttl;
     bit<48> latency_min;
-    bit<48> latency_max;
     bit<48> latency_avg;
-    bit<19> enq_min;
-    bit<19> enq_max;
-    bit<19> enq_avg;
-    bit<19> deq_min;
-    bit<19> deq_max;
-    bit<19> deq_avg;
-    bit<6> sum_of;
+    bit<48> latency_max;
+    bit<24> enq_min;
+    bit<24> enq_avg;
+    bit<24> enq_max;
+    bit<24> deq_min;
+    bit<24> deq_avg;
+    bit<24> deq_max;
 }
 
 
 
+// the data record of the incoming postcard, this data is extracted and then
+// summerized in a new IPFIX message using the data_sum_t struct.
+struct record_postcard_t {
+    bit<32> flow_id;
+    bit<8> ttl;
+    bit<48> ingress_tstamp;
+    bit<48> egress_tstamp;
+    bit<24> deq_depth;
+    bit<24> enq_depth;
+    bit<16> ingress_interface;
+    bit<16> egress_interface;
+}
+
+header ipfix_postcard_t {
+    ipfix_header_t ipfix_header;
+    set_header_t set;
+    record_postcard_t record;
+}
+
+header ipfix_sum_t {
+    ipfix_header_t ipfix_header;
+    set_header_t set;
+    record_sum_t record;
+}
+
+
+
+
+// the headers that are used by the switch.
 struct headers_t {
-    // ethernet header
+    ethernet_t xd_ethernet;
+    ipv4_t xd_ipv4;
+    udp_t xd_udp;
+
+    ipfix_postcard_t ipfix_postcard;
+    ipfix_sum_t ipfix_sum;
+
     ethernet_t ethernet;
-    ethernet_t xd_ethernet_header;
-    // IPV4 header
     ipv4_t ipv4;
-    ipv4_t xd_ip_header;
-    // UDP header
     udp_t udp;
-    udp_t xd_udp_header;
-    // postcard headers
-    postcard_t postcard;
-    telemetry_sum_t telemetry_sum;
 }
 
 
+// a user metadata
 struct local_metadata_t {
     bit<1> is_postcard;
     bit<32> flow_id;
@@ -1046,7 +1084,7 @@ parser PacketParser(
         }
 
         state parse_postcard_header {
-            packet.extract(hdr.postcard);
+            packet.extract(hdr.ipfix_postcard);
             transition accept;
         }
 }
@@ -1056,7 +1094,7 @@ control PacketDeparser(packet_out packet, in headers_t hdr ){
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv4);
         packet.emit(hdr.udp);
-        packet.emit(hdr.telemetry_sum);
+        packet.emit(hdr.ipfix_sum);
 
     }
 }
@@ -1106,15 +1144,27 @@ control Forwarding(inout headers_t hdr,
 
 
 
+
+/*
+This control contains three tables, first one is applied to detect whether the
+packet is a postcard, if it is then a flag in local_metadata is set and two
+other match tables are applyed consecutively to match the flow and switch IDs
+and store these IDs in the relevant local_metadata variables.
+*/
+
 control PostcardDetect(
     inout headers_t hdr,
     inout local_metadata_t local_metadata,
     inout standard_metadata_t standard_metadata){
 
+    // this action basically sets the is_postcard flag to denote that this
+    // packet is a postcard, so it can go through the relevant processing later
     action set_postcard_bit(){
         local_metadata.is_postcard = 1;
     }
 
+    // a packet is considered to contain a postcard when it's sent to a certain
+    // IP address and a certain udp port number.
     table table_detect_postcard{
         key = {
             hdr.ipv4.dst_addr: exact;
@@ -1126,16 +1176,19 @@ control PostcardDetect(
         }
     }
 
+    // TODO: write a description for this action
     action select_flow_register(bit<32> flow_reg_num){
         local_metadata.flow_register_number = flow_reg_num;
-        local_metadata.flow_id = hdr.postcard.flow_id;
-        log_msg("flow_id: {} set to register: {}", {hdr.postcard.flow_id, flow_reg_num});
+        local_metadata.flow_id = hdr.ipfix_postcard.record.flow_id;
+        // log_msg("flow_id: {} set to register: {}", {hdr.postcard.flow_id, flow_reg_num});
     }
 
+    // TODO: write a description
     action select_switch_register(bit<32> sw_reg_num ){
         local_metadata.switch_register_number = sw_reg_num;
-        local_metadata.switch_id = hdr.postcard.sw_id;
-        log_msg("sw_id: {} set to register: {}",{hdr.postcard.sw_id, sw_reg_num});
+        local_metadata.switch_id =
+            hdr.ipfix_postcard.ipfix_header.observation_domain;
+        // log_msg("sw_id: {} set to register: {}",{hdr.postcard.sw_id, sw_reg_num});
     }
 
 
@@ -1143,7 +1196,7 @@ control PostcardDetect(
 
     table table_detect_flow{
         key = {
-            hdr.postcard.flow_id: exact;
+            hdr.ipfix_postcard.record.flow_id: exact;
         }
         actions = {
             select_flow_register;
@@ -1153,7 +1206,7 @@ control PostcardDetect(
 
     table table_detect_switch{
         key = {
-            hdr.postcard.sw_id: exact;
+            hdr.ipfix_postcard.ipfix_header.observation_domain: exact;
         }
         actions = {
             select_switch_register;
@@ -1204,8 +1257,7 @@ control ExportData(inout headers_t hdr,
         hdr.ipv4.version = 4w4;
         hdr.ipv4.ihl = 4w5;
         hdr.ipv4.diffserv = 8w0;
-        hdr.ipv4.totalLen = (bit<16>)IPV4_MIN_HEAD_LEN +
-                (bit<16>)UDP_HEADER_LEN + (bit<16>)41;
+        hdr.ipv4.totalLen = (bit<16>)(20 + 8 + 804);
 
         hdr.ipv4.identification = 0;
         hdr.ipv4.flags = 0;
@@ -1219,13 +1271,11 @@ control ExportData(inout headers_t hdr,
         hdr.udp.setValid();
         hdr.udp.src_port = 22222;
         hdr.udp.dst_port = srv_port;
-        hdr.udp.udp_length = (bit<16>)UDP_HEADER_LEN +
-                                        (bit<16>)41;
+        hdr.udp.udp_length = (bit<16>)(8 + 804);
 
-        hdr.postcard.setInvalid();
 
         // remove extra payload in the packet if it exists
-        truncate((bit<32>)hdr.ipv4.totalLen + (bit<32>)ETH_HEADER_LEN);
+        truncate((bit<32>)hdr.ipv4.totalLen + 14);
         log_msg("aggregate packet sent on intergace {}",{egress_interface});
     }
 
@@ -1264,21 +1314,37 @@ control MyIngress (
     const bit<32> number_of_switches = 3;
     const bit<32> totalSize = number_of_flows * number_of_switches;
 
-    // these are registers used to hold the values for aggregation and correlation
+    // the memory is organized in banks, each bank stores the data of one switch
+    // each bank is divided into vaults, where each vault stores data of one
+    // flow. each vault has a number N compartments, where N is the aggregation
+    // level, in other words N is the number of postcards that are aggregated
+    // and summarized. each compartment has a number of drawers equal to the
+    // number of variables that the switch stores, e.g. latency.
+    // or in other words, it's a 3D array where the row represents the switch
+    // and the column represents the flow number, and the depth represent the
+    // variable.
+    //
+    // aggregator_pointer stores the location of the last compartment that we
+    // have written to in this switch and for this flow.
     register <bit<8>> (totalSize) aggregator_pointer;
 
-    //register <bit<AGGREGATION_POSTCARD_LEN_BITS>> (PACKET_AGGREGATOR_THRESHOLD)packet_aggregator;
+    // register_*_max is a 2D array (switch,flow) where each cell of this
+    // 2D array is updated with the max value if the last value received for
+    // variable is higher than the stored one. same logic is for
+    // register_*_. while register_*_sum stores the sum of
+    // variables for them to later be divided by N (the number of aggregated
+    // packets)
     register <bit<48>> (totalSize) register_latency_max;
     register <bit<48>> (totalSize) register_latency_min;
     register <bit<48>> (totalSize) register_latency_sum;
 
-    register <bit<19>> (totalSize) register_enq_max;
-    register <bit<19>> (totalSize) register_enq_min;
-    register <bit<19>> (totalSize) register_enq_sum;
+    register <bit<24>> (totalSize) register_enq_max;
+    register <bit<24>> (totalSize) register_enq_min;
+    register <bit<24>> (totalSize) register_enq_sum;
 
-    register <bit<19>> (totalSize) register_deq_min;
-    register <bit<19>> (totalSize) register_deq_max;
-    register <bit<19>> (totalSize) register_deq_sum;
+    register <bit<24>> (totalSize) register_deq_min;
+    register <bit<24>> (totalSize) register_deq_max;
+    register <bit<24>> (totalSize) register_deq_sum;
 
     // variables with descriptive names
     bit <8> cursor = 0;
@@ -1286,17 +1352,17 @@ control MyIngress (
     bit <48> min_latency;
     bit <48> sum_latency;
 
-    bit<19> max_enq;
-    bit<19> min_enq;
-    bit<19> sum_enq;
+    bit<24> max_enq;
+    bit<24> min_enq;
+    bit<24> sum_enq;
 
-    bit<19> max_deq;
-    bit<19> min_deq;
-    bit<19> sum_deq;
+    bit<24> max_deq;
+    bit<24> min_deq;
+    bit<24> sum_deq;
     apply {
         if ( hdr.ipv4.isValid() ){
-            // use a match table to check the destination IP and port in order to
-            // determine whether this packet is a telemetry postcard
+            // use a match table to check the destination IP and port in order
+            // to determine whether this packet is a telemetry postcard
             PostcardDetect.apply(hdr, local_metadata, standard_metadata);
 
             // if packet is a postcard then apply postcard processing
@@ -1316,34 +1382,44 @@ control MyIngress (
 
                 // calculate the latency of the current postcard from
                 // the values included in the headers
-                bit<48> latency = ( hdr.postcard.egress_tstamp -
-                    hdr.postcard.ingress_tstamp );
-                log_msg("latency: {} us",{latency});
-                // if this is the first packet in the aggregation then we store the valeus
-                // of the parameters, otherwise we compare with the already stored values
+                bit<48> latency = ( hdr.ipfix_postcard.record.egress_tstamp -
+                    hdr.ipfix_postcard.record.ingress_tstamp );
+
+                // if this is the first packet in the aggregation then we store
+                // the valeus of the parameters, otherwise we compare with the
+                // already stored values
                 if (cursor == 0){
                     register_latency_max.write(pointer, latency);
                     register_latency_min.write(pointer, latency);
                     register_latency_sum.write(pointer, latency);
 
-                    register_enq_min.write(pointer, hdr.postcard.enq_depth);
-                    register_enq_max.write(pointer, hdr.postcard.enq_depth);
-                    register_enq_sum.write(pointer, hdr.postcard.enq_depth);
+                    register_enq_min.write(pointer,
+                            hdr.ipfix_postcard.record.enq_depth);
+                    register_enq_max.write(pointer,
+                            hdr.ipfix_postcard.record.enq_depth);
+                    register_enq_sum.write(pointer,
+                            hdr.ipfix_postcard.record.enq_depth);
 
-                    register_deq_min.write(pointer, hdr.postcard.deq_depth);
-                    register_deq_max.write(pointer, hdr.postcard.deq_depth);
-                    register_deq_sum.write(pointer, hdr.postcard.deq_depth);
+                    register_deq_min.write(pointer,
+                            hdr.ipfix_postcard.record.deq_depth);
+                    register_deq_max.write(pointer,
+                            hdr.ipfix_postcard.record.deq_depth);
+                    register_deq_sum.write(pointer,
+                            hdr.ipfix_postcard.record.deq_depth);
 
                 } else {
+                    // variables with descriptive names.
                     bit<48> old_latency;
                     bit<48> new_latency;
 
-                    bit<19> old_enq;
-                    bit<19> new_enq;
+                    bit<24> old_enq;
+                    bit<24> new_enq;
 
-                    bit<19> old_deq;
-                    bit<19> new_deq;
+                    bit<24> old_deq;
+                    bit<24> new_deq;
 
+                    // read values from registers and store them in relevant
+                    // variables
                     register_latency_sum.read(old_latency, pointer);
                     register_latency_max.read(max_latency, pointer);
                     register_latency_min.read(min_latency, pointer);
@@ -1356,14 +1432,18 @@ control MyIngress (
                     register_deq_max.read(max_deq, pointer);
                     register_deq_min.read(min_deq, pointer);
 
+                    // update the variables with new values.
                     new_latency = old_latency + latency;
-                    new_enq = old_enq + hdr.postcard.enq_depth;
-                    new_deq = old_deq + hdr.postcard.deq_depth;
+                    new_enq = old_enq + hdr.ipfix_postcard.record.enq_depth;
+                    new_deq = old_deq + hdr.ipfix_postcard.record.deq_depth;
 
+
+                    // store the variables in the registers.
                     register_latency_sum.write(pointer, new_latency);
                     register_enq_sum.write(pointer, new_enq);
                     register_deq_sum.write(pointer, new_deq);
 
+                    // compare old and new values for the max and min variables
                     if (latency < min_latency){
                         register_latency_min.write(pointer, latency);
                     }
@@ -1371,19 +1451,23 @@ control MyIngress (
                         register_latency_max.write(pointer, latency);
                     }
 
-                    if (hdr.postcard.enq_depth < min_enq){
-                        register_enq_min.write(pointer, hdr.postcard.enq_depth);
+                    if (hdr.ipfix_postcard.record.enq_depth < min_enq){
+                        register_enq_min.write(pointer,
+                                hdr.ipfix_postcard.record.enq_depth);
                     }
-                    if (hdr.postcard.enq_depth > max_enq){
-                        register_enq_max.write(pointer, hdr.postcard.enq_depth);
+                    if (hdr.ipfix_postcard.record.enq_depth > max_enq){
+                        register_enq_max.write(pointer,
+                                hdr.ipfix_postcard.record.enq_depth);
                     }
 
 
-                    if (hdr.postcard.deq_depth < min_deq){
-                        register_deq_min.write(pointer, hdr.postcard.deq_depth);
+                    if (hdr.ipfix_postcard.record.deq_depth < min_deq){
+                        register_deq_min.write(pointer,
+                                hdr.ipfix_postcard.record.deq_depth);
                     }
-                    if (hdr.postcard.deq_depth > max_deq){
-                        register_deq_max.write(pointer, hdr.postcard.deq_depth);
+                    if (hdr.ipfix_postcard.record.deq_depth > max_deq){
+                        register_deq_max.write(pointer,
+                                hdr.ipfix_postcard.record.deq_depth);
                     }
 
 
@@ -1392,49 +1476,75 @@ control MyIngress (
                 // increase cursor by 1 and check if threshold is reached
                 cursor = cursor + 1;
 
+                // if threshold is reached then send the aggregated or
+                // summerized packet from the total of postcards.
                 if (cursor == 16){
-                    log_msg("preparing aggregated packet");
+                    // activate teh ipfix_sum header for it to be included in
+                    // the output packet by the parser.
+                    hdr.ipfix_sum.setValid();
 
-                    hdr.telemetry_sum.setValid();
-                    hdr.telemetry_sum.sum_of = (bit<6>) cursor;
-                    hdr.telemetry_sum.switch_id = local_metadata.switch_id;
-                    hdr.telemetry_sum.flow_id = local_metadata.flow_id;
+                    // set the values for the ipfix header.
+                    hdr.ipfix_sum.ipfix_header.version_number = 10;
+                    hdr.ipfix_sum.ipfix_header.message_length = 804;
+                    hdr.ipfix_sum.ipfix_header.export_time =
+                        (bit<32>)standard_metadata.ingress_global_timestamp;
+
+                    // TODO: implement sequence numbers
+                    hdr.ipfix_sum.ipfix_header.sequence_number = 99;
+                    hdr.ipfix_sum.ipfix_header.observation_domain =
+                        local_metadata.switch_id;
+
+                    hdr.ipfix_sum.set.set_id = 10256;
+                    hdr.ipfix_sum.set.set_length = 788;
+
+                    // TODO: moves the collector_id to be set by the controll
+                    // plane
+                    hdr.ipfix_sum.record.collector_id = 0x01010101;
+                    hdr.ipfix_sum.record.flow_id = local_metadata.flow_id;
 
                     register_latency_min.read(min_latency, pointer);
-                    hdr.telemetry_sum.latency_min = min_latency;
+                    hdr.ipfix_sum.record.latency_min = min_latency;
 
                     register_latency_max.read(max_latency, pointer);
-                    hdr.telemetry_sum.latency_max = max_latency;
+                    hdr.ipfix_sum.record.latency_max = max_latency;
 
                     register_latency_sum.read(sum_latency, pointer);
-                    hdr.telemetry_sum.latency_avg = sum_latency/16;
+                    hdr.ipfix_sum.record.latency_avg =
+                        sum_latency/16;
 
 
                     register_enq_min.read(min_enq, pointer);
-                    hdr.telemetry_sum.enq_min = min_enq;
+                    hdr.ipfix_sum.record.enq_min = min_enq;
                     register_enq_max.read(max_enq, pointer);
-                    hdr.telemetry_sum.enq_max = max_enq;
+                    hdr.ipfix_sum.record.enq_max = max_enq;
                     register_enq_sum.read(sum_enq, pointer);
-                    hdr.telemetry_sum.enq_avg = sum_enq/16;
+                    hdr.ipfix_sum.record.enq_avg =
+                        sum_enq/16;
 
 
                     register_deq_min.read(min_deq, pointer);
-                    hdr.telemetry_sum.deq_min = min_deq;
+                    hdr.ipfix_sum.record.deq_min = min_deq;
                     register_deq_max.read(max_deq, pointer);
-                    hdr.telemetry_sum.deq_max = max_deq;
+                    hdr.ipfix_sum.record.deq_max = max_deq;
                     register_deq_sum.read(sum_deq, pointer);
-                    hdr.telemetry_sum.deq_avg = sum_deq/16;
+                    hdr.ipfix_sum.record.deq_avg =
+                        sum_deq/16;
 
                     ExportData.apply(hdr,local_metadata, standard_metadata);
 
                     cursor = 0;
                 }
+                // sotre the value of cursor in the correct sell of the 2D array
+                // for aggregator_pointer.
                 aggregator_pointer.write(pointer, cursor);
 
 
 
-            } else {
-                // Forwarding.apply(hdr, local_metadata, standard_metadata);
+            }
+            // if packet is not a postcard, then just forward it according to
+            // it's destination IP address.
+            else {
+                Forwarding.apply(hdr, local_metadata, standard_metadata);
             }
         }
     }
@@ -1443,7 +1553,9 @@ control MyIngress (
 control MyEgress(inout headers_t hdr,
                  inout local_metadata_t local_metadata,
                  inout standard_metadata_t standard_metadata) {
-    apply {}
+    apply {
+        // Empty Egress Processing.
+    }
 }
 
 

@@ -28,8 +28,7 @@ control ExportData(inout headers_t hdr,
         hdr.ipv4.version = IP_VERSION_4;
         hdr.ipv4.ihl = IPV4_IHL_MIN;
         hdr.ipv4.diffserv = 8w0;
-        hdr.ipv4.totalLen = (bit<16>)IPV4_MIN_HEAD_LEN +
-                (bit<16>)UDP_HEADER_LEN + (bit<16>)TELEMETRY_SUM_LEN_BYTES;
+        hdr.ipv4.totalLen = (bit<16>)(IPV4_MIN_LEN + UDP_LEN + IPFIX_SUM_LEN);
 
         hdr.ipv4.identification = 0;
         hdr.ipv4.flags = 0;
@@ -43,13 +42,11 @@ control ExportData(inout headers_t hdr,
         hdr.udp.setValid();
         hdr.udp.src_port = 22222;
         hdr.udp.dst_port = srv_port;
-        hdr.udp.udp_length = (bit<16>)UDP_HEADER_LEN +
-                                        (bit<16>)TELEMETRY_SUM_LEN_BYTES;
+        hdr.udp.udp_length = (bit<16>)(UDP_LEN + IPFIX_SUM_LEN);
 
-        hdr.postcard.setInvalid();
 
         // remove extra payload in the packet if it exists
-        truncate((bit<32>)hdr.ipv4.totalLen + (bit<32>)ETH_HEADER_LEN);
+        truncate((bit<32>)hdr.ipv4.totalLen + ETH_LEN);
         log_msg("aggregate packet sent on intergace {}",{egress_interface});
     }
 

@@ -22,10 +22,8 @@ from mininet.link import TCLink
 
 from p4_mininet import P4Switch, P4Host, path_to_behavioral
 
-
 import argparse
 from time import sleep
-
 
 parser = argparse.ArgumentParser(description='Mininet demo')
 parser.add_argument('--behavioral-exe', help='Path to behavioral executable',
@@ -35,8 +33,10 @@ parser.add_argument('--thrift-port', help='Thrift server port for table updates'
 parser.add_argument('--num-hosts', help='Number of hosts to connect to switch',
                     type=int, action="store", default=2)
 parser.add_argument('--mode', choices=['l2', 'l3'], type=str, default='l3')
-parser.add_argument('--json', help='Path to JSON config file',
-                    type=str, action="store", default = './switches/')
+parser.add_argument('--json-collector', help='Path to JSON config file',
+                    type=str, action="store", default = './switches/', required=True)
+parser.add_argument('--json-netswitch', help='Path to JSON config file',
+                    type=str, action="store", default = './switches/', required=True)
 parser.add_argument('--pcap-dump', help='Dump packets on interfaces to pcap files',
                     type=str, action="store", required=False, default=False)
 parser.add_argument('--debugger', help='Enable Debugger',
@@ -49,12 +49,12 @@ args = parser.parse_args()
 
 class MyTopo(Topo):
     "Single switch connected to n (< 256) hosts."
-    def __init__(self, sw_path, json_path, thrift_port, pcap_dump, enable_debugger, n, **opts):
+    def __init__(self, sw_path, json_collector,json_netswitch, thrift_port, pcap_dump, enable_debugger, n, **opts):
         # Initialize topology and default options
         Topo.__init__(self, **opts)
         s0 = self.addSwitch('s0',
                                 sw_path = sw_path,
-                                json_path = json_path + 'collector_switch_01/switch.json',
+                                json_path = json_collector,
                                 thrift_port = 9090,
                                 pcap_dump = pcap_dump,
                                 enable_debugger = enable_debugger
@@ -62,21 +62,21 @@ class MyTopo(Topo):
 
         s1 = self.addSwitch('s1',
                                 sw_path = sw_path,
-                                json_path = json_path + 'network_switch/switch.json',
+                                json_path = json_netswitch,
                                 thrift_port = 9091,
                                 pcap_dump = pcap_dump,
                                 enable_debugger = enable_debugger
                                 )
         s2 = self.addSwitch('s2',
                                 sw_path = sw_path,
-                                json_path = json_path + 'network_switch/switch.json',
+                                json_path = json_netswitch,
                                 thrift_port = 9092,
                                 pcap_dump = pcap_dump,
                                 enable_debugger = enable_debugger
                                 )
         s3 = self.addSwitch('s3',
                                 sw_path = sw_path,
-                                json_path = json_path + 'network_switch/switch.json',
+                                json_path = json_netswitch,
                                 thrift_port = 9093,
                                 pcap_dump = pcap_dump,
                                 enable_debugger = enable_debugger
@@ -116,7 +116,8 @@ def main():
     mode = args.mode
 
     topo = MyTopo(args.behavioral_exe,
-                            args.json,
+                            args.json_collector,
+                            args.json_netswitch,
                             args.thrift_port,
                             args.pcap_dump,
                             args.debugger,
@@ -186,8 +187,6 @@ def main():
     h3.describe()
 
     print("Ready !")
-
-
 
     CLI( net )
     net.stop()

@@ -7,6 +7,15 @@
 #include "lib/packet_headers.p4"
 #include "tables/int_xd.p4"
 
+/*
+Postcard is detected in the parser based on the destination IP address and UDP
+port number, thus the IP address of the telemetry server must be set in the
+parser.
+
+
+*/
+
+
 
 control MyVerifyChecksum(inout headers_t hdr, inout local_metadata_t meta) {
     apply {  }
@@ -53,8 +62,9 @@ control MyIngress (
     bit<19> sum_deq;
     apply {
         if ( hdr.ipv4.isValid() ){
-            // use a match table to check the destination IP and port in order to
-            // determine whether this packet is a telemetry postcard
+            // use a match table to check the destination IP and port in order
+            // to determine whether this packet is a telemetry postcard and to
+            // set the flow and switch IDs
             PostcardDetect.apply(hdr, local_metadata, standard_metadata);
 
             // if packet is a postcard then apply postcard processing
@@ -76,7 +86,7 @@ control MyIngress (
                 // the values included in the headers
                 bit<48> latency = ( hdr.postcard.egress_tstamp -
                     hdr.postcard.ingress_tstamp );
-
+                log_msg("latency: {} us",{latency});
                 // if this is the first packet in the aggregation then we store the valeus
                 // of the parameters, otherwise we compare with the already stored values
                 if (cursor == 0){
@@ -192,7 +202,7 @@ control MyIngress (
 
 
             } else {
-                Forwarding.apply(hdr, local_metadata, standard_metadata);
+                // Forwarding.apply(hdr, local_metadata, standard_metadata);
             }
         }
     }

@@ -14,4 +14,4 @@ gnome-terminal --tab -- bash -c "sleep 5; python3 $SW_Path --thrift-port 9093 < 
 
 
 #start the relevant mininet
-sudo python ./mininet/mynet.py
+sudo python ./mininet/mynet.py --json_collector './switches/collector_switch_01/switch.json' --json_netswitch './switches/netswitch_01/switch.json'

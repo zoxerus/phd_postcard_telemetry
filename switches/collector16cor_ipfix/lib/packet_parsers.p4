@@ -43,7 +43,7 @@ parser PacketParser(
         }
 
         state parse_postcard_header {
-            packet.extract(hdr.postcard);
+            packet.extract(hdr.ipfix_postcard);
             transition accept;
         }
 }
@@ -53,7 +53,7 @@ control PacketDeparser(packet_out packet, in headers_t hdr ){
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv4);
         packet.emit(hdr.udp);
-        packet.emit(hdr.telemetry_sum);
+        packet.emit(hdr.ipfix_sum);
 
     }
 }

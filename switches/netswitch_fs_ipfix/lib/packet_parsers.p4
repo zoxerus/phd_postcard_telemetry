@@ -4,9 +4,9 @@
 #include <core.p4>
 #include <v1model.p4>
 
-
 #include "packet_headers.p4"
 #include "definitions.p4"
+
 
 parser PacketParser(
     packet_in packet,
@@ -22,8 +22,8 @@ parser PacketParser(
         }
         state parse_ipv4{
             packet.extract(hdr.ipv4);
-            transition select( hdr.ipv4.dst_addr, hdr.ipv4.protocol){
-                {0x0a1e02aa, IP_PROTO_UDP}: parse_postcard_udp;
+            transition select(hdr.ipv4.protocol){
+                IP_PROTO_UDP: parse_udp;
                 default: accept;
                 // IP_PROTO_TCP: parse_tcp;
             }
@@ -31,30 +31,22 @@ parser PacketParser(
         state parse_udp{
             packet.extract(hdr.udp);
             transition accept;
-
         }
-
-        state parse_postcard_udp {
-            packet.extract(hdr.udp);
-            transition select(hdr.udp.dst_port){
-                54321: parse_postcard_header;
-                default: accept;
-            }
-        }
-
-        state parse_postcard_header {
-            packet.extract(hdr.postcard);
-            transition accept;
-        }
+        // state parse_tcp{
+        //     packet.extract(hdr.tcp);
+        //     transition accept;
+        // }
 }
 
 control PacketDeparser(packet_out packet, in headers_t hdr ){
     apply{
+        packet.emit(hdr.xd_ethernet);
+        packet.emit(hdr.xd_ipv4);
+        packet.emit(hdr.xd_udp);
+        packet.emit(hdr.ipfix);
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv4);
         packet.emit(hdr.udp);
-        packet.emit(hdr.telemetry_sum);
-
     }
 }
 

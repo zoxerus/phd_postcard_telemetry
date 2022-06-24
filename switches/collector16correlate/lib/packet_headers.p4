@@ -36,43 +36,6 @@ header udp_t {
 
 const bit<8> UDP_HEADER_LEN = 8;
 
-// header int_xd_t {
-//     bit<32> switch_id;
-//     bit<32> flow_id;
-//     bit<8>  ttl;
-//     bit<48> latency;
-//     bit<24> deq_depth;
-//     bit<24> enq_depth;
-// }
-//
-// #define INT_XD_HEADER_LENGTH 168
-
-
-// a header field for aggregating the telemetry packets sent to collector
-
-
-const bit<3> NPROTO_ETHERNET = 0;
-
-// Report Telemetry Headers
-header report_fixed_header_t {
-    bit<4>  ver;            //version
-    bit<4>  len;            //lenght of the report header in multiples of 4 octets
-    bit<3>  nproto;         // next protocol 0: Ethernet, 1: IPv4, 2: IPv6
-    bit<6>  rep_md_bits;    //report metadata, see p4 telemetry report specifications
-    bit<1>  d;              // dropped packets
-    bit<1>  q;              // congested queue
-    bit<1>  f;              // indicates a packet for a tracked flow
-    bit<6>  rsvd;           //reserved
-    bit<6>  hw_id;          // identifies the hardware subsystem
-    bit<32> sw_id;          // switch id
-    bit<32> seq_no;         // report sequence number, here is used as a flow id
-    bit<32> ingress_tstamp; // ingress timestamp
-    bit<32> engress_tstamp; // egress timestamp
-}
-#define REPORT_FIXED_HEADER_LEN_BITS 160
-#define REPORT_FIXED_HEADER_LEN_BYTES 20
-
-
 header postcard_t {
     bit<32> sw_id;
     bit<32> flow_id;
@@ -119,11 +82,6 @@ header telemetry_sum_t{
 #define TELEMETRY_SUM_LEN_BYTES 41
 #define TELEMETRY_SUM_LEN_BITS 328
 
-header aggregated_postcards_t{
-    bit<AGGREGATION_POSTCARD_LEN_BITS> one_field;
-}
-
-
 struct headers_t {
     // ethernet header
     ethernet_t ethernet;
@@ -137,9 +95,6 @@ struct headers_t {
     // postcard headers
     postcard_t postcard;
     telemetry_sum_t telemetry_sum;
-
-    aggregated_postcards_t[PACKET_AGGREGATOR_THRESHOLD] aggregated_postcards;
-
 }
 
 

@@ -77,7 +77,7 @@ class SW_Params():
             self.deq_max = new_deq
 
 
-        print("\n%-20s{}\n%-20s{} μs\n%-20s{} μs\n%-20s{} μs\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n".format(self.switch_id,
+        print("\n%-25s{}\n%-25s{} μs\n%-25s{} μs\n%-25s{} μs\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n".format(self.switch_id,
                                                 self.latency_average, self.latency_min, self.latency_max,
                                                 self.enq_average, self.enq_min, self.enq_max,
                                                 self.deq_average, self.deq_min, self.deq_max) % ('SW_ID:',
@@ -96,64 +96,68 @@ def handle_pkt(pkt,write_api):
     if UDP in pkt and pkt[UDP].dport == 54321:
         with lock:
             num_packets += 1
-            print( '\n\n\n\033[1;32m---- Telemetry Packet: {} ----\033[0m\n'.format(num_packets) )
+            print('\n\n\n\033[1;32m---- Telemetry Packet: {} ----\033[0m\n'.format(num_packets) )
         utcnow = datetime.utcnow()
         data = pkt[Raw].load
-        arrival_delay = int.from_bytes(data[9:15], "big")
+        arrival_delay = int.from_bytes(data[9:15], 'big')
         points = []
         for i in range(1):
             n = l*i
-            switch_id = '{0}.{1}.{2}.{3}'.format( data[0+n],data[1+n],data[2+n],data[3+n] )
-            flow_id = format( int.from_bytes( data[4+n:8+n], "big" ) )
-            latency_min = int.from_bytes(data[8+n:14+n], "big")
-            latency_max = int.from_bytes(data[14+n:20+n], "big")
-            latency_average = int.from_bytes(data[20+n:26+n], "big")
-            enq_min = int.from_bytes(data[26+n:29+n], "big") >> 5
-            enq_max = ( int.from_bytes(data[28+n:31+n], "big") & 0b111111111111111111100) >> 2
-            enq_avg = ( int.from_bytes(data[30+n:34+n], "big") & 0b11111111111111111110000000) >> 7
+            ipfix_version =  int.from_bytes(data[0:2], 'big')
+            ipfix_length =  int.from_bytes(data[2:4], 'big')
+            ipfix_exportTime = int.from_bytes(data[4:8], 'big')
+            ipfix_sequenceNumber = int.from_bytes(data[8:12], 'big')
+            ipfix_observationDomain = '{0}.{1}.{2}.{3}'.format(data[12+n],
+                                                               data[13+n],
+                                                               data[14+n],
+                                                               data[15+n])
 
-            deq_min = ( int.from_bytes(data[33+n:36+n], "big") & 0b11111111111111111110000) >> 4
-            deq_max = ( int.from_bytes(data[35+n:38+n], "big") & 0b11111111111111111110) >> 1
-            deq_avg = ( int.from_bytes(data[37+n:41+n], "big") & 0b1111111111111111111000000) >> 6
-            sum_of = ( int.from_bytes(data[37+n:41+n], "big") & 0b111111)
+            ipfix_setID = data[16:18].hex()
+            ipfix_setLength = int.from_bytes(data[18:20], 'big')
+
+            collector_id = '{0}.{1}.{2}.{3}'.format(data[20+n],data[21+n],data[22+n],data[23+n] )
+            flow_id = int.from_bytes( data[24+n:28+n], 'big' )
+            ttl = data[28]
+            latency_min = int.from_bytes(data[29+n:35+n], 'big')
+            latency_max = int.from_bytes(data[35+n:41+n], 'big')
+            latency_average = int.from_bytes(data[41+n:47+n], 'big')
+            enq_min = int.from_bytes(data[47+n:50+n], 'big')
+            enq_max =  int.from_bytes(data[50+n:53+n], 'big')
+            enq_avg =  int.from_bytes(data[53+n:56+n], 'big')
+
+            deq_min = int.from_bytes(data[56+n:59+n], 'big')
+            deq_max = int.from_bytes(data[59+n:62+n], 'big')
+            deq_avg = int.from_bytes(data[62+n:65+n], 'big')
+
             # with lock:
             #     if sw_id not in switch_params:
             #         switch_params[sw_id] = SW_Params(sw_id)
             #     switch_params[sw_id].update_values(latency, enq, deq)
             with lock:
                 print('\n---- Telemetry Packet: {} ----'.format(num_packets),
-                    '%-20s{}'.format(switch_id) % ('switch_id:'),
-                    '%-20s{}'.format(flow_id) % ('flow_id:'),
-                    '%-20s{} μs'.format(latency_min) % ('latency_min:'),
-                    '%-20s{} μs'.format(latency_max) % ('latency_max:'),
-                    '%-20s{} μs'.format(latency_average) % ('latency_average:'),
-                    '%-20s{} packets'.format(enq_min) % ('enq_min:'),
-                    '%-20s{} packets'.format(enq_max) % ('enq_max:'),
-                    '%-20s{} packets'.format(enq_avg) % ('enq_avg:'),
-                    '%-20s{} packets'.format(deq_min) % ('deq_min:'),
-                    '%-20s{} packets'.format(deq_max) % ('deq_max:'),
-                    '%-20s{} packets'.format(deq_avg) % ('deq_avg:'),
-                    '%-20s{} packets'.format(sum_of) % ('sum_of:'),
+                    '%-25s{}'.format(ipfix_version) % ('ipfix_version:'),
+                    '%-25s{}'.format(ipfix_length) % ('ipfix_length:'),
+                    '%-25s{}'.format(ipfix_exportTime) % ('ipfix_exportTime:'),
+                    '%-25s{}'.format(ipfix_sequenceNumber) %
+                        ('ipfix_sequenceNumber:'),
+                    '%-25s{}'.format(ipfix_observationDomain) %
+                        ('ipfix_observationDomain:'),
+                    '%-25s{}'.format(ipfix_setID) % ('ipfix_setID:'),
+                    '%-25s{}'.format(ipfix_setLength) % ('ipfix_setLength:'),
+                    '%-25s{}'.format(collector_id) % ('collector_id:'),
+                    '%-25s{}'.format(flow_id) % ('flow_id:'),
+                    '%-25s{}'.format(ttl) % ('ttl:'),
+                    '%-25s{} μs'.format(latency_min) % ('latency_min:'),
+                    '%-25s{} μs'.format(latency_max) % ('latency_max:'),
+                    '%-25s{} μs'.format(latency_average) % ('latency_average:'),
+                    '%-25s{} packets'.format(enq_min) % ('enq_min:'),
+                    '%-25s{} packets'.format(enq_max) % ('enq_max:'),
+                    '%-25s{} packets'.format(enq_avg) % ('enq_avg:'),
+                    '%-25s{} packets'.format(deq_min) % ('deq_min:'),
+                    '%-25s{} packets'.format(deq_max) % ('deq_max:'),
+                    '%-25s{} packets'.format(deq_avg) % ('deq_avg:'),
                     '\n', '---- end ----\n', sep='\n')
-            points.append({"measurement": "sw_params", "tags": {"host": switch_id},
-                                "fields": { "flow_id": flow_id,
-                                            "latency_min": latency_min,
-                                            "latency_max": latency_max,
-                                            "latency_average": latency_average,
-                                            "enq_min": enq_min,
-                                            "enq_max": enq_max,
-                                            "enq_avg": enq_avg,
-                                            "deq_min": deq_min,
-                                            "deq_max": deq_max,
-                                            "deq_avg": deq_avg,
-                                            "sum_of": sum_of },
-                                "time": datetime.utcnow() + timedelta(microseconds = arrival_delay) })
-        write_api.write(bucket, org, points)
-            # ii = 0
-            # for item in points:
-            #     ii += 1
-            #     print('\n\033[1;36mPacket: {}\033[0m'.format(ii) )
-            #     print(item,'\n')
+
     sys.stdout.flush()
 
 def correlate_on_thread():
