@@ -20,23 +20,23 @@ from mininet.log import setLogLevel, info
 from mininet.cli import CLI
 from mininet.link import TCLink
 
-from p4_mininet import P4Switch, P4Host, path_to_behavioral
+from p4_mininet import P4Switch, P4Host
 
 import argparse
 from time import sleep
 
 parser = argparse.ArgumentParser(description='Mininet demo')
 parser.add_argument('--behavioral-exe', help='Path to behavioral executable',
-                    type=str, action="store", default = path_to_behavioral)
+                    type=str, action="store", required = True)
 parser.add_argument('--thrift-port', help='Thrift server port for table updates',
                     type=int, action="store", default=9090)
 parser.add_argument('--num-hosts', help='Number of hosts to connect to switch',
                     type=int, action="store", default=2)
 parser.add_argument('--mode', choices=['l2', 'l3'], type=str, default='l3')
 parser.add_argument('--json-collector', help='Path to JSON config file',
-                    type=str, action="store", default = './switches/', required=True)
+                    type=str, action="store", required=True)
 parser.add_argument('--json-netswitch', help='Path to JSON config file',
-                    type=str, action="store", default = './switches/', required=True)
+                    type=str, action="store", required=True)
 parser.add_argument('--pcap-dump', help='Dump packets on interfaces to pcap files',
                     type=str, action="store", required=False, default=False)
 parser.add_argument('--debugger', help='Enable Debugger',
@@ -49,7 +49,7 @@ args = parser.parse_args()
 
 class MyTopo(Topo):
     "Single switch connected to n (< 256) hosts."
-    def __init__(self, sw_path, json_collector,json_netswitch, thrift_port, pcap_dump, enable_debugger, n, **opts):
+    def __init__(self, sw_path, json_collector, json_netswitch, thrift_port, pcap_dump, enable_debugger, n, **opts):
         # Initialize topology and default options
         Topo.__init__(self, **opts)
         s0 = self.addSwitch('s0',

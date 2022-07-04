@@ -4,42 +4,42 @@
       "name" : "scalars_0",
       "id" : 0,
       "fields" : [
-        ["tmp", 9, false],
+        ["tmp", 32, false],
         ["tmp_0", 32, false],
-        ["tmp_1", 48, false],
+        ["tmp_1", 32, false],
         ["tmp_2", 32, false],
-        ["tmp_3", 48, false],
+        ["tmp_3", 9, false],
         ["tmp_4", 32, false],
         ["tmp_5", 48, false],
         ["tmp_6", 32, false],
-        ["tmp_7", 32, false],
+        ["tmp_7", 48, false],
         ["tmp_8", 32, false],
-        ["tmp_9", 32, false],
+        ["tmp_9", 48, false],
         ["tmp_10", 32, false],
         ["tmp_11", 32, false],
         ["tmp_12", 32, false],
-        ["tmp_13", 48, false],
+        ["tmp_13", 32, false],
         ["tmp_14", 32, false],
         ["tmp_15", 32, false],
         ["tmp_16", 32, false],
-        ["tmp_17", 32, false],
+        ["tmp_17", 48, false],
         ["tmp_18", 32, false],
         ["tmp_19", 32, false],
         ["tmp_20", 32, false],
         ["tmp_21", 32, false],
         ["tmp_22", 32, false],
         ["tmp_23", 32, false],
-        ["tmp_24", 48, false],
+        ["tmp_24", 32, false],
         ["tmp_25", 32, false],
-        ["tmp_26", 24, false],
+        ["tmp_26", 32, false],
         ["tmp_27", 32, false],
-        ["tmp_28", 24, false],
+        ["tmp_28", 48, false],
         ["tmp_29", 32, false],
-        ["tmp_30", 48, false],
+        ["tmp_30", 19, false],
         ["tmp_31", 32, false],
-        ["tmp_32", 32, false],
+        ["tmp_32", 19, false],
         ["tmp_33", 32, false],
-        ["tmp_34", 32, false],
+        ["tmp_34", 48, false],
         ["tmp_35", 32, false],
         ["tmp_36", 32, false],
         ["tmp_37", 32, false],
@@ -51,25 +51,29 @@
         ["tmp_43", 32, false],
         ["tmp_44", 32, false],
         ["tmp_45", 32, false],
+        ["tmp_46", 32, false],
+        ["tmp_47", 32, false],
+        ["tmp_48", 32, false],
+        ["tmp_49", 32, false],
         ["cursor_0", 8, false],
+        ["threshold_0", 8, false],
         ["max_latency_0", 48, false],
         ["min_latency_0", 48, false],
         ["sum_latency_0", 48, false],
-        ["max_enq_0", 24, false],
-        ["min_enq_0", 24, false],
-        ["sum_enq_0", 24, false],
-        ["max_deq_0", 24, false],
-        ["min_deq_0", 24, false],
-        ["sum_deq_0", 24, false],
+        ["max_enq_0", 19, false],
+        ["min_enq_0", 19, false],
+        ["sum_enq_0", 19, false],
+        ["max_deq_0", 19, false],
+        ["min_deq_0", 19, false],
+        ["sum_deq_0", 19, false],
         ["old_latency_0", 48, false],
-        ["old_enq_0", 24, false],
-        ["old_deq_0", 24, false],
+        ["old_enq_0", 19, false],
+        ["old_deq_0", 19, false],
         ["userMetadata.is_postcard", 1, false],
         ["userMetadata.flow_id", 32, false],
         ["userMetadata.switch_id", 32, false],
         ["userMetadata.flow_register_number", 32, false],
-        ["userMetadata.switch_register_number", 32, false],
-        ["_padding_0", 6, false]
+        ["userMetadata.switch_register_number", 32, false]
       ]
     },
     {
@@ -133,49 +137,36 @@
       ]
     },
     {
-      "name" : "ipfix_postcard_t",
+      "name" : "postcard_t",
       "id" : 5,
       "fields" : [
-        ["_ipfix_header_version_number0", 16, false],
-        ["_ipfix_header_message_length1", 16, false],
-        ["_ipfix_header_export_time2", 32, false],
-        ["_ipfix_header_sequence_number3", 32, false],
-        ["_ipfix_header_observation_domain4", 32, false],
-        ["_set_set_id5", 16, false],
-        ["_set_set_length6", 16, false],
-        ["_record_flow_id7", 32, false],
-        ["_record_ttl8", 8, false],
-        ["_record_ingress_tstamp9", 48, false],
-        ["_record_egress_tstamp10", 48, false],
-        ["_record_deq_depth11", 24, false],
-        ["_record_enq_depth12", 24, false],
-        ["_record_ingress_interface13", 16, false],
-        ["_record_egress_interface14", 16, false]
+        ["sw_id", 32, false],
+        ["flow_id", 32, false],
+        ["ttl", 8, false],
+        ["ingress_tstamp", 48, false],
+        ["egress_tstamp", 48, false],
+        ["deq_depth", 19, false],
+        ["enq_depth", 19, false],
+        ["ingress_port", 9, false],
+        ["egress_port", 9, false]
       ]
     },
     {
-      "name" : "ipfix_sum_t",
+      "name" : "telemetry_sum_t",
       "id" : 6,
       "fields" : [
-        ["_ipfix_header_version_number0", 16, false],
-        ["_ipfix_header_message_length1", 16, false],
-        ["_ipfix_header_export_time2", 32, false],
-        ["_ipfix_header_sequence_number3", 32, false],
-        ["_ipfix_header_observation_domain4", 32, false],
-        ["_set_set_id5", 16, false],
-        ["_set_set_length6", 16, false],
-        ["_record_collector_id7", 32, false],
-        ["_record_flow_id8", 32, false],
-        ["_record_ttl9", 8, false],
-        ["_record_latency_min10", 48, false],
-        ["_record_latency_avg11", 48, false],
-        ["_record_latency_max12", 48, false],
-        ["_record_enq_min13", 24, false],
-        ["_record_enq_avg14", 24, false],
-        ["_record_enq_max15", 24, false],
-        ["_record_deq_min16", 24, false],
-        ["_record_deq_avg17", 24, false],
-        ["_record_deq_max18", 24, false]
+        ["switch_id", 32, false],
+        ["flow_id", 32, false],
+        ["latency_min", 48, false],
+        ["latency_max", 48, false],
+        ["latency_avg", 48, false],
+        ["enq_min", 19, false],
+        ["enq_max", 19, false],
+        ["enq_avg", 19, false],
+        ["deq_min", 19, false],
+        ["deq_max", 19, false],
+        ["deq_avg", 19, false],
+        ["sum_of", 6, false]
       ]
     }
   ],
@@ -195,58 +186,58 @@
       "pi_omit" : true
     },
     {
-      "name" : "xd_ethernet",
+      "name" : "ethernet",
       "id" : 2,
       "header_type" : "ethernet_t",
       "metadata" : false,
       "pi_omit" : true
     },
     {
-      "name" : "xd_ipv4",
+      "name" : "xd_ethernet_header",
       "id" : 3,
-      "header_type" : "ipv4_t",
-      "metadata" : false,
-      "pi_omit" : true
-    },
-    {
-      "name" : "xd_udp",
-      "id" : 4,
-      "header_type" : "udp_t",
-      "metadata" : false,
-      "pi_omit" : true
-    },
-    {
-      "name" : "ipfix_postcard",
-      "id" : 5,
-      "header_type" : "ipfix_postcard_t",
-      "metadata" : false,
-      "pi_omit" : true
-    },
-    {
-      "name" : "ipfix_sum",
-      "id" : 6,
-      "header_type" : "ipfix_sum_t",
-      "metadata" : false,
-      "pi_omit" : true
-    },
-    {
-      "name" : "ethernet",
-      "id" : 7,
       "header_type" : "ethernet_t",
       "metadata" : false,
       "pi_omit" : true
     },
     {
       "name" : "ipv4",
-      "id" : 8,
+      "id" : 4,
+      "header_type" : "ipv4_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "xd_ip_header",
+      "id" : 5,
       "header_type" : "ipv4_t",
       "metadata" : false,
       "pi_omit" : true
     },
     {
       "name" : "udp",
-      "id" : 9,
+      "id" : 6,
       "header_type" : "udp_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "xd_udp_header",
+      "id" : 7,
+      "header_type" : "udp_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "postcard",
+      "id" : 8,
+      "header_type" : "postcard_t",
+      "metadata" : false,
+      "pi_omit" : true
+    },
+    {
+      "name" : "telemetry_sum",
+      "id" : 9,
+      "header_type" : "telemetry_sum_t",
       "metadata" : false,
       "pi_omit" : true
     }
@@ -389,7 +380,7 @@
               "parameters" : [
                 {
                   "type" : "regular",
-                  "value" : "ipfix_postcard"
+                  "value" : "postcard"
                 }
               ],
               "op" : "extract"
@@ -419,7 +410,7 @@
         "column" : 8,
         "source_fragment" : "PacketDeparser"
       },
-      "order" : ["ethernet", "ipv4", "udp", "ipfix_sum"],
+      "order" : ["ethernet", "ipv4", "udp", "telemetry_sum"],
       "primitives" : []
     }
   ],
@@ -431,7 +422,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 37,
+        "line" : 35,
         "column" : 34,
         "source_fragment" : "aggregator_pointer"
       },
@@ -439,11 +430,23 @@
       "bitwidth" : 8
     },
     {
-      "name" : "MyIngress.register_latency_max",
+      "name" : "MyIngress.register_threshold",
       "id" : 1,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 45,
+        "line" : 36,
+        "column" : 34,
+        "source_fragment" : "register_threshold"
+      },
+      "size" : 12,
+      "bitwidth" : 8
+    },
+    {
+      "name" : "MyIngress.register_latency_max",
+      "id" : 2,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 39,
         "column" : 35,
         "source_fragment" : "register_latency_max"
       },
@@ -452,10 +455,10 @@
     },
     {
       "name" : "MyIngress.register_latency_min",
-      "id" : 2,
+      "id" : 3,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 46,
+        "line" : 40,
         "column" : 35,
         "source_fragment" : "register_latency_min"
       },
@@ -464,10 +467,10 @@
     },
     {
       "name" : "MyIngress.register_latency_sum",
-      "id" : 3,
+      "id" : 4,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 47,
+        "line" : 41,
         "column" : 35,
         "source_fragment" : "register_latency_sum"
       },
@@ -476,75 +479,75 @@
     },
     {
       "name" : "MyIngress.register_enq_max",
-      "id" : 4,
+      "id" : 5,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 49,
+        "line" : 43,
         "column" : 35,
         "source_fragment" : "register_enq_max"
       },
       "size" : 12,
-      "bitwidth" : 24
+      "bitwidth" : 19
     },
     {
       "name" : "MyIngress.register_enq_min",
-      "id" : 5,
+      "id" : 6,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 50,
+        "line" : 44,
         "column" : 35,
         "source_fragment" : "register_enq_min"
       },
       "size" : 12,
-      "bitwidth" : 24
+      "bitwidth" : 19
     },
     {
       "name" : "MyIngress.register_enq_sum",
-      "id" : 6,
+      "id" : 7,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 51,
+        "line" : 45,
         "column" : 35,
         "source_fragment" : "register_enq_sum"
       },
       "size" : 12,
-      "bitwidth" : 24
+      "bitwidth" : 19
     },
     {
       "name" : "MyIngress.register_deq_min",
-      "id" : 7,
+      "id" : 8,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 53,
+        "line" : 47,
         "column" : 35,
         "source_fragment" : "register_deq_min"
       },
       "size" : 12,
-      "bitwidth" : 24
+      "bitwidth" : 19
     },
     {
       "name" : "MyIngress.register_deq_max",
-      "id" : 8,
+      "id" : 9,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 54,
+        "line" : 48,
         "column" : 35,
         "source_fragment" : "register_deq_max"
       },
       "size" : 12,
-      "bitwidth" : 24
+      "bitwidth" : 19
     },
     {
       "name" : "MyIngress.register_deq_sum",
-      "id" : 9,
+      "id" : 10,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 55,
+        "line" : 49,
         "column" : 35,
         "source_fragment" : "register_deq_sum"
       },
       "size" : 12,
-      "bitwidth" : 24
+      "bitwidth" : 19
     }
   ],
   "calculations" : [
@@ -553,7 +556,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 272,
+        "line" : 219,
         "column" : 6,
         "source_fragment" : "update_checksum( ..."
       },
@@ -633,14 +636,8 @@
       "primitives" : []
     },
     {
-      "name" : "NoAction",
-      "id" : 4,
-      "runtime_data" : [],
-      "primitives" : []
-    },
-    {
       "name" : "MyIngress.PostcardDetect.set_postcard_bit",
-      "id" : 5,
+      "id" : 4,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -657,7 +654,7 @@
           ],
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 21,
+            "line" : 11,
             "column" : 8,
             "source_fragment" : "local_metadata.is_postcard = 1"
           }
@@ -666,7 +663,7 @@
     },
     {
       "name" : "MyIngress.PostcardDetect.select_flow_register",
-      "id" : 6,
+      "id" : 5,
       "runtime_data" : [
         {
           "name" : "flow_reg_num",
@@ -688,7 +685,7 @@
           ],
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 39,
+            "line" : 26,
             "column" : 8,
             "source_fragment" : "local_metadata.flow_register_number = flow_reg_num"
           }
@@ -702,21 +699,87 @@
             },
             {
               "type" : "field",
-              "value" : ["ipfix_postcard", "_record_flow_id7"]
+              "value" : ["postcard", "flow_id"]
             }
           ],
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 40,
+            "line" : 27,
             "column" : 8,
-            "source_fragment" : "local_metadata.flow_id = hdr.ipfix_postcard"
+            "source_fragment" : "local_metadata.flow_id = hdr.postcard.flow_id"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "flow_id"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/postcard_detect.p4",
+            "line" : 28,
+            "column" : 52,
+            "source_fragment" : "        log_msg(\\\"flow_id: {} set to register: {}\\\", {hdr.postcard.flow_id, flow_reg_num});"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_0"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 0
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/postcard_detect.p4",
+            "line" : 28,
+            "column" : 74,
+            "source_fragment" : "        log_msg(\\\"flow_id: {} set to register: {}\\\", {hdr.postcard.flow_id, flow_reg_num});"
+          }
+        },
+        {
+          "op" : "log_msg",
+          "parameters" : [
+            {
+              "type" : "string",
+              "value" : "flow_id: {} set to register: {}"
+            },
+            {
+              "type" : "parameters_vector",
+              "value" : [
+                {
+                  "type" : "field",
+                  "value" : ["scalars", "tmp"]
+                },
+                {
+                  "type" : "field",
+                  "value" : ["scalars", "tmp_0"]
+                }
+              ]
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/postcard_detect.p4",
+            "line" : 28,
+            "column" : 8,
+            "source_fragment" : "        log_msg(\\\"flow_id: {} set to register: {}\\\", {hdr.postcard.flow_id, flow_reg_num});"
           }
         }
       ]
     },
     {
       "name" : "MyIngress.PostcardDetect.select_switch_register",
-      "id" : 7,
+      "id" : 6,
       "runtime_data" : [
         {
           "name" : "sw_reg_num",
@@ -738,7 +801,7 @@
           ],
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 46,
+            "line" : 32,
             "column" : 8,
             "source_fragment" : "local_metadata.switch_register_number = sw_reg_num"
           }
@@ -752,21 +815,87 @@
             },
             {
               "type" : "field",
-              "value" : ["ipfix_postcard", "_ipfix_header_observation_domain4"]
+              "value" : ["postcard", "sw_id"]
             }
           ],
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 47,
+            "line" : 33,
             "column" : 8,
-            "source_fragment" : "local_metadata.switch_id = ..."
+            "source_fragment" : "local_metadata.switch_id = hdr.postcard.sw_id"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_1"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "sw_id"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/postcard_detect.p4",
+            "line" : 34,
+            "column" : 49,
+            "source_fragment" : "        log_msg(\\\"sw_id: {} set to register: {}\\\",{hdr.postcard.sw_id, sw_reg_num});"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_2"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 0
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/postcard_detect.p4",
+            "line" : 34,
+            "column" : 69,
+            "source_fragment" : "        log_msg(\\\"sw_id: {} set to register: {}\\\",{hdr.postcard.sw_id, sw_reg_num});"
+          }
+        },
+        {
+          "op" : "log_msg",
+          "parameters" : [
+            {
+              "type" : "string",
+              "value" : "sw_id: {} set to register: {}"
+            },
+            {
+              "type" : "parameters_vector",
+              "value" : [
+                {
+                  "type" : "field",
+                  "value" : ["scalars", "tmp_1"]
+                },
+                {
+                  "type" : "field",
+                  "value" : ["scalars", "tmp_2"]
+                }
+              ]
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/postcard_detect.p4",
+            "line" : 34,
+            "column" : 8,
+            "source_fragment" : "        log_msg(\\\"sw_id: {} set to register: {}\\\",{hdr.postcard.sw_id, sw_reg_num});"
           }
         }
       ]
     },
     {
       "name" : "MyIngress.ExportData.forward_postcard",
-      "id" : 8,
+      "id" : 7,
       "runtime_data" : [
         {
           "name" : "srv_ip",
@@ -958,14 +1087,14 @@
             },
             {
               "type" : "hexstr",
-              "value" : "0x0340"
+              "value" : "0x0045"
             }
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
             "line" : 31,
             "column" : 8,
-            "source_fragment" : "hdr.ipv4.totalLen = (bit<16>)(20 + 8 + 804"
+            "source_fragment" : "hdr.ipv4.totalLen = (bit<16>)IPV4_MIN_HEAD_LEN + ..."
           }
         },
         {
@@ -982,7 +1111,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 33,
+            "line" : 34,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.identification = 0"
           }
@@ -1001,7 +1130,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 34,
+            "line" : 35,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.flags = 0"
           }
@@ -1020,7 +1149,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 35,
+            "line" : 36,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.fragOffset = 0"
           }
@@ -1039,7 +1168,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 36,
+            "line" : 37,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.src_addr = 0x0a00000b"
           }
@@ -1058,7 +1187,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 37,
+            "line" : 38,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.dst_addr = srv_ip"
           }
@@ -1077,7 +1206,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 38,
+            "line" : 39,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.ttl = 64"
           }
@@ -1096,7 +1225,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 39,
+            "line" : 40,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.protocol = 8w17"
           }
@@ -1111,7 +1240,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 42,
+            "line" : 43,
             "column" : 8,
             "source_fragment" : "hdr.udp.setValid()"
           }
@@ -1130,7 +1259,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 43,
+            "line" : 44,
             "column" : 8,
             "source_fragment" : "hdr.udp.src_port = 22222"
           }
@@ -1149,7 +1278,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 44,
+            "line" : 45,
             "column" : 8,
             "source_fragment" : "hdr.udp.dst_port = srv_port"
           }
@@ -1163,14 +1292,29 @@
             },
             {
               "type" : "hexstr",
-              "value" : "0x032c"
+              "value" : "0x0031"
             }
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 45,
+            "line" : 46,
             "column" : 8,
-            "source_fragment" : "hdr.udp.udp_length = (bit<16>)(8 + 804"
+            "source_fragment" : "hdr.udp.udp_length = (bit<16>)UDP_HEADER_LEN + ..."
+          }
+        },
+        {
+          "op" : "remove_header",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "postcard"
+            }
+          ],
+          "source_info" : {
+            "filename" : "tables/int_xd.p4",
+            "line" : 49,
+            "column" : 8,
+            "source_fragment" : "hdr.postcard.setInvalid()"
           }
         },
         {
@@ -1178,14 +1322,14 @@
           "parameters" : [
             {
               "type" : "hexstr",
-              "value" : "0x0000034e"
+              "value" : "0x00000053"
             }
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 49,
+            "line" : 52,
             "column" : 8,
-            "source_fragment" : "truncate((bit<32>)hdr.ipv4.totalLen + 14)"
+            "source_fragment" : "truncate((bit<32>)hdr.ipv4.totalLen + (bit<32>)ETH_HEADER_LEN)"
           }
         },
         {
@@ -1193,7 +1337,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp"]
+              "value" : ["scalars", "tmp_3"]
             },
             {
               "type" : "runtime_data",
@@ -1202,7 +1346,7 @@
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 50,
+            "line" : 53,
             "column" : 57,
             "source_fragment" : "        log_msg(\\\"aggregate packet sent on intergace {}\\\",{egress_interface});"
           }
@@ -1219,14 +1363,14 @@
               "value" : [
                 {
                   "type" : "field",
-                  "value" : ["scalars", "tmp"]
+                  "value" : ["scalars", "tmp_3"]
                 }
               ]
             }
           ],
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 50,
+            "line" : 53,
             "column" : 8,
             "source_fragment" : "        log_msg(\\\"aggregate packet sent on intergace {}\\\",{egress_interface});"
           }
@@ -1234,145 +1378,8 @@
       ]
     },
     {
-      "name" : "MyIngress.Forwarding.ipv4_forward",
-      "id" : 9,
-      "runtime_data" : [
-        {
-          "name" : "mac",
-          "bitwidth" : 48
-        },
-        {
-          "name" : "port",
-          "bitwidth" : 9
-        }
-      ],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["standard_metadata", "egress_spec"]
-            },
-            {
-              "type" : "runtime_data",
-              "value" : 1
-            }
-          ],
-          "source_info" : {
-            "filename" : "tables/ipv4_lpm.p4",
-            "line" : 9,
-            "column" : 8,
-            "source_fragment" : "standard_metadata.egress_spec = port"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ethernet", "src_addr"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ethernet", "dst_addr"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "tables/ipv4_lpm.p4",
-            "line" : 10,
-            "column" : 8,
-            "source_fragment" : "hdr.ethernet.src_addr = hdr.ethernet.dst_addr"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ethernet", "dst_addr"]
-            },
-            {
-              "type" : "runtime_data",
-              "value" : 0
-            }
-          ],
-          "source_info" : {
-            "filename" : "tables/ipv4_lpm.p4",
-            "line" : 11,
-            "column" : 8,
-            "source_fragment" : "hdr.ethernet.dst_addr = mac"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipv4", "ttl"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "field",
-                        "value" : ["ipv4", "ttl"]
-                      },
-                      "right" : {
-                        "type" : "hexstr",
-                        "value" : "0xff"
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "tables/ipv4_lpm.p4",
-            "line" : 12,
-            "column" : 8,
-            "source_fragment" : "hdr.ipv4.ttl = hdr.ipv4.ttl - 1"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "MyIngress.Forwarding.drop",
-      "id" : 10,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "mark_to_drop",
-          "parameters" : [
-            {
-              "type" : "header",
-              "value" : "standard_metadata"
-            }
-          ],
-          "source_info" : {
-            "filename" : "tables/ipv4_lpm.p4",
-            "line" : 17,
-            "column" : 8,
-            "source_fragment" : "mark_to_drop(standard_metadata)"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "switch100",
-      "id" : 11,
+      "name" : "switch95",
+      "id" : 8,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1380,7 +1387,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_0"]
+              "value" : ["scalars", "tmp_4"]
             },
             {
               "type" : "expression",
@@ -1432,7 +1439,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 95,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -1442,7 +1449,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_1"]
+              "value" : ["scalars", "tmp_5"]
             },
             {
               "type" : "expression",
@@ -1456,11 +1463,11 @@
                       "op" : "-",
                       "left" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
+                        "value" : ["postcard", "egress_tstamp"]
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
+                        "value" : ["postcard", "ingress_tstamp"]
                       }
                     }
                   },
@@ -1474,7 +1481,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 95,
             "column" : 56,
             "source_fragment" : "latency"
           }
@@ -1488,16 +1495,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_0"]
+              "value" : ["scalars", "tmp_4"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_1"]
+              "value" : ["scalars", "tmp_5"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 95,
             "column" : 20,
             "source_fragment" : "register_latency_max.write(pointer, latency)"
           }
@@ -1507,7 +1514,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_2"]
+              "value" : ["scalars", "tmp_6"]
             },
             {
               "type" : "expression",
@@ -1559,7 +1566,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 101,
+            "line" : 96,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -1569,7 +1576,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_3"]
+              "value" : ["scalars", "tmp_7"]
             },
             {
               "type" : "expression",
@@ -1583,11 +1590,11 @@
                       "op" : "-",
                       "left" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
+                        "value" : ["postcard", "egress_tstamp"]
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
+                        "value" : ["postcard", "ingress_tstamp"]
                       }
                     }
                   },
@@ -1601,7 +1608,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 101,
+            "line" : 96,
             "column" : 56,
             "source_fragment" : "latency"
           }
@@ -1615,16 +1622,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_2"]
+              "value" : ["scalars", "tmp_6"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_3"]
+              "value" : ["scalars", "tmp_7"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 101,
+            "line" : 96,
             "column" : 20,
             "source_fragment" : "register_latency_min.write(pointer, latency)"
           }
@@ -1634,7 +1641,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_4"]
+              "value" : ["scalars", "tmp_8"]
             },
             {
               "type" : "expression",
@@ -1686,7 +1693,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 102,
+            "line" : 97,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -1696,7 +1703,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_5"]
+              "value" : ["scalars", "tmp_9"]
             },
             {
               "type" : "expression",
@@ -1710,11 +1717,11 @@
                       "op" : "-",
                       "left" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
+                        "value" : ["postcard", "egress_tstamp"]
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
+                        "value" : ["postcard", "ingress_tstamp"]
                       }
                     }
                   },
@@ -1728,7 +1735,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 102,
+            "line" : 97,
             "column" : 56,
             "source_fragment" : "latency"
           }
@@ -1742,16 +1749,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_4"]
+              "value" : ["scalars", "tmp_8"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_5"]
+              "value" : ["scalars", "tmp_9"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 102,
+            "line" : 97,
             "column" : 20,
             "source_fragment" : "register_latency_sum.write(pointer, latency)"
           }
@@ -1761,7 +1768,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_6"]
+              "value" : ["scalars", "tmp_10"]
             },
             {
               "type" : "expression",
@@ -1813,7 +1820,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 104,
+            "line" : 99,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -1827,18 +1834,18 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_6"]
+              "value" : ["scalars", "tmp_10"]
             },
             {
               "type" : "field",
-              "value" : ["ipfix_postcard", "_record_enq_depth12"]
+              "value" : ["postcard", "enq_depth"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 104,
+            "line" : 99,
             "column" : 20,
-            "source_fragment" : "register_enq_min.write(pointer, ..."
+            "source_fragment" : "register_enq_min.write(pointer, hdr.postcard.enq_depth)"
           }
         },
         {
@@ -1846,7 +1853,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_7"]
+              "value" : ["scalars", "tmp_11"]
             },
             {
               "type" : "expression",
@@ -1898,7 +1905,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 106,
+            "line" : 100,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -1912,18 +1919,18 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_7"]
+              "value" : ["scalars", "tmp_11"]
             },
             {
               "type" : "field",
-              "value" : ["ipfix_postcard", "_record_enq_depth12"]
+              "value" : ["postcard", "enq_depth"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 106,
+            "line" : 100,
             "column" : 20,
-            "source_fragment" : "register_enq_max.write(pointer, ..."
+            "source_fragment" : "register_enq_max.write(pointer, hdr.postcard.enq_depth)"
           }
         },
         {
@@ -1931,7 +1938,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_8"]
+              "value" : ["scalars", "tmp_12"]
             },
             {
               "type" : "expression",
@@ -1983,7 +1990,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 108,
+            "line" : 101,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -1997,18 +2004,18 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_8"]
+              "value" : ["scalars", "tmp_12"]
             },
             {
               "type" : "field",
-              "value" : ["ipfix_postcard", "_record_enq_depth12"]
+              "value" : ["postcard", "enq_depth"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 108,
+            "line" : 101,
             "column" : 20,
-            "source_fragment" : "register_enq_sum.write(pointer, ..."
+            "source_fragment" : "register_enq_sum.write(pointer, hdr.postcard.enq_depth)"
           }
         },
         {
@@ -2016,7 +2023,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_9"]
+              "value" : ["scalars", "tmp_13"]
             },
             {
               "type" : "expression",
@@ -2068,7 +2075,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 111,
+            "line" : 103,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -2082,331 +2089,20 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_9"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ipfix_postcard", "_record_deq_depth11"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 111,
-            "column" : 20,
-            "source_fragment" : "register_deq_min.write(pointer, ..."
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_10"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 113,
-            "column" : 43,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_deq_max"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_10"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ipfix_postcard", "_record_deq_depth11"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 113,
-            "column" : 20,
-            "source_fragment" : "register_deq_max.write(pointer, ..."
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_11"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 115,
-            "column" : 43,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_deq_sum"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_11"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ipfix_postcard", "_record_deq_depth11"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 115,
-            "column" : 20,
-            "source_fragment" : "register_deq_sum.write(pointer, ..."
-          }
-        }
-      ]
-    },
-    {
-      "name" : "switch156",
-      "id" : 12,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_12"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 156,
-            "column" : 51,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
               "value" : ["scalars", "tmp_13"]
             },
             {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "-",
-                      "left" : {
-                        "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffffffff"
-                  }
-                }
-              }
+              "type" : "field",
+              "value" : ["postcard", "deq_depth"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 156,
-            "column" : 60,
-            "source_fragment" : "latency"
+            "line" : 103,
+            "column" : 20,
+            "source_fragment" : "register_deq_min.write(pointer, hdr.postcard.deq_depth)"
           }
         },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_latency_min"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_12"]
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_13"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 156,
-            "column" : 24,
-            "source_fragment" : "register_latency_min.write(pointer, latency)"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "switch131",
-      "id" : 13,
-      "runtime_data" : [],
-      "primitives" : [
         {
           "op" : "assign",
           "parameters" : [
@@ -2464,7 +2160,318 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 131,
+            "line" : 104,
+            "column" : 43,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_deq_max"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_14"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "deq_depth"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 104,
+            "column" : 20,
+            "source_fragment" : "register_deq_max.write(pointer, hdr.postcard.deq_depth)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_15"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 105,
+            "column" : 43,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_deq_sum"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_15"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "deq_depth"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 105,
+            "column" : 20,
+            "source_fragment" : "register_deq_sum.write(pointer, hdr.postcard.deq_depth)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch138",
+      "id" : 9,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_16"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 138,
+            "column" : 51,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_17"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "-",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["postcard", "egress_tstamp"]
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["postcard", "ingress_tstamp"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 138,
+            "column" : 60,
+            "source_fragment" : "latency"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_latency_min"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_16"]
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_17"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 138,
+            "column" : 24,
+            "source_fragment" : "register_latency_min.write(pointer, latency)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch117",
+      "id" : 10,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_18"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 117,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -2482,12 +2489,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_14"]
+              "value" : ["scalars", "tmp_18"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 131,
+            "line" : 117,
             "column" : 20,
             "source_fragment" : "register_latency_sum.read(old_latency, pointer)"
           }
@@ -2497,7 +2504,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_15"]
+              "value" : ["scalars", "tmp_19"]
             },
             {
               "type" : "expression",
@@ -2549,7 +2556,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 132,
+            "line" : 118,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -2567,12 +2574,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_15"]
+              "value" : ["scalars", "tmp_19"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 132,
+            "line" : 118,
             "column" : 20,
             "source_fragment" : "register_latency_max.read(max_latency, pointer)"
           }
@@ -2582,7 +2589,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_16"]
+              "value" : ["scalars", "tmp_20"]
             },
             {
               "type" : "expression",
@@ -2634,7 +2641,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 133,
+            "line" : 119,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -2652,12 +2659,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_16"]
+              "value" : ["scalars", "tmp_20"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 133,
+            "line" : 119,
             "column" : 20,
             "source_fragment" : "register_latency_min.read(min_latency, pointer)"
           }
@@ -2667,7 +2674,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_17"]
+              "value" : ["scalars", "tmp_21"]
             },
             {
               "type" : "expression",
@@ -2719,7 +2726,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 135,
+            "line" : 121,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -2737,12 +2744,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_17"]
+              "value" : ["scalars", "tmp_21"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 135,
+            "line" : 121,
             "column" : 20,
             "source_fragment" : "register_enq_sum.read(old_enq, pointer)"
           }
@@ -2752,7 +2759,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_18"]
+              "value" : ["scalars", "tmp_22"]
             },
             {
               "type" : "expression",
@@ -2804,7 +2811,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 136,
+            "line" : 122,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -2822,354 +2829,14 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_18"]
+              "value" : ["scalars", "tmp_22"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 136,
+            "line" : 122,
             "column" : 20,
             "source_fragment" : "register_enq_max.read(max_enq, pointer)"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_19"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 137,
-            "column" : 51,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_read",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "min_enq_0"]
-            },
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_enq_min"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_19"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 137,
-            "column" : 20,
-            "source_fragment" : "register_enq_min.read(min_enq, pointer)"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_20"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 139,
-            "column" : 51,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_read",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "old_deq_0"]
-            },
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_deq_sum"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_20"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 139,
-            "column" : 20,
-            "source_fragment" : "register_deq_sum.read(old_deq, pointer)"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_21"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 140,
-            "column" : 51,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_read",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "max_deq_0"]
-            },
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_deq_max"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_21"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 140,
-            "column" : 20,
-            "source_fragment" : "register_deq_max.read(max_deq, pointer)"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_22"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 141,
-            "column" : 51,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_read",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "min_deq_0"]
-            },
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_deq_min"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_22"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 141,
-            "column" : 20,
-            "source_fragment" : "register_deq_min.read(min_deq, pointer)"
           }
         },
         {
@@ -3229,7 +2896,347 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 150,
+            "line" : 123,
+            "column" : 51,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "min_enq_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_enq_min"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_23"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 123,
+            "column" : 20,
+            "source_fragment" : "register_enq_min.read(min_enq, pointer)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_24"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 125,
+            "column" : 51,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "old_deq_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_deq_sum"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_24"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 125,
+            "column" : 20,
+            "source_fragment" : "register_deq_sum.read(old_deq, pointer)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_25"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 126,
+            "column" : 51,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "max_deq_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_deq_max"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_25"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 126,
+            "column" : 20,
+            "source_fragment" : "register_deq_max.read(max_deq, pointer)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_26"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 127,
+            "column" : 51,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "min_deq_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_deq_min"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_26"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 127,
+            "column" : 20,
+            "source_fragment" : "register_deq_min.read(min_deq, pointer)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_27"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 133,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -3239,7 +3246,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_24"]
+              "value" : ["scalars", "tmp_28"]
             },
             {
               "type" : "expression",
@@ -3265,11 +3272,11 @@
                               "op" : "-",
                               "left" : {
                                 "type" : "field",
-                                "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
+                                "value" : ["postcard", "egress_tstamp"]
                               },
                               "right" : {
                                 "type" : "field",
-                                "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
+                                "value" : ["postcard", "ingress_tstamp"]
                               }
                             }
                           },
@@ -3291,7 +3298,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 150,
+            "line" : 133,
             "column" : 56,
             "source_fragment" : "new_latency"
           }
@@ -3305,16 +3312,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_23"]
+              "value" : ["scalars", "tmp_27"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_24"]
+              "value" : ["scalars", "tmp_28"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 150,
+            "line" : 133,
             "column" : 20,
             "source_fragment" : "register_latency_sum.write(pointer, new_latency)"
           }
@@ -3324,7 +3331,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_25"]
+              "value" : ["scalars", "tmp_29"]
             },
             {
               "type" : "expression",
@@ -3376,7 +3383,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 151,
+            "line" : 134,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -3386,7 +3393,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_26"]
+              "value" : ["scalars", "tmp_30"]
             },
             {
               "type" : "expression",
@@ -3404,13 +3411,13 @@
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_enq_depth12"]
+                        "value" : ["postcard", "enq_depth"]
                       }
                     }
                   },
                   "right" : {
                     "type" : "hexstr",
-                    "value" : "0xffffff"
+                    "value" : "0x07ffff"
                   }
                 }
               }
@@ -3418,7 +3425,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 151,
+            "line" : 134,
             "column" : 52,
             "source_fragment" : "new_enq"
           }
@@ -3432,16 +3439,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_25"]
+              "value" : ["scalars", "tmp_29"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_26"]
+              "value" : ["scalars", "tmp_30"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 151,
+            "line" : 134,
             "column" : 20,
             "source_fragment" : "register_enq_sum.write(pointer, new_enq)"
           }
@@ -3451,7 +3458,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_27"]
+              "value" : ["scalars", "tmp_31"]
             },
             {
               "type" : "expression",
@@ -3503,7 +3510,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 152,
+            "line" : 135,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -3513,7 +3520,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_28"]
+              "value" : ["scalars", "tmp_32"]
             },
             {
               "type" : "expression",
@@ -3531,13 +3538,13 @@
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_deq_depth11"]
+                        "value" : ["postcard", "deq_depth"]
                       }
                     }
                   },
                   "right" : {
                     "type" : "hexstr",
-                    "value" : "0xffffff"
+                    "value" : "0x07ffff"
                   }
                 }
               }
@@ -3545,7 +3552,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 152,
+            "line" : 135,
             "column" : 52,
             "source_fragment" : "new_deq"
           }
@@ -3559,16 +3566,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_27"]
+              "value" : ["scalars", "tmp_31"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_28"]
+              "value" : ["scalars", "tmp_32"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 152,
+            "line" : 135,
             "column" : 20,
             "source_fragment" : "register_deq_sum.write(pointer, new_deq)"
           }
@@ -3576,8 +3583,8 @@
       ]
     },
     {
-      "name" : "switch159",
-      "id" : 14,
+      "name" : "switch141",
+      "id" : 11,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -3585,7 +3592,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_29"]
+              "value" : ["scalars", "tmp_33"]
             },
             {
               "type" : "expression",
@@ -3637,7 +3644,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 141,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -3647,7 +3654,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_30"]
+              "value" : ["scalars", "tmp_34"]
             },
             {
               "type" : "expression",
@@ -3661,11 +3668,11 @@
                       "op" : "-",
                       "left" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
+                        "value" : ["postcard", "egress_tstamp"]
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
+                        "value" : ["postcard", "ingress_tstamp"]
                       }
                     }
                   },
@@ -3679,7 +3686,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 141,
             "column" : 60,
             "source_fragment" : "latency"
           }
@@ -3693,16 +3700,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_29"]
+              "value" : ["scalars", "tmp_33"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_30"]
+              "value" : ["scalars", "tmp_34"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 141,
             "column" : 24,
             "source_fragment" : "register_latency_max.write(pointer, latency)"
           }
@@ -3710,376 +3717,8 @@
       ]
     },
     {
-      "name" : "switch163",
-      "id" : 15,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_31"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 163,
-            "column" : 47,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_enq_min"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_31"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ipfix_postcard", "_record_enq_depth12"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 163,
-            "column" : 24,
-            "source_fragment" : "register_enq_min.write(pointer, ..."
-          }
-        }
-      ]
-    },
-    {
-      "name" : "switch167",
-      "id" : 16,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_32"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 167,
-            "column" : 47,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_enq_max"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_32"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ipfix_postcard", "_record_enq_depth12"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 167,
-            "column" : 24,
-            "source_fragment" : "register_enq_max.write(pointer, ..."
-          }
-        }
-      ]
-    },
-    {
-      "name" : "switch173",
-      "id" : 17,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_33"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 173,
-            "column" : 47,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_deq_min"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_33"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ipfix_postcard", "_record_deq_depth11"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 173,
-            "column" : 24,
-            "source_fragment" : "register_deq_min.write(pointer, ..."
-          }
-        }
-      ]
-    },
-    {
-      "name" : "switch177",
-      "id" : 18,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_34"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "expression",
-                        "value" : {
-                          "op" : "&",
-                          "left" : {
-                            "type" : "expression",
-                            "value" : {
-                              "op" : "<<",
-                              "left" : {
-                                "type" : "field",
-                                "value" : ["scalars", "userMetadata.switch_register_number"]
-                              },
-                              "right" : {
-                                "type" : "hexstr",
-                                "value" : "0x2"
-                              }
-                            }
-                          },
-                          "right" : {
-                            "type" : "hexstr",
-                            "value" : "0xffffffff"
-                          }
-                        }
-                      },
-                      "right" : {
-                        "type" : "field",
-                        "value" : ["scalars", "userMetadata.flow_register_number"]
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 177,
-            "column" : 47,
-            "source_fragment" : "pointer"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyIngress.register_deq_max"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_34"]
-            },
-            {
-              "type" : "field",
-              "value" : ["ipfix_postcard", "_record_deq_depth11"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 177,
-            "column" : 24,
-            "source_fragment" : "register_deq_max.write(pointer, ..."
-          }
-        }
-      ]
-    },
-    {
-      "name" : "switch89",
-      "id" : 19,
+      "name" : "switch145",
+      "id" : 12,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -4139,7 +3778,375 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 89,
+            "line" : 145,
+            "column" : 47,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_enq_min"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_35"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "enq_depth"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 145,
+            "column" : 24,
+            "source_fragment" : "register_enq_min.write(pointer, hdr.postcard.enq_depth)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch148",
+      "id" : 13,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_36"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 148,
+            "column" : 47,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_enq_max"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_36"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "enq_depth"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 148,
+            "column" : 24,
+            "source_fragment" : "register_enq_max.write(pointer, hdr.postcard.enq_depth)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch153",
+      "id" : 14,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_37"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 153,
+            "column" : 47,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_deq_min"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_37"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "deq_depth"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 153,
+            "column" : 24,
+            "source_fragment" : "register_deq_min.write(pointer, hdr.postcard.deq_depth)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch156",
+      "id" : 15,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_38"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 156,
+            "column" : 47,
+            "source_fragment" : "pointer"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_deq_max"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_38"]
+            },
+            {
+              "type" : "field",
+              "value" : ["postcard", "deq_depth"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 156,
+            "column" : 24,
+            "source_fragment" : "register_deq_max.write(pointer, hdr.postcard.deq_depth)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "switch85",
+      "id" : 16,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_39"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "<<",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "userMetadata.switch_register_number"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["scalars", "userMetadata.flow_register_number"]
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 85,
             "column" : 48,
             "source_fragment" : "pointer"
           }
@@ -4157,21 +4164,44 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_35"]
+              "value" : ["scalars", "tmp_39"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 89,
+            "line" : 85,
             "column" : 16,
             "source_fragment" : "aggregator_pointer.read(cursor, pointer)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "threshold_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_threshold"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 86,
+            "column" : 16,
+            "source_fragment" : "register_threshold.read(threshold, 0)"
           }
         }
       ]
     },
     {
-      "name" : "switch192",
-      "id" : 20,
+      "name" : "switch167",
+      "id" : 17,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -4179,14 +4209,14 @@
           "parameters" : [
             {
               "type" : "header",
-              "value" : "ipfix_sum"
+              "value" : "telemetry_sum"
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 192,
+            "line" : 167,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.setValid()"
+            "source_fragment" : "hdr.telemetry_sum.setValid()"
           }
         },
         {
@@ -4194,45 +4224,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_ipfix_header_version_number0"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x000a"
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 195,
-            "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.ipfix_header.version_number = 10"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipfix_sum", "_ipfix_header_message_length1"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x0324"
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 196,
-            "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.ipfix_header.message_length = 804"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipfix_sum", "_ipfix_header_export_time2"]
+              "value" : ["telemetry_sum", "sum_of"]
             },
             {
               "type" : "expression",
@@ -4246,17 +4238,17 @@
                       "op" : "&",
                       "left" : {
                         "type" : "field",
-                        "value" : ["standard_metadata", "ingress_global_timestamp"]
+                        "value" : ["scalars", "cursor_0"]
                       },
                       "right" : {
                         "type" : "hexstr",
-                        "value" : "0x0000ffffffff"
+                        "value" : "0x3f"
                       }
                     }
                   },
                   "right" : {
                     "type" : "hexstr",
-                    "value" : "0xffffffff"
+                    "value" : "0x3f"
                   }
                 }
               }
@@ -4264,9 +4256,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 197,
+            "line" : 168,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.ipfix_header.export_time = ..."
+            "source_fragment" : "hdr.telemetry_sum.sum_of = (bit<6>) cursor"
           }
         },
         {
@@ -4274,26 +4266,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_ipfix_header_sequence_number3"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x00000063"
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 201,
-            "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.ipfix_header.sequence_number = 99"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipfix_sum", "_ipfix_header_observation_domain4"]
+              "value" : ["telemetry_sum", "switch_id"]
             },
             {
               "type" : "field",
@@ -4302,9 +4275,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 202,
+            "line" : 169,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.ipfix_header.observation_domain = ..."
+            "source_fragment" : "hdr.telemetry_sum.switch_id = local_metadata.switch_id"
           }
         },
         {
@@ -4312,64 +4285,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_set_set_id5"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x2810"
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 205,
-            "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.set.set_id = 10256"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipfix_sum", "_set_set_length6"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x0314"
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 206,
-            "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.set.set_length = 788"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipfix_sum", "_record_collector_id7"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x01010101"
-            }
-          ],
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 210,
-            "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.collector_id = 0x01010101"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipfix_sum", "_record_flow_id8"]
+              "value" : ["telemetry_sum", "flow_id"]
             },
             {
               "type" : "field",
@@ -4378,9 +4294,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 211,
+            "line" : 170,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.flow_id = local_metadata.flow_id"
+            "source_fragment" : "hdr.telemetry_sum.flow_id = local_metadata.flow_id"
           }
         },
         {
@@ -4388,7 +4304,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_36"]
+              "value" : ["scalars", "tmp_40"]
             },
             {
               "type" : "expression",
@@ -4440,7 +4356,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 213,
+            "line" : 172,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -4458,12 +4374,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_36"]
+              "value" : ["scalars", "tmp_40"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 213,
+            "line" : 172,
             "column" : 20,
             "source_fragment" : "register_latency_min.read(min_latency, pointer)"
           }
@@ -4473,7 +4389,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_latency_min10"]
+              "value" : ["telemetry_sum", "latency_min"]
             },
             {
               "type" : "field",
@@ -4482,9 +4398,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 214,
+            "line" : 173,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.latency_min = min_latency"
+            "source_fragment" : "hdr.telemetry_sum.latency_min = min_latency"
           }
         },
         {
@@ -4492,7 +4408,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_37"]
+              "value" : ["scalars", "tmp_41"]
             },
             {
               "type" : "expression",
@@ -4544,7 +4460,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 216,
+            "line" : 175,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -4562,12 +4478,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_37"]
+              "value" : ["scalars", "tmp_41"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 216,
+            "line" : 175,
             "column" : 20,
             "source_fragment" : "register_latency_max.read(max_latency, pointer)"
           }
@@ -4577,7 +4493,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_latency_max12"]
+              "value" : ["telemetry_sum", "latency_max"]
             },
             {
               "type" : "field",
@@ -4586,9 +4502,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 217,
+            "line" : 176,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.latency_max = max_latency"
+            "source_fragment" : "hdr.telemetry_sum.latency_max = max_latency"
           }
         },
         {
@@ -4596,7 +4512,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_38"]
+              "value" : ["scalars", "tmp_42"]
             },
             {
               "type" : "expression",
@@ -4648,7 +4564,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 219,
+            "line" : 178,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -4666,12 +4582,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_38"]
+              "value" : ["scalars", "tmp_42"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 219,
+            "line" : 178,
             "column" : 20,
             "source_fragment" : "register_latency_sum.read(sum_latency, pointer)"
           }
@@ -4681,7 +4597,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_latency_avg11"]
+              "value" : ["telemetry_sum", "latency_avg"]
             },
             {
               "type" : "expression",
@@ -4713,9 +4629,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 220,
+            "line" : 179,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.latency_avg = ..."
+            "source_fragment" : "hdr.telemetry_sum.latency_avg = sum_latency/16"
           }
         },
         {
@@ -4723,7 +4639,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_39"]
+              "value" : ["scalars", "tmp_43"]
             },
             {
               "type" : "expression",
@@ -4775,7 +4691,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 224,
+            "line" : 182,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -4793,12 +4709,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_39"]
+              "value" : ["scalars", "tmp_43"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 224,
+            "line" : 182,
             "column" : 20,
             "source_fragment" : "register_enq_min.read(min_enq, pointer)"
           }
@@ -4808,7 +4724,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_enq_min13"]
+              "value" : ["telemetry_sum", "enq_min"]
             },
             {
               "type" : "field",
@@ -4817,9 +4733,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 225,
+            "line" : 183,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.enq_min = min_enq"
+            "source_fragment" : "hdr.telemetry_sum.enq_min = min_enq"
           }
         },
         {
@@ -4827,7 +4743,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_40"]
+              "value" : ["scalars", "tmp_44"]
             },
             {
               "type" : "expression",
@@ -4879,7 +4795,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 226,
+            "line" : 184,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -4897,12 +4813,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_40"]
+              "value" : ["scalars", "tmp_44"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 226,
+            "line" : 184,
             "column" : 20,
             "source_fragment" : "register_enq_max.read(max_enq, pointer)"
           }
@@ -4912,7 +4828,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_enq_max15"]
+              "value" : ["telemetry_sum", "enq_max"]
             },
             {
               "type" : "field",
@@ -4921,9 +4837,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 227,
+            "line" : 185,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.enq_max = max_enq"
+            "source_fragment" : "hdr.telemetry_sum.enq_max = max_enq"
           }
         },
         {
@@ -4931,7 +4847,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_41"]
+              "value" : ["scalars", "tmp_45"]
             },
             {
               "type" : "expression",
@@ -4983,7 +4899,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 228,
+            "line" : 186,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5001,12 +4917,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_41"]
+              "value" : ["scalars", "tmp_45"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 228,
+            "line" : 186,
             "column" : 20,
             "source_fragment" : "register_enq_sum.read(sum_enq, pointer)"
           }
@@ -5016,7 +4932,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_enq_avg14"]
+              "value" : ["telemetry_sum", "enq_avg"]
             },
             {
               "type" : "expression",
@@ -5040,7 +4956,7 @@
                   },
                   "right" : {
                     "type" : "hexstr",
-                    "value" : "0xffffff"
+                    "value" : "0x07ffff"
                   }
                 }
               }
@@ -5048,9 +4964,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 229,
+            "line" : 187,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.enq_avg = ..."
+            "source_fragment" : "hdr.telemetry_sum.enq_avg = sum_enq/16"
           }
         },
         {
@@ -5058,7 +4974,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_42"]
+              "value" : ["scalars", "tmp_46"]
             },
             {
               "type" : "expression",
@@ -5110,7 +5026,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 233,
+            "line" : 190,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5128,12 +5044,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_42"]
+              "value" : ["scalars", "tmp_46"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 233,
+            "line" : 190,
             "column" : 20,
             "source_fragment" : "register_deq_min.read(min_deq, pointer)"
           }
@@ -5143,7 +5059,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_deq_min16"]
+              "value" : ["telemetry_sum", "deq_min"]
             },
             {
               "type" : "field",
@@ -5152,9 +5068,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 234,
+            "line" : 191,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.deq_min = min_deq"
+            "source_fragment" : "hdr.telemetry_sum.deq_min = min_deq"
           }
         },
         {
@@ -5162,7 +5078,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_43"]
+              "value" : ["scalars", "tmp_47"]
             },
             {
               "type" : "expression",
@@ -5214,7 +5130,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 235,
+            "line" : 192,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5232,12 +5148,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_43"]
+              "value" : ["scalars", "tmp_47"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 235,
+            "line" : 192,
             "column" : 20,
             "source_fragment" : "register_deq_max.read(max_deq, pointer)"
           }
@@ -5247,7 +5163,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_deq_max18"]
+              "value" : ["telemetry_sum", "deq_max"]
             },
             {
               "type" : "field",
@@ -5256,9 +5172,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 236,
+            "line" : 193,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.deq_max = max_deq"
+            "source_fragment" : "hdr.telemetry_sum.deq_max = max_deq"
           }
         },
         {
@@ -5266,7 +5182,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_44"]
+              "value" : ["scalars", "tmp_48"]
             },
             {
               "type" : "expression",
@@ -5318,7 +5234,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 237,
+            "line" : 194,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5336,12 +5252,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_44"]
+              "value" : ["scalars", "tmp_48"]
             }
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 237,
+            "line" : 194,
             "column" : 20,
             "source_fragment" : "register_deq_sum.read(sum_deq, pointer)"
           }
@@ -5351,7 +5267,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipfix_sum", "_record_deq_avg17"]
+              "value" : ["telemetry_sum", "deq_avg"]
             },
             {
               "type" : "expression",
@@ -5375,7 +5291,7 @@
                   },
                   "right" : {
                     "type" : "hexstr",
-                    "value" : "0xffffff"
+                    "value" : "0x07ffff"
                   }
                 }
               }
@@ -5383,16 +5299,16 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 238,
+            "line" : 195,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.record.deq_avg = ..."
+            "source_fragment" : "hdr.telemetry_sum.deq_avg = sum_deq/16"
           }
         }
       ]
     },
     {
-      "name" : "switch243",
-      "id" : 21,
+      "name" : "switch199",
+      "id" : 18,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5409,7 +5325,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 243,
+            "line" : 199,
             "column" : 20,
             "source_fragment" : "cursor = 0"
           }
@@ -5417,8 +5333,8 @@
       ]
     },
     {
-      "name" : "switch185",
-      "id" : 22,
+      "name" : "switch163",
+      "id" : 19,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5458,7 +5374,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 185,
+            "line" : 163,
             "column" : 16,
             "source_fragment" : "cursor = cursor + 1"
           }
@@ -5466,8 +5382,8 @@
       ]
     },
     {
-      "name" : "switch247",
-      "id" : 23,
+      "name" : "switch201",
+      "id" : 20,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -5475,7 +5391,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_45"]
+              "value" : ["scalars", "tmp_49"]
             },
             {
               "type" : "expression",
@@ -5527,7 +5443,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 247,
+            "line" : 201,
             "column" : 41,
             "source_fragment" : "pointer"
           }
@@ -5541,7 +5457,7 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_45"]
+              "value" : ["scalars", "tmp_49"]
             },
             {
               "type" : "field",
@@ -5550,7 +5466,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 247,
+            "line" : 201,
             "column" : 16,
             "source_fragment" : "aggregator_pointer.write(pointer, cursor)"
           }
@@ -5564,7 +5480,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 15,
+        "line" : 24,
         "column" : 8,
         "source_fragment" : "MyIngress"
       },
@@ -5575,7 +5491,7 @@
           "id" : 0,
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 26,
+            "line" : 14,
             "column" : 10,
             "source_fragment" : "table_detect_postcard"
           },
@@ -5599,7 +5515,7 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [0, 5],
+          "action_ids" : [0, 4],
           "actions" : ["NoAction", "MyIngress.PostcardDetect.set_postcard_bit"],
           "base_default_next" : null,
           "next_tables" : {
@@ -5618,15 +5534,15 @@
           "id" : 1,
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 55,
+            "line" : 40,
             "column" : 10,
             "source_fragment" : "table_detect_flow"
           },
           "key" : [
             {
               "match_type" : "exact",
-              "name" : "hdr.ipfix_postcard.record.flow_id",
-              "target" : ["ipfix_postcard", "_record_flow_id7"],
+              "name" : "hdr.postcard.flow_id",
+              "target" : ["postcard", "flow_id"],
               "mask" : null
             }
           ],
@@ -5636,7 +5552,7 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [6, 1],
+          "action_ids" : [5, 1],
           "actions" : ["MyIngress.PostcardDetect.select_flow_register", "NoAction"],
           "base_default_next" : "MyIngress.PostcardDetect.table_detect_switch",
           "next_tables" : {
@@ -5655,15 +5571,15 @@
           "id" : 2,
           "source_info" : {
             "filename" : "tables/postcard_detect.p4",
-            "line" : 65,
+            "line" : 50,
             "column" : 10,
             "source_fragment" : "table_detect_switch"
           },
           "key" : [
             {
               "match_type" : "exact",
-              "name" : "hdr.ipfix_postcard.ipfix_header.observation_domain",
-              "target" : ["ipfix_postcard", "_ipfix_header_observation_domain4"],
+              "name" : "hdr.postcard.sw_id",
+              "target" : ["postcard", "sw_id"],
               "mask" : null
             }
           ],
@@ -5673,7 +5589,7 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [7, 2],
+          "action_ids" : [6, 2],
           "actions" : ["MyIngress.PostcardDetect.select_switch_register", "NoAction"],
           "base_default_next" : "node_6",
           "next_tables" : {
@@ -5688,13 +5604,13 @@
           }
         },
         {
-          "name" : "tbl_switch89",
+          "name" : "tbl_switch85",
           "id" : 3,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 89,
+            "line" : 85,
             "column" : 16,
-            "source_fragment" : "aggregator_pointer.read(cursor, pointer)"
+            "source_fragment" : "aggregator_pointer.read(cursor, pointer); ..."
           },
           "key" : [],
           "match_type" : "exact",
@@ -5703,25 +5619,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [19],
-          "actions" : ["switch89"],
+          "action_ids" : [16],
+          "actions" : ["switch85"],
           "base_default_next" : "node_8",
           "next_tables" : {
-            "switch89" : "node_8"
+            "switch85" : "node_8"
           },
           "default_entry" : {
-            "action_id" : 19,
+            "action_id" : 16,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_switch100",
+          "name" : "tbl_switch95",
           "id" : 4,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 95,
             "column" : 20,
             "source_fragment" : "register_latency_max.write(pointer, latency); ..."
           },
@@ -5732,25 +5648,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [11],
-          "actions" : ["switch100"],
-          "base_default_next" : "tbl_switch185",
+          "action_ids" : [8],
+          "actions" : ["switch95"],
+          "base_default_next" : "tbl_switch163",
           "next_tables" : {
-            "switch100" : "tbl_switch185"
+            "switch95" : "tbl_switch163"
           },
           "default_entry" : {
-            "action_id" : 11,
+            "action_id" : 8,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_switch131",
+          "name" : "tbl_switch117",
           "id" : 5,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 131,
+            "line" : 117,
             "column" : 20,
             "source_fragment" : "register_latency_sum.read(old_latency, pointer); ..."
           },
@@ -5761,25 +5677,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [13],
-          "actions" : ["switch131"],
+          "action_ids" : [10],
+          "actions" : ["switch117"],
           "base_default_next" : "node_11",
           "next_tables" : {
-            "switch131" : "node_11"
+            "switch117" : "node_11"
           },
           "default_entry" : {
-            "action_id" : 13,
+            "action_id" : 10,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_switch156",
+          "name" : "tbl_switch138",
           "id" : 6,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 156,
+            "line" : 138,
             "column" : 24,
             "source_fragment" : "register_latency_min.write(pointer, latency)"
           },
@@ -5790,25 +5706,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [12],
-          "actions" : ["switch156"],
+          "action_ids" : [9],
+          "actions" : ["switch138"],
           "base_default_next" : "node_13",
           "next_tables" : {
-            "switch156" : "node_13"
+            "switch138" : "node_13"
           },
           "default_entry" : {
-            "action_id" : 12,
+            "action_id" : 9,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_switch159",
+          "name" : "tbl_switch141",
           "id" : 7,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 141,
             "column" : 24,
             "source_fragment" : "register_latency_max.write(pointer, latency)"
           },
@@ -5819,11 +5735,98 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [14],
-          "actions" : ["switch159"],
+          "action_ids" : [11],
+          "actions" : ["switch141"],
           "base_default_next" : "node_15",
           "next_tables" : {
-            "switch159" : "node_15"
+            "switch141" : "node_15"
+          },
+          "default_entry" : {
+            "action_id" : 11,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_switch145",
+          "id" : 8,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 145,
+            "column" : 24,
+            "source_fragment" : "register_enq_min.write(pointer, hdr.postcard.enq_depth)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [12],
+          "actions" : ["switch145"],
+          "base_default_next" : "node_17",
+          "next_tables" : {
+            "switch145" : "node_17"
+          },
+          "default_entry" : {
+            "action_id" : 12,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_switch148",
+          "id" : 9,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 148,
+            "column" : 24,
+            "source_fragment" : "register_enq_max.write(pointer, hdr.postcard.enq_depth)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [13],
+          "actions" : ["switch148"],
+          "base_default_next" : "node_19",
+          "next_tables" : {
+            "switch148" : "node_19"
+          },
+          "default_entry" : {
+            "action_id" : 13,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_switch153",
+          "id" : 10,
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 153,
+            "column" : 24,
+            "source_fragment" : "register_deq_min.write(pointer, hdr.postcard.deq_depth)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [14],
+          "actions" : ["switch153"],
+          "base_default_next" : "node_21",
+          "next_tables" : {
+            "switch153" : "node_21"
           },
           "default_entry" : {
             "action_id" : 14,
@@ -5833,13 +5836,13 @@
           }
         },
         {
-          "name" : "tbl_switch163",
-          "id" : 8,
+          "name" : "tbl_switch156",
+          "id" : 11,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 163,
+            "line" : 156,
             "column" : 24,
-            "source_fragment" : "register_enq_min.write(pointer, ..."
+            "source_fragment" : "register_deq_max.write(pointer, hdr.postcard.deq_depth)"
           },
           "key" : [],
           "match_type" : "exact",
@@ -5849,10 +5852,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [15],
-          "actions" : ["switch163"],
-          "base_default_next" : "node_17",
+          "actions" : ["switch156"],
+          "base_default_next" : "tbl_switch163",
           "next_tables" : {
-            "switch163" : "node_17"
+            "switch156" : "tbl_switch163"
           },
           "default_entry" : {
             "action_id" : 15,
@@ -5862,98 +5865,11 @@
           }
         },
         {
-          "name" : "tbl_switch167",
-          "id" : 9,
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 167,
-            "column" : 24,
-            "source_fragment" : "register_enq_max.write(pointer, ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [16],
-          "actions" : ["switch167"],
-          "base_default_next" : "node_19",
-          "next_tables" : {
-            "switch167" : "node_19"
-          },
-          "default_entry" : {
-            "action_id" : 16,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_switch173",
-          "id" : 10,
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 173,
-            "column" : 24,
-            "source_fragment" : "register_deq_min.write(pointer, ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [17],
-          "actions" : ["switch173"],
-          "base_default_next" : "node_21",
-          "next_tables" : {
-            "switch173" : "node_21"
-          },
-          "default_entry" : {
-            "action_id" : 17,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_switch177",
-          "id" : 11,
-          "source_info" : {
-            "filename" : "switch.p4",
-            "line" : 177,
-            "column" : 24,
-            "source_fragment" : "register_deq_max.write(pointer, ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [18],
-          "actions" : ["switch177"],
-          "base_default_next" : "tbl_switch185",
-          "next_tables" : {
-            "switch177" : "tbl_switch185"
-          },
-          "default_entry" : {
-            "action_id" : 18,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_switch185",
+          "name" : "tbl_switch163",
           "id" : 12,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 185,
+            "line" : 163,
             "column" : 23,
             "source_fragment" : "="
           },
@@ -5964,27 +5880,27 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [22],
-          "actions" : ["switch185"],
+          "action_ids" : [19],
+          "actions" : ["switch163"],
           "base_default_next" : "node_24",
           "next_tables" : {
-            "switch185" : "node_24"
+            "switch163" : "node_24"
           },
           "default_entry" : {
-            "action_id" : 22,
+            "action_id" : 19,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_switch192",
+          "name" : "tbl_switch167",
           "id" : 13,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 192,
+            "line" : 167,
             "column" : 20,
-            "source_fragment" : "hdr.ipfix_sum.setValid(); ..."
+            "source_fragment" : "hdr.telemetry_sum.setValid(); ..."
           },
           "key" : [],
           "match_type" : "exact",
@@ -5993,14 +5909,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [20],
-          "actions" : ["switch192"],
+          "action_ids" : [17],
+          "actions" : ["switch167"],
           "base_default_next" : "MyIngress.ExportData.table_postcard",
           "next_tables" : {
-            "switch192" : "MyIngress.ExportData.table_postcard"
+            "switch167" : "MyIngress.ExportData.table_postcard"
           },
           "default_entry" : {
-            "action_id" : 20,
+            "action_id" : 17,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6011,7 +5927,7 @@
           "id" : 14,
           "source_info" : {
             "filename" : "tables/int_xd.p4",
-            "line" : 57,
+            "line" : 60,
             "column" : 10,
             "source_fragment" : "table_postcard"
           },
@@ -6022,12 +5938,12 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [8, 3],
+          "action_ids" : [7, 3],
           "actions" : ["MyIngress.ExportData.forward_postcard", "NoAction"],
-          "base_default_next" : "tbl_switch243",
+          "base_default_next" : "tbl_switch199",
           "next_tables" : {
-            "MyIngress.ExportData.forward_postcard" : "tbl_switch243",
-            "NoAction" : "tbl_switch243"
+            "MyIngress.ExportData.forward_postcard" : "tbl_switch199",
+            "NoAction" : "tbl_switch199"
           },
           "default_entry" : {
             "action_id" : 3,
@@ -6037,11 +5953,11 @@
           }
         },
         {
-          "name" : "tbl_switch243",
+          "name" : "tbl_switch199",
           "id" : 15,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 243,
+            "line" : 199,
             "column" : 27,
             "source_fragment" : "="
           },
@@ -6052,25 +5968,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [21],
-          "actions" : ["switch243"],
-          "base_default_next" : "tbl_switch247",
+          "action_ids" : [18],
+          "actions" : ["switch199"],
+          "base_default_next" : "tbl_switch201",
           "next_tables" : {
-            "switch243" : "tbl_switch247"
+            "switch199" : "tbl_switch201"
           },
           "default_entry" : {
-            "action_id" : 21,
+            "action_id" : 18,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_switch247",
+          "name" : "tbl_switch201",
           "id" : 16,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 247,
+            "line" : 201,
             "column" : 16,
             "source_fragment" : "aggregator_pointer.write(pointer, cursor)"
           },
@@ -6081,52 +5997,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [23],
-          "actions" : ["switch247"],
+          "action_ids" : [20],
+          "actions" : ["switch201"],
           "base_default_next" : null,
           "next_tables" : {
-            "switch247" : null
+            "switch201" : null
           },
           "default_entry" : {
-            "action_id" : 23,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "MyIngress.Forwarding.ipv4_lpm",
-          "id" : 17,
-          "source_info" : {
-            "filename" : "tables/ipv4_lpm.p4",
-            "line" : 20,
-            "column" : 10,
-            "source_fragment" : "ipv4_lpm"
-          },
-          "key" : [
-            {
-              "match_type" : "lpm",
-              "name" : "hdr.ipv4.dst_addr",
-              "target" : ["ipv4", "dst_addr"],
-              "mask" : null
-            }
-          ],
-          "match_type" : "lpm",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [9, 4, 10],
-          "actions" : ["MyIngress.Forwarding.ipv4_forward", "NoAction", "MyIngress.Forwarding.drop"],
-          "base_default_next" : null,
-          "next_tables" : {
-            "MyIngress.Forwarding.ipv4_forward" : null,
-            "NoAction" : null,
-            "MyIngress.Forwarding.drop" : null
-          },
-          "default_entry" : {
-            "action_id" : 10,
+            "action_id" : 20,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -6140,7 +6018,7 @@
           "id" : 0,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 71,
+            "line" : 66,
             "column" : 13,
             "source_fragment" : "hdr.ipv4.isValid()"
           },
@@ -6163,7 +6041,7 @@
           "id" : 1,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 78,
+            "line" : 74,
             "column" : 16,
             "source_fragment" : "local_metadata.is_postcard == 1"
           },
@@ -6181,15 +6059,15 @@
               }
             }
           },
-          "true_next" : "tbl_switch89",
-          "false_next" : "MyIngress.Forwarding.ipv4_lpm"
+          "false_next" : null,
+          "true_next" : "tbl_switch85"
         },
         {
           "name" : "node_8",
           "id" : 2,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 99,
+            "line" : 94,
             "column" : 20,
             "source_fragment" : "cursor == 0"
           },
@@ -6207,15 +6085,15 @@
               }
             }
           },
-          "true_next" : "tbl_switch100",
-          "false_next" : "tbl_switch131"
+          "true_next" : "tbl_switch95",
+          "false_next" : "tbl_switch117"
         },
         {
           "name" : "node_11",
           "id" : 3,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 155,
+            "line" : 137,
             "column" : 24,
             "source_fragment" : "latency < min_latency"
           },
@@ -6233,11 +6111,11 @@
                       "op" : "-",
                       "left" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
+                        "value" : ["postcard", "egress_tstamp"]
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
+                        "value" : ["postcard", "ingress_tstamp"]
                       }
                     }
                   },
@@ -6253,7 +6131,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch156",
+          "true_next" : "tbl_switch138",
           "false_next" : "node_13"
         },
         {
@@ -6261,7 +6139,7 @@
           "id" : 4,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 158,
+            "line" : 140,
             "column" : 24,
             "source_fragment" : "latency > max_latency"
           },
@@ -6279,11 +6157,11 @@
                       "op" : "-",
                       "left" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_egress_tstamp10"]
+                        "value" : ["postcard", "egress_tstamp"]
                       },
                       "right" : {
                         "type" : "field",
-                        "value" : ["ipfix_postcard", "_record_ingress_tstamp9"]
+                        "value" : ["postcard", "ingress_tstamp"]
                       }
                     }
                   },
@@ -6299,7 +6177,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch159",
+          "true_next" : "tbl_switch141",
           "false_next" : "node_15"
         },
         {
@@ -6307,9 +6185,9 @@
           "id" : 5,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 162,
+            "line" : 144,
             "column" : 24,
-            "source_fragment" : "hdr.ipfix_postcard.record.enq_depth < min_enq"
+            "source_fragment" : "hdr.postcard.enq_depth < min_enq"
           },
           "expression" : {
             "type" : "expression",
@@ -6317,7 +6195,7 @@
               "op" : "<",
               "left" : {
                 "type" : "field",
-                "value" : ["ipfix_postcard", "_record_enq_depth12"]
+                "value" : ["postcard", "enq_depth"]
               },
               "right" : {
                 "type" : "field",
@@ -6325,7 +6203,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch163",
+          "true_next" : "tbl_switch145",
           "false_next" : "node_17"
         },
         {
@@ -6333,9 +6211,9 @@
           "id" : 6,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 166,
+            "line" : 147,
             "column" : 24,
-            "source_fragment" : "hdr.ipfix_postcard.record.enq_depth > max_enq"
+            "source_fragment" : "hdr.postcard.enq_depth > max_enq"
           },
           "expression" : {
             "type" : "expression",
@@ -6343,7 +6221,7 @@
               "op" : ">",
               "left" : {
                 "type" : "field",
-                "value" : ["ipfix_postcard", "_record_enq_depth12"]
+                "value" : ["postcard", "enq_depth"]
               },
               "right" : {
                 "type" : "field",
@@ -6351,7 +6229,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch167",
+          "true_next" : "tbl_switch148",
           "false_next" : "node_19"
         },
         {
@@ -6359,9 +6237,9 @@
           "id" : 7,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 172,
+            "line" : 152,
             "column" : 24,
-            "source_fragment" : "hdr.ipfix_postcard.record.deq_depth < min_deq"
+            "source_fragment" : "hdr.postcard.deq_depth < min_deq"
           },
           "expression" : {
             "type" : "expression",
@@ -6369,7 +6247,7 @@
               "op" : "<",
               "left" : {
                 "type" : "field",
-                "value" : ["ipfix_postcard", "_record_deq_depth11"]
+                "value" : ["postcard", "deq_depth"]
               },
               "right" : {
                 "type" : "field",
@@ -6377,7 +6255,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch173",
+          "true_next" : "tbl_switch153",
           "false_next" : "node_21"
         },
         {
@@ -6385,9 +6263,9 @@
           "id" : 8,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 176,
+            "line" : 155,
             "column" : 24,
-            "source_fragment" : "hdr.ipfix_postcard.record.deq_depth > max_deq"
+            "source_fragment" : "hdr.postcard.deq_depth > max_deq"
           },
           "expression" : {
             "type" : "expression",
@@ -6395,7 +6273,7 @@
               "op" : ">",
               "left" : {
                 "type" : "field",
-                "value" : ["ipfix_postcard", "_record_deq_depth11"]
+                "value" : ["postcard", "deq_depth"]
               },
               "right" : {
                 "type" : "field",
@@ -6403,34 +6281,34 @@
               }
             }
           },
-          "true_next" : "tbl_switch177",
-          "false_next" : "tbl_switch185"
+          "true_next" : "tbl_switch156",
+          "false_next" : "tbl_switch163"
         },
         {
           "name" : "node_24",
           "id" : 9,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 189,
+            "line" : 165,
             "column" : 20,
-            "source_fragment" : "cursor == 16"
+            "source_fragment" : "cursor >= threshold"
           },
           "expression" : {
             "type" : "expression",
             "value" : {
-              "op" : "==",
+              "op" : ">=",
               "left" : {
                 "type" : "field",
                 "value" : ["scalars", "cursor_0"]
               },
               "right" : {
-                "type" : "hexstr",
-                "value" : "0x10"
+                "type" : "field",
+                "value" : ["scalars", "threshold_0"]
               }
             }
           },
-          "true_next" : "tbl_switch192",
-          "false_next" : "tbl_switch247"
+          "true_next" : "tbl_switch167",
+          "false_next" : "tbl_switch201"
         }
       ]
     },
@@ -6439,7 +6317,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 261,
+        "line" : 210,
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
@@ -6455,7 +6333,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 272,
+        "line" : 219,
         "column" : 6,
         "source_fragment" : "update_checksum( ..."
       },

@@ -6,7 +6,8 @@ import time
 
 from scapy.all import sniff, sendp, hexdump, get_if_list, get_if_hwaddr
 from scapy.all import Packet, IPOption
-from scapy.all import ShortField, IntField, LongField, BitField, FieldListField, FieldLenField
+from scapy.all import ShortField, IntField, LongField, BitField,               \
+                        FieldListField, FieldLenField
 from scapy.all import IP, TCP, UDP, Raw
 from scapy.layers.inet import _IPOption_HDR
 
@@ -20,8 +21,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 clear = lambda: os.system('clear')
 
-#the_token = os.getenv('INFLUX_TOKEN')
-the_token = "IZ_S1koYRGdIChw_HQtWsAgvPnmxuFAewwxl4E9f6ncQqgS1caJ4izFxj-co0CWBU9N3SpIT_IE8i33mobws9A=="
+the_token = "IZ_S1koYRGdIChw_HQtWsAgvPnmxuFAewwxl4E9f6ncQqgS1caJ4izFxj-        \
+                co0CWBU9N3SpIT_IE8i33mobws9A=="
 org = "santanna"
 bucket = "postcard_sum"
 db_url="http://localhost:8086"
@@ -77,13 +78,20 @@ class SW_Params():
             self.deq_max = new_deq
 
 
-        print("\n%-25s{}\n%-25s{} μs\n%-25s{} μs\n%-25s{} μs\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n".format(self.switch_id,
-                                                self.latency_average, self.latency_min, self.latency_max,
-                                                self.enq_average, self.enq_min, self.enq_max,
-                                                self.deq_average, self.deq_min, self.deq_max) % ('SW_ID:',
-                                                'latency_average:', 'latency_min:', 'latency_max:',
-                                                'enq_average:', 'enq_min:', 'enq_max:',
-                                                'deq_average:', 'deq_min:', 'deq_max:' ) )
+        print("\n%-25s{}\n%-25s{} μs\n%-25s{} μs\n%-25s{} μs\n%-25s{}          \
+                pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{}        \
+                pkts\n%-25s{} pkts\n".format(self.switch_id,
+                                             self.latency_average,
+                                             self.latency_min, self.latency_max,
+                                             self.enq_average, self.enq_min,
+                                             self.enq_max, self.deq_average,
+                                             self.deq_min, self.deq_max) %     \
+                                             ('SW_ID:',
+                                                'latency_average:',
+                                                'latency_min:', 'latency_max:',
+                                                'enq_average:', 'enq_min:',
+                                                'enq_max:', 'deq_average:',
+                                                'deq_min:', 'deq_max:' ) )
 
 def handle_pkt_on_thread(pkt,write_api):
     t = Thread(target=handle_pkt, args=(pkt,write_api))
@@ -96,7 +104,8 @@ def handle_pkt(pkt,write_api):
     if UDP in pkt and pkt[UDP].dport == 54321:
         with lock:
             num_packets += 1
-            print('\n\n\n\033[1;32m---- Telemetry Packet: {} ----\033[0m\n'.format(num_packets) )
+            print('\n\n\n\033[1;32m---- Telemetry Packet: {} ----\033[0m\n'.   \
+                            format(num_packets) )
         utcnow = datetime.utcnow()
         data = pkt[Raw].load
         arrival_delay = int.from_bytes(data[9:15], 'big')
@@ -115,7 +124,8 @@ def handle_pkt(pkt,write_api):
             ipfix_setID = data[16:18].hex()
             ipfix_setLength = int.from_bytes(data[18:20], 'big')
 
-            collector_id = '{0}.{1}.{2}.{3}'.format(data[20+n],data[21+n],data[22+n],data[23+n] )
+            collector_id = '{0}.{1}.{2}.{3}'.format(data[20+n], data[21+n],
+                                                    data[22+n], data[23+n])
             flow_id = int.from_bytes( data[24+n:28+n], 'big' )
             ttl = data[28]
             latency_min = int.from_bytes(data[29+n:35+n], 'big')
@@ -129,10 +139,6 @@ def handle_pkt(pkt,write_api):
             deq_max = int.from_bytes(data[59+n:62+n], 'big')
             deq_avg = int.from_bytes(data[62+n:65+n], 'big')
 
-            # with lock:
-            #     if sw_id not in switch_params:
-            #         switch_params[sw_id] = SW_Params(sw_id)
-            #     switch_params[sw_id].update_values(latency, enq, deq)
             with lock:
                 print('\n---- Telemetry Packet: {} ----'.format(num_packets),
                     '%-25s{}'.format(ipfix_version) % ('ipfix_version:'),
@@ -178,19 +184,20 @@ def correlate_on_thread():
                     if (item[2] < mn_lc):
                         mn_lc = item[2]
                     item_count += 1
-                print('sw_id: {0},\t\tmn_lc: {1},\tvg_lc: {2},\tmx_lc: {3}'.format(key,mn_lc,sm_lc//item_count,mx_lc))
+                print('sw_id: {0},\t\tmn_lc: {1},\tvg_lc: {2},\tmx_lc: {3}'.   \
+                                format(key,mn_lc,sm_lc//item_count,mx_lc))
         print("updated at {}".format( datetime.utcnow() ))
         time.sleep(10)
 
 
 
 def main(write_api):
-    ifaces = [i for i in os.listdir('/sys/class/net/') if 'enxd45d64626aa4' in i]
+    ifaces = [i for i in os.listdir('/sys/class/net/')
+                    if 'enxd45d64626aa4' in i]
     iface = ifaces[0]
     print(("sniffing on %s" % iface))
     sys.stdout.flush()
-    # corr_thread = Thread(target=correlate_on_thread)
-    # corr_thread.start()
+
     sniff(iface = iface,
         prn = lambda x: handle_pkt(x,write_api))
     print('sniffin started')

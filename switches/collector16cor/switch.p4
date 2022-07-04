@@ -33,6 +33,7 @@ control MyIngress (
 
     // these are registers used to hold the values for aggregation and correlation
     register <bit<8>>  (totalSize) aggregator_pointer;
+    register <bit<8>>  (totalSize) register_threshold;
 
     //register <bit<AGGREGATION_POSTCARD_LEN_BITS>> (PACKET_AGGREGATOR_THRESHOLD)packet_aggregator;
     register <bit<48>> (totalSize) register_latency_max;
@@ -49,6 +50,7 @@ control MyIngress (
 
     // variables with descriptive names
     bit <8>  cursor = 0;
+    bit <8>  threshold;
     bit <48> max_latency;
     bit <48> min_latency;
     bit <48> sum_latency;
@@ -81,12 +83,12 @@ control MyIngress (
 
                 // read the correct cursor value for the current flow and switch
                 aggregator_pointer.read(cursor, pointer);
+                register_threshold.read(threshold, 0);
 
                 // calculate the latency of the current postcard from
                 // the values included in the headers
                 bit<48> latency = ( hdr.postcard.egress_tstamp -
                     hdr.postcard.ingress_tstamp );
-                log_msg("latency: {} us",{latency});
                 // if this is the first packet in the aggregation then we store the valeus
                 // of the parameters, otherwise we compare with the already stored values
                 if (cursor == 0){
@@ -160,8 +162,7 @@ control MyIngress (
                 // increase cursor by 1 and check if threshold is reached
                 cursor = cursor + 1;
 
-                if (cursor == PACKET_AGGREGATOR_THRESHOLD){
-                    log_msg("preparing aggregated packet");
+                if (cursor >= threshold){
 
                     hdr.telemetry_sum.setValid();
                     hdr.telemetry_sum.sum_of = (bit<6>) cursor;
@@ -198,8 +199,6 @@ control MyIngress (
                     cursor = 0;
                 }
                 aggregator_pointer.write(pointer, cursor);
-
-
 
             } else {
                 // Forwarding.apply(hdr, local_metadata, standard_metadata);

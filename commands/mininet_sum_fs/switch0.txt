@@ -1,3 +1,5 @@
+register_write register_threshold 0 16
+
 table_add ipv4_lpm ipv4_forward 10.30.2.170/32 => 20:1a:06:4e:99:fb 10
 
 

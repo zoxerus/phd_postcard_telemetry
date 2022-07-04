@@ -23,9 +23,6 @@ import tempfile
 import socket
 
 
-path_to_behavioral = "../../behavioral-model-main/targets/simple_switch/simple_switch"
-
-
 class P4Host(Host):
     def config(self, **params):
         r = super(Host, self).config(**params)
@@ -78,6 +75,7 @@ class P4Switch(Switch):
         logfile = "/tmp/p4s.{}.log".format(self.name)
         self.output = open(logfile, 'w')
         self.thrift_port = thrift_port
+
         self.pcap_dump = pcap_dump
         self.enable_debugger = enable_debugger
         self.log_console = log_console
