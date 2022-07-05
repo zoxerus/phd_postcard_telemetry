@@ -52,6 +52,7 @@
         ["tmp_44", 32, false],
         ["tmp_45", 32, false],
         ["cursor_0", 8, false],
+        ["threshold_0", 8, false],
         ["max_latency_0", 48, false],
         ["min_latency_0", 48, false],
         ["sum_latency_0", 48, false],
@@ -427,23 +428,35 @@
   "counter_arrays" : [],
   "register_arrays" : [
     {
-      "name" : "MyIngress.aggregator_pointer",
+      "name" : "MyIngress.register_pointer",
       "id" : 0,
       "source_info" : {
         "filename" : "switch.p4",
         "line" : 37,
         "column" : 34,
-        "source_fragment" : "aggregator_pointer"
+        "source_fragment" : "register_pointer"
+      },
+      "size" : 12,
+      "bitwidth" : 8
+    },
+    {
+      "name" : "MyIngress.register_threshold",
+      "id" : 1,
+      "source_info" : {
+        "filename" : "switch.p4",
+        "line" : 38,
+        "column" : 34,
+        "source_fragment" : "register_threshold"
       },
       "size" : 12,
       "bitwidth" : 8
     },
     {
       "name" : "MyIngress.register_latency_max",
-      "id" : 1,
+      "id" : 2,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 45,
+        "line" : 46,
         "column" : 35,
         "source_fragment" : "register_latency_max"
       },
@@ -452,10 +465,10 @@
     },
     {
       "name" : "MyIngress.register_latency_min",
-      "id" : 2,
+      "id" : 3,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 46,
+        "line" : 47,
         "column" : 35,
         "source_fragment" : "register_latency_min"
       },
@@ -464,10 +477,10 @@
     },
     {
       "name" : "MyIngress.register_latency_sum",
-      "id" : 3,
+      "id" : 4,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 47,
+        "line" : 48,
         "column" : 35,
         "source_fragment" : "register_latency_sum"
       },
@@ -476,10 +489,10 @@
     },
     {
       "name" : "MyIngress.register_enq_max",
-      "id" : 4,
+      "id" : 5,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 49,
+        "line" : 50,
         "column" : 35,
         "source_fragment" : "register_enq_max"
       },
@@ -488,10 +501,10 @@
     },
     {
       "name" : "MyIngress.register_enq_min",
-      "id" : 5,
+      "id" : 6,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 50,
+        "line" : 51,
         "column" : 35,
         "source_fragment" : "register_enq_min"
       },
@@ -500,10 +513,10 @@
     },
     {
       "name" : "MyIngress.register_enq_sum",
-      "id" : 6,
+      "id" : 7,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 51,
+        "line" : 52,
         "column" : 35,
         "source_fragment" : "register_enq_sum"
       },
@@ -512,10 +525,10 @@
     },
     {
       "name" : "MyIngress.register_deq_min",
-      "id" : 7,
+      "id" : 8,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 53,
+        "line" : 54,
         "column" : 35,
         "source_fragment" : "register_deq_min"
       },
@@ -524,10 +537,10 @@
     },
     {
       "name" : "MyIngress.register_deq_max",
-      "id" : 8,
+      "id" : 9,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 54,
+        "line" : 55,
         "column" : 35,
         "source_fragment" : "register_deq_max"
       },
@@ -536,10 +549,10 @@
     },
     {
       "name" : "MyIngress.register_deq_sum",
-      "id" : 9,
+      "id" : 10,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 55,
+        "line" : 56,
         "column" : 35,
         "source_fragment" : "register_deq_sum"
       },
@@ -553,7 +566,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 272,
+        "line" : 275,
         "column" : 6,
         "source_fragment" : "update_checksum( ..."
       },
@@ -1371,7 +1384,7 @@
       ]
     },
     {
-      "name" : "switch100",
+      "name" : "switch103",
       "id" : 11,
       "runtime_data" : [],
       "primitives" : [
@@ -1432,7 +1445,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 103,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -1474,7 +1487,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 103,
             "column" : 56,
             "source_fragment" : "latency"
           }
@@ -1497,7 +1510,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 103,
             "column" : 20,
             "source_fragment" : "register_latency_max.write(pointer, latency)"
           }
@@ -1559,7 +1572,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 101,
+            "line" : 104,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -1601,7 +1614,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 101,
+            "line" : 104,
             "column" : 56,
             "source_fragment" : "latency"
           }
@@ -1624,7 +1637,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 101,
+            "line" : 104,
             "column" : 20,
             "source_fragment" : "register_latency_min.write(pointer, latency)"
           }
@@ -1686,7 +1699,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 102,
+            "line" : 105,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -1728,7 +1741,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 102,
+            "line" : 105,
             "column" : 56,
             "source_fragment" : "latency"
           }
@@ -1751,7 +1764,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 102,
+            "line" : 105,
             "column" : 20,
             "source_fragment" : "register_latency_sum.write(pointer, latency)"
           }
@@ -1813,7 +1826,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 104,
+            "line" : 107,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -1836,7 +1849,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 104,
+            "line" : 107,
             "column" : 20,
             "source_fragment" : "register_enq_min.write(pointer, ..."
           }
@@ -1898,7 +1911,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 106,
+            "line" : 109,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -1921,7 +1934,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 106,
+            "line" : 109,
             "column" : 20,
             "source_fragment" : "register_enq_max.write(pointer, ..."
           }
@@ -1983,7 +1996,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 108,
+            "line" : 111,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -2006,7 +2019,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 108,
+            "line" : 111,
             "column" : 20,
             "source_fragment" : "register_enq_sum.write(pointer, ..."
           }
@@ -2068,7 +2081,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 111,
+            "line" : 114,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -2091,7 +2104,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 111,
+            "line" : 114,
             "column" : 20,
             "source_fragment" : "register_deq_min.write(pointer, ..."
           }
@@ -2153,7 +2166,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 113,
+            "line" : 116,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -2176,7 +2189,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 113,
+            "line" : 116,
             "column" : 20,
             "source_fragment" : "register_deq_max.write(pointer, ..."
           }
@@ -2238,7 +2251,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 115,
+            "line" : 118,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -2261,7 +2274,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 115,
+            "line" : 118,
             "column" : 20,
             "source_fragment" : "register_deq_sum.write(pointer, ..."
           }
@@ -2269,7 +2282,7 @@
       ]
     },
     {
-      "name" : "switch156",
+      "name" : "switch159",
       "id" : 12,
       "runtime_data" : [],
       "primitives" : [
@@ -2330,7 +2343,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 156,
+            "line" : 159,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -2372,7 +2385,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 156,
+            "line" : 159,
             "column" : 60,
             "source_fragment" : "latency"
           }
@@ -2395,7 +2408,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 156,
+            "line" : 159,
             "column" : 24,
             "source_fragment" : "register_latency_min.write(pointer, latency)"
           }
@@ -2403,7 +2416,7 @@
       ]
     },
     {
-      "name" : "switch131",
+      "name" : "switch134",
       "id" : 13,
       "runtime_data" : [],
       "primitives" : [
@@ -2464,7 +2477,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 131,
+            "line" : 134,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -2487,7 +2500,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 131,
+            "line" : 134,
             "column" : 20,
             "source_fragment" : "register_latency_sum.read(old_latency, pointer)"
           }
@@ -2549,7 +2562,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 132,
+            "line" : 135,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -2572,7 +2585,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 132,
+            "line" : 135,
             "column" : 20,
             "source_fragment" : "register_latency_max.read(max_latency, pointer)"
           }
@@ -2634,7 +2647,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 133,
+            "line" : 136,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -2657,7 +2670,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 133,
+            "line" : 136,
             "column" : 20,
             "source_fragment" : "register_latency_min.read(min_latency, pointer)"
           }
@@ -2719,7 +2732,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 135,
+            "line" : 138,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -2742,7 +2755,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 135,
+            "line" : 138,
             "column" : 20,
             "source_fragment" : "register_enq_sum.read(old_enq, pointer)"
           }
@@ -2804,7 +2817,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 136,
+            "line" : 139,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -2827,7 +2840,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 136,
+            "line" : 139,
             "column" : 20,
             "source_fragment" : "register_enq_max.read(max_enq, pointer)"
           }
@@ -2889,7 +2902,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 137,
+            "line" : 140,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -2912,7 +2925,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 137,
+            "line" : 140,
             "column" : 20,
             "source_fragment" : "register_enq_min.read(min_enq, pointer)"
           }
@@ -2974,7 +2987,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 139,
+            "line" : 142,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -2997,7 +3010,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 139,
+            "line" : 142,
             "column" : 20,
             "source_fragment" : "register_deq_sum.read(old_deq, pointer)"
           }
@@ -3059,7 +3072,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 140,
+            "line" : 143,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -3082,7 +3095,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 140,
+            "line" : 143,
             "column" : 20,
             "source_fragment" : "register_deq_max.read(max_deq, pointer)"
           }
@@ -3144,7 +3157,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 141,
+            "line" : 144,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -3167,7 +3180,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 141,
+            "line" : 144,
             "column" : 20,
             "source_fragment" : "register_deq_min.read(min_deq, pointer)"
           }
@@ -3229,7 +3242,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 150,
+            "line" : 153,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -3291,7 +3304,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 150,
+            "line" : 153,
             "column" : 56,
             "source_fragment" : "new_latency"
           }
@@ -3314,7 +3327,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 150,
+            "line" : 153,
             "column" : 20,
             "source_fragment" : "register_latency_sum.write(pointer, new_latency)"
           }
@@ -3376,7 +3389,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 151,
+            "line" : 154,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -3418,7 +3431,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 151,
+            "line" : 154,
             "column" : 52,
             "source_fragment" : "new_enq"
           }
@@ -3441,7 +3454,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 151,
+            "line" : 154,
             "column" : 20,
             "source_fragment" : "register_enq_sum.write(pointer, new_enq)"
           }
@@ -3503,7 +3516,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 152,
+            "line" : 155,
             "column" : 43,
             "source_fragment" : "pointer"
           }
@@ -3545,7 +3558,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 152,
+            "line" : 155,
             "column" : 52,
             "source_fragment" : "new_deq"
           }
@@ -3568,7 +3581,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 152,
+            "line" : 155,
             "column" : 20,
             "source_fragment" : "register_deq_sum.write(pointer, new_deq)"
           }
@@ -3576,7 +3589,7 @@
       ]
     },
     {
-      "name" : "switch159",
+      "name" : "switch162",
       "id" : 14,
       "runtime_data" : [],
       "primitives" : [
@@ -3637,7 +3650,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 162,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -3679,7 +3692,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 162,
             "column" : 60,
             "source_fragment" : "latency"
           }
@@ -3702,7 +3715,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 162,
             "column" : 24,
             "source_fragment" : "register_latency_max.write(pointer, latency)"
           }
@@ -3710,7 +3723,7 @@
       ]
     },
     {
-      "name" : "switch163",
+      "name" : "switch166",
       "id" : 15,
       "runtime_data" : [],
       "primitives" : [
@@ -3771,7 +3784,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 163,
+            "line" : 166,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -3794,7 +3807,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 163,
+            "line" : 166,
             "column" : 24,
             "source_fragment" : "register_enq_min.write(pointer, ..."
           }
@@ -3802,7 +3815,7 @@
       ]
     },
     {
-      "name" : "switch167",
+      "name" : "switch170",
       "id" : 16,
       "runtime_data" : [],
       "primitives" : [
@@ -3863,7 +3876,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 167,
+            "line" : 170,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -3886,7 +3899,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 167,
+            "line" : 170,
             "column" : 24,
             "source_fragment" : "register_enq_max.write(pointer, ..."
           }
@@ -3894,7 +3907,7 @@
       ]
     },
     {
-      "name" : "switch173",
+      "name" : "switch176",
       "id" : 17,
       "runtime_data" : [],
       "primitives" : [
@@ -3955,7 +3968,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 173,
+            "line" : 176,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -3978,7 +3991,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 173,
+            "line" : 176,
             "column" : 24,
             "source_fragment" : "register_deq_min.write(pointer, ..."
           }
@@ -3986,7 +3999,7 @@
       ]
     },
     {
-      "name" : "switch177",
+      "name" : "switch180",
       "id" : 18,
       "runtime_data" : [],
       "primitives" : [
@@ -4047,7 +4060,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 177,
+            "line" : 180,
             "column" : 47,
             "source_fragment" : "pointer"
           }
@@ -4070,7 +4083,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 177,
+            "line" : 180,
             "column" : 24,
             "source_fragment" : "register_deq_max.write(pointer, ..."
           }
@@ -4078,7 +4091,7 @@
       ]
     },
     {
-      "name" : "switch89",
+      "name" : "switch91",
       "id" : 19,
       "runtime_data" : [],
       "primitives" : [
@@ -4139,8 +4152,8 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 89,
-            "column" : 48,
+            "line" : 91,
+            "column" : 46,
             "source_fragment" : "pointer"
           }
         },
@@ -4153,7 +4166,7 @@
             },
             {
               "type" : "register_array",
-              "value" : "MyIngress.aggregator_pointer"
+              "value" : "MyIngress.register_pointer"
             },
             {
               "type" : "field",
@@ -4162,15 +4175,38 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 89,
+            "line" : 91,
             "column" : 16,
-            "source_fragment" : "aggregator_pointer.read(cursor, pointer)"
+            "source_fragment" : "register_pointer.read(cursor, pointer)"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "threshold_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.register_threshold"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            }
+          ],
+          "source_info" : {
+            "filename" : "switch.p4",
+            "line" : 92,
+            "column" : 16,
+            "source_fragment" : "register_threshold.read(threshold, 0)"
           }
         }
       ]
     },
     {
-      "name" : "switch192",
+      "name" : "switch195",
       "id" : 20,
       "runtime_data" : [],
       "primitives" : [
@@ -4184,7 +4220,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 192,
+            "line" : 195,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.setValid()"
           }
@@ -4203,7 +4239,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 195,
+            "line" : 198,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.ipfix_header.version_number = 10"
           }
@@ -4222,7 +4258,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 196,
+            "line" : 199,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.ipfix_header.message_length = 65"
           }
@@ -4264,7 +4300,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 197,
+            "line" : 200,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.ipfix_header.export_time = ..."
           }
@@ -4283,7 +4319,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 201,
+            "line" : 204,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.ipfix_header.sequence_number = 99"
           }
@@ -4302,7 +4338,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 202,
+            "line" : 205,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.ipfix_header.observation_domain = ..."
           }
@@ -4321,7 +4357,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 205,
+            "line" : 208,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.set.set_id = 10256"
           }
@@ -4340,7 +4376,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 206,
+            "line" : 209,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.set.set_length = 46"
           }
@@ -4359,7 +4395,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 210,
+            "line" : 213,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.collector_id = 0x01010101"
           }
@@ -4378,7 +4414,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 211,
+            "line" : 214,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.flow_id = local_metadata.flow_id"
           }
@@ -4440,7 +4476,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 213,
+            "line" : 216,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -4463,7 +4499,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 213,
+            "line" : 216,
             "column" : 20,
             "source_fragment" : "register_latency_min.read(min_latency, pointer)"
           }
@@ -4482,7 +4518,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 214,
+            "line" : 217,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.latency_min = min_latency"
           }
@@ -4544,7 +4580,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 216,
+            "line" : 219,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -4567,7 +4603,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 216,
+            "line" : 219,
             "column" : 20,
             "source_fragment" : "register_latency_max.read(max_latency, pointer)"
           }
@@ -4586,7 +4622,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 217,
+            "line" : 220,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.latency_max = max_latency"
           }
@@ -4648,7 +4684,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 219,
+            "line" : 222,
             "column" : 59,
             "source_fragment" : "pointer"
           }
@@ -4671,7 +4707,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 219,
+            "line" : 222,
             "column" : 20,
             "source_fragment" : "register_latency_sum.read(sum_latency, pointer)"
           }
@@ -4713,7 +4749,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 220,
+            "line" : 223,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.latency_avg = ..."
           }
@@ -4775,7 +4811,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 224,
+            "line" : 227,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -4798,7 +4834,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 224,
+            "line" : 227,
             "column" : 20,
             "source_fragment" : "register_enq_min.read(min_enq, pointer)"
           }
@@ -4817,7 +4853,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 225,
+            "line" : 228,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.enq_min = min_enq"
           }
@@ -4879,7 +4915,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 226,
+            "line" : 229,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -4902,7 +4938,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 226,
+            "line" : 229,
             "column" : 20,
             "source_fragment" : "register_enq_max.read(max_enq, pointer)"
           }
@@ -4921,7 +4957,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 227,
+            "line" : 230,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.enq_max = max_enq"
           }
@@ -4983,7 +5019,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 228,
+            "line" : 231,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5006,7 +5042,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 228,
+            "line" : 231,
             "column" : 20,
             "source_fragment" : "register_enq_sum.read(sum_enq, pointer)"
           }
@@ -5048,7 +5084,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 229,
+            "line" : 232,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.enq_avg = ..."
           }
@@ -5110,7 +5146,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 233,
+            "line" : 236,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5133,7 +5169,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 233,
+            "line" : 236,
             "column" : 20,
             "source_fragment" : "register_deq_min.read(min_deq, pointer)"
           }
@@ -5152,7 +5188,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 234,
+            "line" : 237,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.deq_min = min_deq"
           }
@@ -5214,7 +5250,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 235,
+            "line" : 238,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5237,7 +5273,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 235,
+            "line" : 238,
             "column" : 20,
             "source_fragment" : "register_deq_max.read(max_deq, pointer)"
           }
@@ -5256,7 +5292,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 236,
+            "line" : 239,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.deq_max = max_deq"
           }
@@ -5318,7 +5354,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 237,
+            "line" : 240,
             "column" : 51,
             "source_fragment" : "pointer"
           }
@@ -5341,7 +5377,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 237,
+            "line" : 240,
             "column" : 20,
             "source_fragment" : "register_deq_sum.read(sum_deq, pointer)"
           }
@@ -5383,7 +5419,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 238,
+            "line" : 241,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.record.deq_avg = ..."
           }
@@ -5391,7 +5427,7 @@
       ]
     },
     {
-      "name" : "switch243",
+      "name" : "switch246",
       "id" : 21,
       "runtime_data" : [],
       "primitives" : [
@@ -5409,7 +5445,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 243,
+            "line" : 246,
             "column" : 20,
             "source_fragment" : "cursor = 0"
           }
@@ -5417,7 +5453,7 @@
       ]
     },
     {
-      "name" : "switch185",
+      "name" : "switch188",
       "id" : 22,
       "runtime_data" : [],
       "primitives" : [
@@ -5458,7 +5494,7 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 185,
+            "line" : 188,
             "column" : 16,
             "source_fragment" : "cursor = cursor + 1"
           }
@@ -5466,7 +5502,7 @@
       ]
     },
     {
-      "name" : "switch247",
+      "name" : "switch250",
       "id" : 23,
       "runtime_data" : [],
       "primitives" : [
@@ -5527,8 +5563,8 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 247,
-            "column" : 41,
+            "line" : 250,
+            "column" : 39,
             "source_fragment" : "pointer"
           }
         },
@@ -5537,7 +5573,7 @@
           "parameters" : [
             {
               "type" : "register_array",
-              "value" : "MyIngress.aggregator_pointer"
+              "value" : "MyIngress.register_pointer"
             },
             {
               "type" : "field",
@@ -5550,9 +5586,9 @@
           ],
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 247,
+            "line" : 250,
             "column" : 16,
-            "source_fragment" : "aggregator_pointer.write(pointer, cursor)"
+            "source_fragment" : "register_pointer.write(pointer, cursor)"
           }
         }
       ]
@@ -5688,13 +5724,13 @@
           }
         },
         {
-          "name" : "tbl_switch89",
+          "name" : "tbl_switch91",
           "id" : 3,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 89,
+            "line" : 91,
             "column" : 16,
-            "source_fragment" : "aggregator_pointer.read(cursor, pointer)"
+            "source_fragment" : "register_pointer.read(cursor, pointer); ..."
           },
           "key" : [],
           "match_type" : "exact",
@@ -5704,10 +5740,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [19],
-          "actions" : ["switch89"],
+          "actions" : ["switch91"],
           "base_default_next" : "node_8",
           "next_tables" : {
-            "switch89" : "node_8"
+            "switch91" : "node_8"
           },
           "default_entry" : {
             "action_id" : 19,
@@ -5717,11 +5753,11 @@
           }
         },
         {
-          "name" : "tbl_switch100",
+          "name" : "tbl_switch103",
           "id" : 4,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 100,
+            "line" : 103,
             "column" : 20,
             "source_fragment" : "register_latency_max.write(pointer, latency); ..."
           },
@@ -5733,10 +5769,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [11],
-          "actions" : ["switch100"],
-          "base_default_next" : "tbl_switch185",
+          "actions" : ["switch103"],
+          "base_default_next" : "tbl_switch188",
           "next_tables" : {
-            "switch100" : "tbl_switch185"
+            "switch103" : "tbl_switch188"
           },
           "default_entry" : {
             "action_id" : 11,
@@ -5746,11 +5782,11 @@
           }
         },
         {
-          "name" : "tbl_switch131",
+          "name" : "tbl_switch134",
           "id" : 5,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 131,
+            "line" : 134,
             "column" : 20,
             "source_fragment" : "register_latency_sum.read(old_latency, pointer); ..."
           },
@@ -5762,10 +5798,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [13],
-          "actions" : ["switch131"],
+          "actions" : ["switch134"],
           "base_default_next" : "node_11",
           "next_tables" : {
-            "switch131" : "node_11"
+            "switch134" : "node_11"
           },
           "default_entry" : {
             "action_id" : 13,
@@ -5775,11 +5811,11 @@
           }
         },
         {
-          "name" : "tbl_switch156",
+          "name" : "tbl_switch159",
           "id" : 6,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 156,
+            "line" : 159,
             "column" : 24,
             "source_fragment" : "register_latency_min.write(pointer, latency)"
           },
@@ -5791,10 +5827,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [12],
-          "actions" : ["switch156"],
+          "actions" : ["switch159"],
           "base_default_next" : "node_13",
           "next_tables" : {
-            "switch156" : "node_13"
+            "switch159" : "node_13"
           },
           "default_entry" : {
             "action_id" : 12,
@@ -5804,11 +5840,11 @@
           }
         },
         {
-          "name" : "tbl_switch159",
+          "name" : "tbl_switch162",
           "id" : 7,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 159,
+            "line" : 162,
             "column" : 24,
             "source_fragment" : "register_latency_max.write(pointer, latency)"
           },
@@ -5820,10 +5856,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [14],
-          "actions" : ["switch159"],
+          "actions" : ["switch162"],
           "base_default_next" : "node_15",
           "next_tables" : {
-            "switch159" : "node_15"
+            "switch162" : "node_15"
           },
           "default_entry" : {
             "action_id" : 14,
@@ -5833,11 +5869,11 @@
           }
         },
         {
-          "name" : "tbl_switch163",
+          "name" : "tbl_switch166",
           "id" : 8,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 163,
+            "line" : 166,
             "column" : 24,
             "source_fragment" : "register_enq_min.write(pointer, ..."
           },
@@ -5849,10 +5885,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [15],
-          "actions" : ["switch163"],
+          "actions" : ["switch166"],
           "base_default_next" : "node_17",
           "next_tables" : {
-            "switch163" : "node_17"
+            "switch166" : "node_17"
           },
           "default_entry" : {
             "action_id" : 15,
@@ -5862,11 +5898,11 @@
           }
         },
         {
-          "name" : "tbl_switch167",
+          "name" : "tbl_switch170",
           "id" : 9,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 167,
+            "line" : 170,
             "column" : 24,
             "source_fragment" : "register_enq_max.write(pointer, ..."
           },
@@ -5878,10 +5914,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [16],
-          "actions" : ["switch167"],
+          "actions" : ["switch170"],
           "base_default_next" : "node_19",
           "next_tables" : {
-            "switch167" : "node_19"
+            "switch170" : "node_19"
           },
           "default_entry" : {
             "action_id" : 16,
@@ -5891,11 +5927,11 @@
           }
         },
         {
-          "name" : "tbl_switch173",
+          "name" : "tbl_switch176",
           "id" : 10,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 173,
+            "line" : 176,
             "column" : 24,
             "source_fragment" : "register_deq_min.write(pointer, ..."
           },
@@ -5907,10 +5943,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [17],
-          "actions" : ["switch173"],
+          "actions" : ["switch176"],
           "base_default_next" : "node_21",
           "next_tables" : {
-            "switch173" : "node_21"
+            "switch176" : "node_21"
           },
           "default_entry" : {
             "action_id" : 17,
@@ -5920,11 +5956,11 @@
           }
         },
         {
-          "name" : "tbl_switch177",
+          "name" : "tbl_switch180",
           "id" : 11,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 177,
+            "line" : 180,
             "column" : 24,
             "source_fragment" : "register_deq_max.write(pointer, ..."
           },
@@ -5936,10 +5972,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [18],
-          "actions" : ["switch177"],
-          "base_default_next" : "tbl_switch185",
+          "actions" : ["switch180"],
+          "base_default_next" : "tbl_switch188",
           "next_tables" : {
-            "switch177" : "tbl_switch185"
+            "switch180" : "tbl_switch188"
           },
           "default_entry" : {
             "action_id" : 18,
@@ -5949,11 +5985,11 @@
           }
         },
         {
-          "name" : "tbl_switch185",
+          "name" : "tbl_switch188",
           "id" : 12,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 185,
+            "line" : 188,
             "column" : 23,
             "source_fragment" : "="
           },
@@ -5965,10 +6001,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [22],
-          "actions" : ["switch185"],
+          "actions" : ["switch188"],
           "base_default_next" : "node_24",
           "next_tables" : {
-            "switch185" : "node_24"
+            "switch188" : "node_24"
           },
           "default_entry" : {
             "action_id" : 22,
@@ -5978,11 +6014,11 @@
           }
         },
         {
-          "name" : "tbl_switch192",
+          "name" : "tbl_switch195",
           "id" : 13,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 192,
+            "line" : 195,
             "column" : 20,
             "source_fragment" : "hdr.ipfix_sum.setValid(); ..."
           },
@@ -5994,10 +6030,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [20],
-          "actions" : ["switch192"],
+          "actions" : ["switch195"],
           "base_default_next" : "MyIngress.ExportData.table_postcard",
           "next_tables" : {
-            "switch192" : "MyIngress.ExportData.table_postcard"
+            "switch195" : "MyIngress.ExportData.table_postcard"
           },
           "default_entry" : {
             "action_id" : 20,
@@ -6024,10 +6060,10 @@
           "direct_meters" : null,
           "action_ids" : [8, 3],
           "actions" : ["MyIngress.ExportData.forward_postcard", "NoAction"],
-          "base_default_next" : "tbl_switch243",
+          "base_default_next" : "tbl_switch246",
           "next_tables" : {
-            "MyIngress.ExportData.forward_postcard" : "tbl_switch243",
-            "NoAction" : "tbl_switch243"
+            "MyIngress.ExportData.forward_postcard" : "tbl_switch246",
+            "NoAction" : "tbl_switch246"
           },
           "default_entry" : {
             "action_id" : 3,
@@ -6037,11 +6073,11 @@
           }
         },
         {
-          "name" : "tbl_switch243",
+          "name" : "tbl_switch246",
           "id" : 15,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 243,
+            "line" : 246,
             "column" : 27,
             "source_fragment" : "="
           },
@@ -6053,10 +6089,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [21],
-          "actions" : ["switch243"],
-          "base_default_next" : "tbl_switch247",
+          "actions" : ["switch246"],
+          "base_default_next" : "tbl_switch250",
           "next_tables" : {
-            "switch243" : "tbl_switch247"
+            "switch246" : "tbl_switch250"
           },
           "default_entry" : {
             "action_id" : 21,
@@ -6066,13 +6102,13 @@
           }
         },
         {
-          "name" : "tbl_switch247",
+          "name" : "tbl_switch250",
           "id" : 16,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 247,
+            "line" : 250,
             "column" : 16,
-            "source_fragment" : "aggregator_pointer.write(pointer, cursor)"
+            "source_fragment" : "register_pointer.write(pointer, cursor)"
           },
           "key" : [],
           "match_type" : "exact",
@@ -6082,10 +6118,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [23],
-          "actions" : ["switch247"],
+          "actions" : ["switch250"],
           "base_default_next" : null,
           "next_tables" : {
-            "switch247" : null
+            "switch250" : null
           },
           "default_entry" : {
             "action_id" : 23,
@@ -6140,7 +6176,7 @@
           "id" : 0,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 71,
+            "line" : 73,
             "column" : 13,
             "source_fragment" : "hdr.ipv4.isValid()"
           },
@@ -6163,7 +6199,7 @@
           "id" : 1,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 78,
+            "line" : 80,
             "column" : 16,
             "source_fragment" : "local_metadata.is_postcard == 1"
           },
@@ -6181,7 +6217,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch89",
+          "true_next" : "tbl_switch91",
           "false_next" : "MyIngress.Forwarding.ipv4_lpm"
         },
         {
@@ -6189,7 +6225,7 @@
           "id" : 2,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 99,
+            "line" : 102,
             "column" : 20,
             "source_fragment" : "cursor == 0"
           },
@@ -6207,15 +6243,15 @@
               }
             }
           },
-          "true_next" : "tbl_switch100",
-          "false_next" : "tbl_switch131"
+          "true_next" : "tbl_switch103",
+          "false_next" : "tbl_switch134"
         },
         {
           "name" : "node_11",
           "id" : 3,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 155,
+            "line" : 158,
             "column" : 24,
             "source_fragment" : "latency < min_latency"
           },
@@ -6253,7 +6289,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch156",
+          "true_next" : "tbl_switch159",
           "false_next" : "node_13"
         },
         {
@@ -6261,7 +6297,7 @@
           "id" : 4,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 158,
+            "line" : 161,
             "column" : 24,
             "source_fragment" : "latency > max_latency"
           },
@@ -6299,7 +6335,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch159",
+          "true_next" : "tbl_switch162",
           "false_next" : "node_15"
         },
         {
@@ -6307,7 +6343,7 @@
           "id" : 5,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 162,
+            "line" : 165,
             "column" : 24,
             "source_fragment" : "hdr.ipfix_postcard.record.enq_depth < min_enq"
           },
@@ -6325,7 +6361,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch163",
+          "true_next" : "tbl_switch166",
           "false_next" : "node_17"
         },
         {
@@ -6333,7 +6369,7 @@
           "id" : 6,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 166,
+            "line" : 169,
             "column" : 24,
             "source_fragment" : "hdr.ipfix_postcard.record.enq_depth > max_enq"
           },
@@ -6351,7 +6387,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch167",
+          "true_next" : "tbl_switch170",
           "false_next" : "node_19"
         },
         {
@@ -6359,7 +6395,7 @@
           "id" : 7,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 172,
+            "line" : 175,
             "column" : 24,
             "source_fragment" : "hdr.ipfix_postcard.record.deq_depth < min_deq"
           },
@@ -6377,7 +6413,7 @@
               }
             }
           },
-          "true_next" : "tbl_switch173",
+          "true_next" : "tbl_switch176",
           "false_next" : "node_21"
         },
         {
@@ -6385,7 +6421,7 @@
           "id" : 8,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 176,
+            "line" : 179,
             "column" : 24,
             "source_fragment" : "hdr.ipfix_postcard.record.deq_depth > max_deq"
           },
@@ -6403,17 +6439,17 @@
               }
             }
           },
-          "true_next" : "tbl_switch177",
-          "false_next" : "tbl_switch185"
+          "true_next" : "tbl_switch180",
+          "false_next" : "tbl_switch188"
         },
         {
           "name" : "node_24",
           "id" : 9,
           "source_info" : {
             "filename" : "switch.p4",
-            "line" : 189,
+            "line" : 192,
             "column" : 20,
-            "source_fragment" : "cursor == 16"
+            "source_fragment" : "cursor == threshold"
           },
           "expression" : {
             "type" : "expression",
@@ -6424,13 +6460,13 @@
                 "value" : ["scalars", "cursor_0"]
               },
               "right" : {
-                "type" : "hexstr",
-                "value" : "0x10"
+                "type" : "field",
+                "value" : ["scalars", "threshold_0"]
               }
             }
           },
-          "true_next" : "tbl_switch192",
-          "false_next" : "tbl_switch247"
+          "true_next" : "tbl_switch195",
+          "false_next" : "tbl_switch250"
         }
       ]
     },
@@ -6439,7 +6475,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 261,
+        "line" : 264,
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
@@ -6455,7 +6491,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "switch.p4",
-        "line" : 272,
+        "line" : 275,
         "column" : 6,
         "source_fragment" : "update_checksum( ..."
       },

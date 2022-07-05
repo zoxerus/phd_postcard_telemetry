@@ -1324,9 +1324,10 @@ control MyIngress (
     // and the column represents the flow number, and the depth represent the
     // variable.
     //
-    // aggregator_pointer stores the location of the last compartment that we
+    // register_pointer stores the location of the last compartment that we
     // have written to in this switch and for this flow.
-    register <bit<8>> (totalSize) aggregator_pointer;
+    register <bit<8>> (totalSize) register_pointer;
+    register <bit<8>> (totalSize) register_threshold;
 
     // register_*_max is a 2D array (switch,flow) where each cell of this
     // 2D array is updated with the max value if the last value received for
@@ -1348,6 +1349,7 @@ control MyIngress (
 
     // variables with descriptive names
     bit <8> cursor = 0;
+    bit <8> threshold;
     bit <48> max_latency;
     bit <48> min_latency;
     bit <48> sum_latency;
@@ -1378,7 +1380,8 @@ control MyIngress (
                 bit<32> pointer = (sw_ord * number_of_flows) + fl_ord;
 
                 // read the correct cursor value for the current flow and switch
-                aggregator_pointer.read(cursor, pointer);
+                register_pointer.read(cursor, pointer);
+                register_threshold.read(threshold, 0);
 
                 // calculate the latency of the current postcard from
                 // the values included in the headers
@@ -1478,7 +1481,7 @@ control MyIngress (
 
                 // if threshold is reached then send the aggregated or
                 // summerized packet from the total of postcards.
-                if (cursor == 16){
+                if (cursor == threshold){
                     // activate teh ipfix_sum header for it to be included in
                     // the output packet by the parser.
                     hdr.ipfix_sum.setValid();
@@ -1535,8 +1538,8 @@ control MyIngress (
                     cursor = 0;
                 }
                 // sotre the value of cursor in the correct sell of the 2D array
-                // for aggregator_pointer.
-                aggregator_pointer.write(pointer, cursor);
+                // for register_pointer.
+                register_pointer.write(pointer, cursor);
 
 
 
