@@ -21,21 +21,30 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 clear = lambda: os.system('clear')
 
-the_token = "IZ_S1koYRGdIChw_HQtWsAgvPnmxuFAewwxl4E9f6ncQqgS1caJ4izFxj-        \
-                co0CWBU9N3SpIT_IE8i33mobws9A=="
+the_token = "XGXw0gU2vhezI3nOMJk9Jr9NtYZhlxgArlxzzUT6hCpfMHDaWvDlS2NQLDD"      \
+                "AwkOUTVWWzlZ2e5xVhINpXscMTw=="
+
 org = "santanna"
-bucket = "postcard_sum"
+bucket = "ipfix_summary"
 db_url="http://localhost:8086"
 
 lock = Lock()
+
 num_packets = 0
 telemetryPacketLengthInBytes = 41
 l = telemetryPacketLengthInBytes
+
 data_store = {}
 switch_params = {}
+
+
 class SW_Params():
     switch_id: str = None
     num_packets = 0
+
+    latency_sum = 0
+    deq_sum = 0
+    enq_sum = 0
 
     latency_average = 0
     latency_max = 0
@@ -53,11 +62,12 @@ class SW_Params():
         self.switch_id = id
 
     def update_values(self, new_latency, new_enq, new_deq):
-        latency_sum = self.latency_average * self.num_packets
-        deq_sum = self.deq_average * self.num_packets
-        enq_sum = self.enq_average * self.num_packets
+        self.latency_sum = self.latency_sum + new_latency
+        self.deq_sum = self.deq_sum + new_deq
+        self.enq_sum = self.enq_sum + new_enq
 
         self.num_packets += 1
+
         self.latency_average = (latency_sum + new_latency)//self.num_packets
         self.deq_average = (deq_sum + new_deq)//self.num_packets
         self.enq_average = (enq_sum + new_enq)//self.num_packets
@@ -77,39 +87,37 @@ class SW_Params():
         if (new_deq > self.deq_max):
             self.deq_max = new_deq
 
+        #
+        # print("\n%-25s{}\n%-25s{} μs\n%-25s{} μs\n%-25s{} μs\n%-25s{}          \
+        #         pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{}        \
+        #         pkts\n%-25s{} pkts\n".format(self.switch_id,
+        #                                      self.latency_average,
+        #                                      self.latency_min, self.latency_max,
+        #                                      self.enq_average, self.enq_min,
+        #                                      self.enq_max, self.deq_average,
+        #                                      self.deq_min, self.deq_max) %     \
+        #                                      ('SW_ID:',
+        #                                         'latency_average:',
+        #                                         'latency_min:', 'latency_max:',
+        #                                         'enq_average:', 'enq_min:',
+        #                                         'enq_max:', 'deq_average:',
+        #                                         'deq_min:', 'deq_max:' ) )
 
-        print("\n%-25s{}\n%-25s{} μs\n%-25s{} μs\n%-25s{} μs\n%-25s{}          \
-                pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{} pkts\n%-25s{}        \
-                pkts\n%-25s{} pkts\n".format(self.switch_id,
-                                             self.latency_average,
-                                             self.latency_min, self.latency_max,
-                                             self.enq_average, self.enq_min,
-                                             self.enq_max, self.deq_average,
-                                             self.deq_min, self.deq_max) %     \
-                                             ('SW_ID:',
-                                                'latency_average:',
-                                                'latency_min:', 'latency_max:',
-                                                'enq_average:', 'enq_min:',
-                                                'enq_max:', 'deq_average:',
-                                                'deq_min:', 'deq_max:' ) )
-
-def handle_pkt_on_thread(pkt,write_api):
+def process_on_thread(pkt,write_api):
     t = Thread(target=handle_pkt, args=(pkt,write_api))
     t.start()
 
 
-def handle_pkt(pkt,write_api):
+def process(filename, write_api):
     global num_packets
     global switch_params
-    if UDP in pkt and pkt[UDP].dport == 54321:
-        with lock:
-            num_packets += 1
-            print('\n\n\n\033[1;32m---- Telemetry Packet: {} ----\033[0m\n'.   \
-                            format(num_packets) )
-        utcnow = datetime.utcnow()
+    start_time = time.time()
+    for (pkt_data, pkt_metadata,) in RawPcapReader(file_name):
+        pkt = Ether(pkt_data)
+        num_packets = num_packets + 1
         data = pkt[Raw].load
-        arrival_delay = int.from_bytes(data[9:15], 'big')
         points = []
+
         for i in range(1):
             n = l*i
             ipfix_version =  int.from_bytes(data[0:2], 'big')
@@ -139,30 +147,34 @@ def handle_pkt(pkt,write_api):
             deq_max = int.from_bytes(data[59+n:62+n], 'big')
             deq_avg = int.from_bytes(data[62+n:65+n], 'big')
 
-            with lock:
-                print('\n---- Telemetry Packet: {} ----'.format(num_packets),
-                    '%-25s{}'.format(ipfix_version) % ('ipfix_version:'),
-                    '%-25s{}'.format(ipfix_length) % ('ipfix_length:'),
-                    '%-25s{}'.format(ipfix_exportTime) % ('ipfix_exportTime:'),
-                    '%-25s{}'.format(ipfix_sequenceNumber) %
-                        ('ipfix_sequenceNumber:'),
-                    '%-25s{}'.format(ipfix_observationDomain) %
-                        ('ipfix_observationDomain:'),
-                    '%-25s{}'.format(ipfix_setID) % ('ipfix_setID:'),
-                    '%-25s{}'.format(ipfix_setLength) % ('ipfix_setLength:'),
-                    '%-25s{}'.format(collector_id) % ('collector_id:'),
-                    '%-25s{}'.format(flow_id) % ('flow_id:'),
-                    '%-25s{}'.format(ttl) % ('ttl:'),
-                    '%-25s{} μs'.format(latency_min) % ('latency_min:'),
-                    '%-25s{} μs'.format(latency_max) % ('latency_max:'),
-                    '%-25s{} μs'.format(latency_average) % ('latency_average:'),
-                    '%-25s{} packets'.format(enq_min) % ('enq_min:'),
-                    '%-25s{} packets'.format(enq_max) % ('enq_max:'),
-                    '%-25s{} packets'.format(enq_avg) % ('enq_avg:'),
-                    '%-25s{} packets'.format(deq_min) % ('deq_min:'),
-                    '%-25s{} packets'.format(deq_max) % ('deq_max:'),
-                    '%-25s{} packets'.format(deq_avg) % ('deq_avg:'),
-                    '\n', '---- end ----\n', sep='\n')
+
+
+
+            #
+            # with lock:
+            #     print('\n---- Telemetry Packet: {} ----'.format(num_packets),
+            #         '%-25s{}'.format(ipfix_version) % ('ipfix_version:'),
+            #         '%-25s{}'.format(ipfix_length) % ('ipfix_length:'),
+            #         '%-25s{}'.format(ipfix_exportTime) % ('ipfix_exportTime:'),
+            #         '%-25s{}'.format(ipfix_sequenceNumber) %
+            #             ('ipfix_sequenceNumber:'),
+            #         '%-25s{}'.format(ipfix_observationDomain) %
+            #             ('ipfix_observationDomain:'),
+            #         '%-25s{}'.format(ipfix_setID) % ('ipfix_setID:'),
+            #         '%-25s{}'.format(ipfix_setLength) % ('ipfix_setLength:'),
+            #         '%-25s{}'.format(collector_id) % ('collector_id:'),
+            #         '%-25s{}'.format(flow_id) % ('flow_id:'),
+            #         '%-25s{}'.format(ttl) % ('ttl:'),
+            #         '%-25s{} μs'.format(latency_min) % ('latency_min:'),
+            #         '%-25s{} μs'.format(latency_max) % ('latency_max:'),
+            #         '%-25s{} μs'.format(latency_average) % ('latency_average:'),
+            #         '%-25s{} packets'.format(enq_min) % ('enq_min:'),
+            #         '%-25s{} packets'.format(enq_max) % ('enq_max:'),
+            #         '%-25s{} packets'.format(enq_avg) % ('enq_avg:'),
+            #         '%-25s{} packets'.format(deq_min) % ('deq_min:'),
+            #         '%-25s{} packets'.format(deq_max) % ('deq_max:'),
+            #         '%-25s{} packets'.format(deq_avg) % ('deq_avg:'),
+            #         '\n', '---- end ----\n', sep='\n')
 
     sys.stdout.flush()
 
@@ -193,7 +205,7 @@ def correlate_on_thread():
 
 def main(write_api):
     ifaces = [i for i in os.listdir('/sys/class/net/')
-                    if 'enxd45d64626aa4' in i]
+                    if 'eth100' in i]
     iface = ifaces[0]
     print(("sniffing on %s" % iface))
     sys.stdout.flush()

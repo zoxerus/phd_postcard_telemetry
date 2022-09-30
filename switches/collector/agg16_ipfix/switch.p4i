@@ -938,7 +938,7 @@ header udp_t {
 
 
 // the main header of an IPFIX message
-struct ipfix_header_t{
+header ipfix_head_t{
     bit<16> version_number;
     bit<16> message_length;
     bit<32> export_time;
@@ -947,14 +947,14 @@ struct ipfix_header_t{
 }
 
 // the header of a set contained in the IPFIX message
-struct set_header_t {
+header ipfix_set_t {
     bit<16> set_id;
     bit<16> set_length;
 }
 
 // the data record of the incoming postcard, this data is extracted and then
 // summerized in a new IPFIX message using the data_sum_t struct.
-header record_postcard_t {
+header ipfix_record_t {
     bit<32> flow_id;
     bit<8> ttl;
     bit<48> ingress_tstamp;
@@ -966,18 +966,14 @@ header record_postcard_t {
 }
 
 
-header ipfix_postcard_t {
-    ipfix_header_t ipfix_header;
-    set_header_t set;
+
+
+
+
+
+header ipfix_agg_records_t{
+    bit<312> one_field;
 }
-
-header ipfix_agg_t {
-    ipfix_header_t ipfix_header;
-    set_header_t set;
-}
-
-
-
 
 // the headers that are used by the switch.
 struct headers_t {
@@ -985,10 +981,13 @@ struct headers_t {
     ipv4_t xd_ipv4;
     udp_t xd_udp;
 
-    ipfix_postcard_t ipfix_postcard;
-    record_postcard_t record;
-    ipfix_agg_t ipfix_agg;
-    record_postcard_t[16] record_agg;
+    // headers of the incoming postcard
+    ipfix_head_t ipfix_postcard_head;
+    ipfix_set_t ipfix_postcard_set;
+    ipfix_record_t ipfix_postcard_record;
+
+    // array of records for the aggregated postcard
+    ipfix_agg_records_t[16] ipfix_agg_records;
 
     ethernet_t ethernet;
     ipv4_t ipv4;
@@ -1023,7 +1022,7 @@ parser PacketParser(
         state parse_ipv4{
             packet.extract(hdr.ipv4);
             transition select( hdr.ipv4.dst_addr, hdr.ipv4.protocol){
-                {0x0a1e02aa, 8w17}: parse_postcard_udp;
+                {0xc0a86464, 8w17}: parse_postcard_udp;
                 default: accept;
                 // IP_PROTO_TCP: parse_tcp;
             }
@@ -1043,7 +1042,10 @@ parser PacketParser(
         }
 
         state parse_postcard_header {
-            packet.extract(hdr.ipfix_postcard);
+            packet.extract(hdr.ipfix_postcard_head);
+            packet.extract(hdr.ipfix_postcard_set);
+            packet.extract(hdr.ipfix_postcard_record);
+            local_metadata.is_postcard = 1;
             transition accept;
         }
 }
@@ -1053,7 +1055,9 @@ control PacketDeparser(packet_out packet, in headers_t hdr ){
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv4);
         packet.emit(hdr.udp);
-        packet.emit(hdr.ipfix_agg);
+        packet.emit(hdr.ipfix_postcard_head);
+        packet.emit(hdr.ipfix_postcard_set);
+        packet.emit(hdr.ipfix_agg_records);
 
     }
 }
@@ -1080,7 +1084,7 @@ control Forwarding(inout headers_t hdr,
 
     table ipv4_lpm {
         key = {
-            hdr.ipv4.dstAddr : lpm;
+            hdr.ipv4.dst_addr : lpm;
         }
         actions = {
             ipv4_forward;
@@ -1136,13 +1140,13 @@ control ExportData(inout headers_t hdr,
 
 
         hdr.ipv4.totalLen = (bit<16>)(20 +
-                8 + 548);
+                8 + 644);
 
         hdr.ipv4.identification = 0;
         hdr.ipv4.flags = 0;
         hdr.ipv4.fragOffset = 0;
-        hdr.ipv4.srcAddr = 0x0a00000b;
-        hdr.ipv4.dstAddr = srv_ip; // collector address
+        hdr.ipv4.src_addr = 0x0a00000b;
+        hdr.ipv4.dst_addr = srv_ip; // collector address
         hdr.ipv4.ttl = 64; // new time to live
         hdr.ipv4.protocol = 8w17;
 
@@ -1150,7 +1154,7 @@ control ExportData(inout headers_t hdr,
         hdr.udp.setValid();
         hdr.udp.src_port = 22222;
         hdr.udp.dst_port = srv_port;
-        hdr.udp.udp_length = (bit<16>)(8 + 548);
+        hdr.udp.udp_length = (bit<16>)(8 + 644);
 
 
         // remove any extra payload in the packet
@@ -1185,21 +1189,22 @@ control ExportData(inout headers_t hdr,
 control SwitchID(inout headers_t hdr,
                        inout local_metadata_t local_metadata,
                        inout standard_metadata_t standard_metadata){
-    action set_sw_register(bit<32>sw_reg){
+    action select_switch_register(bit<32>sw_reg){
         local_metadata.switch_register_number = sw_reg;
+        log_msg("sw_reg: {}",{sw_reg});
     }
 
-    table sw_register {
+    table table_detect_switch {
         key = {
-            hdr.ipfix_postcard.ipfix_header.observation_domain : exact;
+            hdr.ipfix_postcard_head.observation_domain : exact;
         }
         actions = {
             NoAction;
-            set_sw_register;
+            select_switch_register;
         }
     }
     apply{
-        sw_register.apply();
+        table_detect_switch.apply();
     }
 
 }
@@ -1236,14 +1241,18 @@ control MyIngress (
         // create a register array to save the telemetry data
         // use the length of the telemetry enteries to set the register size inside <>
         // and array length in between ()
-        register <bit<548>> (16 * number_of_switches) packet_aggregator;
+        register <bit<312>> (16 * number_of_switches) packet_aggregator;
 
         // a single register to hold the pointer location
         // the pointer points to the last register in the register array that was written to
         register <bit<32>> (number_of_switches) aggregator_pointer;
 
+        register <bit<32>> (1) register_seq_num;
+
+
         // a variable to store the value of the pointer
-        bit <32> cursor;
+        bit <32> cursor = 0;
+        bit <32> seq_num = 0;
 
         apply {
             if ( hdr.ipv4.isValid() ){
@@ -1261,18 +1270,24 @@ control MyIngress (
                     // concatinate header fields and store the resulting value
                     // at the register indicated by cursor
 
-                    bit<548> data =
-                            hdr.ipfix_postcard.record.flow_id ++
-                            hdr.ipfix_postcard.record.ttl ++
-                            hdr.ipfix_postcard.record.ingress_tstamp ++
-                            hdr.ipfix_postcard.record.egress_tstamp ++
-                            hdr.ipfix_postcard.record.deq_depth ++
-                            hdr.ipfix_postcard.record.enq_depth ++
-                            hdr.ipfix_postcard.record.ingress_interface ++
-                            hdr.ipfix_postcard.record.egress_interface;
+                    bit<312> data =
+                            hdr.ipfix_postcard_record.flow_id ++
+                            hdr.ipfix_postcard_record.ttl ++
+                            hdr.ipfix_postcard_record.ingress_tstamp ++
+                            hdr.ipfix_postcard_record.egress_tstamp ++
+                            hdr.ipfix_postcard_record.deq_depth ++
+                            hdr.ipfix_postcard_record.enq_depth ++
+                            hdr.ipfix_postcard_record.ingress_interface ++
+                            hdr.ipfix_postcard_record.egress_interface ++
+                            hdr.ipfix_postcard_head.observation_domain ++
+                            hdr.ipfix_postcard_head.export_time ++
+                            hdr.ipfix_postcard_head.sequence_number;
 
                     // store the data in the aggregator register
-                    packet_aggregator.write((bit<32>)cursor, data);
+                    bit <32> pointer =
+                        16 *
+                            local_metadata.switch_register_number + cursor;
+                    packet_aggregator.write(pointer, data);
 
                     // increase the index by one to point to the next register
                     // in the array and check if the register is fulll
@@ -1285,62 +1300,73 @@ control MyIngress (
                     if (cursor >= 16 ){
                         bit<32> shift = 16 *
                             local_metadata.switch_register_number;
-                        hdr.ipfix_agg.setValid();
+                        register_seq_num.read(seq_num,0);
+                        seq_num = seq_num + 1;
+
+                        hdr.ipfix_postcard_head.message_length = 644;
+                        hdr.ipfix_postcard_head.export_time =
+                            (bit<32>)standard_metadata.egress_global_timestamp;
+                        hdr.ipfix_postcard_head.sequence_number = seq_num;
+                        hdr.ipfix_postcard_head.observation_domain = 0x0a00000b;
+                        hdr.ipfix_postcard_set.set_id = 10256;
+                        hdr.ipfix_postcard_set.set_length = 628;
+
+                        // hdr.ipfix_agg.setValid();
                         // for the lack of recurrent loops in P4 we have
                         // to do this manually :(
                         // set the relevant header fields to valid
-                        // hdr.ipfix_agg.record[0 + shift].setValid();
-                        // hdr.ipfix_agg.record[1 + shift].setValid();
-                        // hdr.ipfix_agg.record[2 + shift].setValid();
-                        // hdr.ipfix_agg.record[3 + shift].setValid();
-                        // hdr.ipfix_agg.record[4 + shift].setValid();
-                        // hdr.ipfix_agg.record[5 + shift].setValid();
-                        // hdr.ipfix_agg.record[6 + shift].setValid();
-                        // hdr.ipfix_agg.record[7 + shift].setValid();
-                        // hdr.ipfix_agg.record[8 + shift].setValid();
-                        // hdr.ipfix_agg.record[9 + shift].setValid();
-                        // hdr.ipfix_agg.record[10].setValid();
-                        // hdr.ipfix_agg.record[11].setValid();
-                        // hdr.ipfix_agg.record[12].setValid();
-                        // hdr.ipfix_agg.record[13].setValid();
-                        // hdr.ipfix_agg.record[14].setValid();
-                        // hdr.ipfix_agg.record[15].setValid();
+                        hdr.ipfix_agg_records[0].setValid();
+                        hdr.ipfix_agg_records[1].setValid();
+                        hdr.ipfix_agg_records[2].setValid();
+                        hdr.ipfix_agg_records[3].setValid();
+                        hdr.ipfix_agg_records[4].setValid();
+                        hdr.ipfix_agg_records[5].setValid();
+                        hdr.ipfix_agg_records[6].setValid();
+                        hdr.ipfix_agg_records[7].setValid();
+                        hdr.ipfix_agg_records[8].setValid();
+                        hdr.ipfix_agg_records[9].setValid();
+                        hdr.ipfix_agg_records[10].setValid();
+                        hdr.ipfix_agg_records[11].setValid();
+                        hdr.ipfix_agg_records[12].setValid();
+                        hdr.ipfix_agg_records[13].setValid();
+                        hdr.ipfix_agg_records[14].setValid();
+                        hdr.ipfix_agg_records[15].setValid();
 
 
                         // read data from registers and store them in the relevant
                         // header fields
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[0].one_field, 0 + shift);
+                            hdr.ipfix_agg_records[0].one_field, 0 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[1].one_field, 1 + shift);
+                            hdr.ipfix_agg_records[1].one_field, 1 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[2].one_field, 2 + shift);
+                            hdr.ipfix_agg_records[2].one_field, 2 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[3].one_field, 3 + shift);
+                            hdr.ipfix_agg_records[3].one_field, 3 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[4].one_field, 4 + shift);
+                            hdr.ipfix_agg_records[4].one_field, 4 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[5].one_field, 5 + shift);
+                            hdr.ipfix_agg_records[5].one_field, 5 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[6].one_field, 6 + shift);
+                            hdr.ipfix_agg_records[6].one_field, 6 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[7].one_field, 7 + shift);
+                            hdr.ipfix_agg_records[7].one_field, 7 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[8].one_field, 8 + shift);
+                            hdr.ipfix_agg_records[8].one_field, 8 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[9].one_field, 9 + shift);
+                            hdr.ipfix_agg_records[9].one_field, 9 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[10].one_field, 10 + shift);
+                            hdr.ipfix_agg_records[10].one_field, 10 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[11].one_field, 11 + shift);
+                            hdr.ipfix_agg_records[11].one_field, 11 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[12].one_field, 12 + shift);
+                            hdr.ipfix_agg_records[12].one_field, 12 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[13].one_field, 13 + shift);
+                            hdr.ipfix_agg_records[13].one_field, 13 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[14].one_field, 14 + shift);
+                            hdr.ipfix_agg_records[14].one_field, 14 + shift);
                         packet_aggregator.read(
-                            hdr.ipfix_agg.record[15].one_field, 15 + shift);
+                            hdr.ipfix_agg_records[15].one_field, 15 + shift);
 
 
 
@@ -1353,6 +1379,7 @@ control MyIngress (
                     // store the value of cursor in the relevant register
                     aggregator_pointer.write(local_metadata.
                         switch_register_number,cursor);
+                    register_seq_num.write(0,seq_num);
                 } else {
                     // if packet is not a postcard, just forward it normally
                     Forwarding.apply(hdr, local_metadata, standard_metadata);
@@ -1381,8 +1408,8 @@ control MyComputeChecksum(inout headers_t hdr, inout local_metadata_t meta) {
               hdr.ipv4.fragOffset,
               hdr.ipv4.ttl,
               hdr.ipv4.protocol,
-              hdr.ipv4.srcAddr,
-              hdr.ipv4.dstAddr },
+              hdr.ipv4.src_addr,
+              hdr.ipv4.dst_addr },
             hdr.ipv4.hdrChecksum,
             HashAlgorithm.csum16);
     }

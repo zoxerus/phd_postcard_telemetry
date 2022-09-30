@@ -23,7 +23,7 @@ parser PacketParser(
         state parse_ipv4{
             packet.extract(hdr.ipv4);
             transition select( hdr.ipv4.dst_addr, hdr.ipv4.protocol){
-                {0x0a1e02aa, IP_PROTO_UDP}: parse_postcard_udp;
+                {0xc0a86464, IP_PROTO_UDP}: parse_postcard_udp;
                 default: accept;
                 // IP_PROTO_TCP: parse_tcp;
             }
@@ -43,7 +43,10 @@ parser PacketParser(
         }
 
         state parse_postcard_header {
-            packet.extract(hdr.ipfix_postcard);
+            packet.extract(hdr.ipfix_postcard_head);
+            packet.extract(hdr.ipfix_postcard_set);
+            packet.extract(hdr.ipfix_postcard_record);
+            local_metadata.is_postcard = 1;
             transition accept;
         }
 }
@@ -53,7 +56,9 @@ control PacketDeparser(packet_out packet, in headers_t hdr ){
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv4);
         packet.emit(hdr.udp);
-        packet.emit(hdr.ipfix_agg);
+        packet.emit(hdr.ipfix_postcard_head);
+        packet.emit(hdr.ipfix_postcard_set);
+        packet.emit(hdr.ipfix_agg_records);
 
     }
 }

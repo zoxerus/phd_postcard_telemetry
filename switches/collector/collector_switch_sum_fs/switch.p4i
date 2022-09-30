@@ -1034,7 +1034,7 @@ parser PacketParser(
         state parse_ipv4{
             packet.extract(hdr.ipv4);
             transition select( hdr.ipv4.dst_addr, hdr.ipv4.protocol){
-                {0x0a1e02ad, 8w17}: parse_postcard_udp;
+                {0xc0a86464, 8w17}: parse_postcard_udp;
                 default: accept;
                 // IP_PROTO_TCP: parse_tcp;
             }
@@ -1197,9 +1197,9 @@ control ExportData(inout headers_t hdr,
             egress_interface = physical port of the switch to forward the frame on
     */
     action forward_postcard(bit<32> srv_ip,
-         bit<16> srv_port ,
+         bit<16> srv_port,
          bit<48> srv_mac,
-          bit<9> egress_interface ){
+         bit<9> egress_interface ){
 
         standard_metadata.egress_spec = egress_interface;
 

@@ -1,11 +1,11 @@
 register_write register_threshold 0 16
 
-table_add ipv4_lpm ipv4_forward 10.30.2.170/32 => 20:1a:06:4e:99:fb 10
+table_add ipv4_lpm ipv4_forward 192.168.100.100/32 => C8:D7:4A:4E:47:50 10
 
 
-table_add table_detect_postcard set_postcard_bit 10.30.2.170 54321 =>
+table_add table_detect_postcard set_postcard_bit 192.168.100.100 54321 =>
 
-table_add table_postcard forward_postcard => 10.30.2.170 54321 20:1a:06:4e:99:fb 10
+table_add table_postcard forward_postcard => 192.168.100.100 54321 C8:D7:4A:4E:47:50 55555 10
 
 table_add table_detect_flow select_flow_register 0 => 0
 table_add table_detect_flow select_flow_register 1 => 1

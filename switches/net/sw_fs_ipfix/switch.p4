@@ -33,10 +33,11 @@ control MyEgress(inout headers_t hdr,
         register_ipfix_sequence.read(seq_num,0);
         // check if the packet is a clone and apply the clone processing.
         if (IS_E2E_CLONE( standard_metadata ) ) {
-            ExportData.apply(hdr, local_metadata, standard_metadata );
             seq_num = seq_num + 1;
             register_ipfix_sequence.write(0,seq_num);
             local_metadata.seq_num = seq_num;
+            ExportData.apply(hdr, local_metadata, standard_metadata );
+
         } else {
             // if the queue depthe is bigger than a threshold then set the TOS field
             // in the IP header to inform the receiver
@@ -51,6 +52,7 @@ control MyEgress(inout headers_t hdr,
                 // thecloned pakcet adds an extra header that contains the telemetry date
                 local_metadata.ttl = hdr.ipv4.ttl;
                 local_metadata.ingress_tstamp = standard_metadata.ingress_global_timestamp;
+                log_msg("std::in_tstmp: {} us", {standard_metadata.ingress_global_timestamp});
                 local_metadata.egress_tstamp =  standard_metadata.egress_global_timestamp ;
                 local_metadata.enq_qdepth = standard_metadata.enq_qdepth;
                 local_metadata.deq_qdepth = standard_metadata.deq_qdepth;

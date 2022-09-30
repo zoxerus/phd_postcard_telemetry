@@ -2,13 +2,13 @@ mirroring_add 500 1
 
 table_add table_int_srcudp clone_to_collector 11111->11119 => 1
 
-table_add ipv4_lpm ipv4_forward 10.0.31.0/24 => AB:CD:10:12:00:01  AB:CD:10:12:00:02 2
-table_add ipv4_lpm ipv4_forward 10.0.11.10/32 => AB:CD:10:00:11:01 AB:CD:10:00:11:10 3
-table_add ipv4_lpm ipv4_forward 10.0.12.10/32 => AB:CD:10:00:12:01 AB:CD:10:00:12:10 4
+table_add ipv4_lpm ipv4_forward 10.0.31.0/24 => 56:1E:10:12:00:01  56:1E:10:12:00:02 2
+table_add ipv4_lpm ipv4_forward 10.0.11.10/32 => 56:1E:10:00:11:01 56:1E:10:00:11:10 3
+table_add ipv4_lpm ipv4_forward 10.0.12.10/32 => 56:1E:10:00:12:01 56:1E:10:00:12:10 4
 
 table_add table_flow_id set_flow_id 10.0.11.10 11111 10.0.31.10 12345 => 0
 table_add table_flow_id set_flow_id 10.0.11.10 11112 10.0.31.10 12345 => 1
 table_add table_flow_id set_flow_id 10.0.11.10 11113 10.0.31.10 12345 => 2
 table_add table_flow_id set_flow_id 10.0.11.10 11114 10.0.31.10 12345 => 3
 
-table_add table_postcard forward_postcard => 1 1.1.1.1 22222 10.30.2.170 54321 AB:CD:10:10:00:02 AB:CD:10:10:00:01
+table_add table_postcard forward_postcard => 1 1.1.1.1 55555 192.168.100.100 54321 56:1E:10:10:00:02 56:1E:10:10:00:01

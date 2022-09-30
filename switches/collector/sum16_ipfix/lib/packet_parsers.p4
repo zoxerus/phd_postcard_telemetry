@@ -23,7 +23,7 @@ parser PacketParser(
         state parse_ipv4{
             packet.extract(hdr.ipv4);
             transition select( hdr.ipv4.dst_addr, hdr.ipv4.protocol){
-                {0x0a1e02aa, IP_PROTO_UDP}: parse_postcard_udp;
+                {0xc0a86464, IP_PROTO_UDP}: parse_postcard_udp;
                 default: accept;
                 // IP_PROTO_TCP: parse_tcp;
             }

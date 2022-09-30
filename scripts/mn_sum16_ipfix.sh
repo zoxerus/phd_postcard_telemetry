@@ -1,13 +1,14 @@
 #!/bin/bash
 
-
-# import globalb variables that are shard by multiple scripts
-source ./vars.sh
-
 # get path to this sh file and change to it's directory so it can be called
 # from any folder.
 SCRIPT_PATH="${BASH_SOURCE[0]:-$0}";
 cd "$( dirname -- "$SCRIPT_PATH"; )";
+
+
+# import globalb variables that are shard by multiple scripts
+source ./vars.sh
+
 
 # path to the network and collector siwtches
 PATH_NETSW="$PATH_SW/net/sw_fs_ipfix/switch.json"

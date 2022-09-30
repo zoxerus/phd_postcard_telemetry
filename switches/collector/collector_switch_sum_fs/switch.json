@@ -280,7 +280,7 @@
           "transitions" : [
             {
               "type" : "hexstr",
-              "value" : "0x0a1e02ad11",
+              "value" : "0xc0a8646411",
               "mask" : null,
               "next_state" : "parse_postcard_udp"
             },
@@ -3927,7 +3927,7 @@
       ["standard_metadata", "priority"]
     ]
   ],
-  "program" : "./switch.p4i",
+  "program" : ".//switch.p4i",
   "__meta__" : {
     "version" : [2, 23],
     "compiler" : "https://github.com/p4lang/p4c"

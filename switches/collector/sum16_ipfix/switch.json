@@ -325,7 +325,7 @@
           "transitions" : [
             {
               "type" : "hexstr",
-              "value" : "0x0a1e02aa11",
+              "value" : "0xc0a8646411",
               "mask" : null,
               "next_state" : "parse_postcard_udp"
             },

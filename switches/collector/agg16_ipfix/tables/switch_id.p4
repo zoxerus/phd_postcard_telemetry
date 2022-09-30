@@ -5,21 +5,22 @@
 control SwitchID(inout headers_t hdr,
                        inout local_metadata_t local_metadata,
                        inout standard_metadata_t standard_metadata){
-    action set_sw_register(bit<32>sw_reg){
+    action select_switch_register(bit<32>sw_reg){
         local_metadata.switch_register_number = sw_reg;
+        log_msg("sw_reg: {}",{sw_reg});
     }
 
-    table sw_register {
+    table table_detect_switch {
         key = {
-            hdr.ipfix_postcard.ipfix_header.observation_domain : exact;
+            hdr.ipfix_postcard_head.observation_domain : exact;
         }
         actions = {
             NoAction;
-            set_sw_register;
+            select_switch_register;
         }
     }
     apply{
-        sw_register.apply();
+        table_detect_switch.apply();
     }
 
 }

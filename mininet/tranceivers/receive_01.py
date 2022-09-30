@@ -56,7 +56,7 @@ def handle_pkt(pkt):
 
 
 def main():
-    ifaces = [i for i in os.listdir('/sys/class/net/') if 'enp1s0f0' in i]
+    ifaces = [i for i in os.listdir('/sys/class/net/') if 'eth100' in i]
     iface = ifaces[0]
     print(("sniffing on %s" % iface))
     sys.stdout.flush()

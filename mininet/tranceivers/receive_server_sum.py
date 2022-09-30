@@ -76,14 +76,31 @@ class SW_Params():
         if (new_deq > self.deq_max):
             self.deq_max = new_deq
 
-
-        print("\n%-20s{}\n%-20s{} μs\n%-20s{} μs\n%-20s{} μs\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n%-20s{} pkts\n".format(self.switch_id,
-                                                self.latency_average, self.latency_min, self.latency_max,
-                                                self.enq_average, self.enq_min, self.enq_max,
-                                                self.deq_average, self.deq_min, self.deq_max) % ('SW_ID:',
-                                                'latency_average:', 'latency_min:', 'latency_max:',
-                                                'enq_average:', 'enq_min:', 'enq_max:',
-                                                'deq_average:', 'deq_min:', 'deq_max:' ) )
+        # print('\n---- Telemetry Packet: {} ----'.format(i),
+        #     '%-25s{}'.format(ipfix_version) % ('ipfix_version:'),
+        #     '%-25s{}'.format(ipfix_length) % ('ipfix_length:'),
+        #     '%-25s{}'.format(ipfix_exportTime) % ('ipfix_exportTime:'),
+        #     '%-25s{}'.format(ipfix_sequenceNumber) %
+        #         ('ipfix_sequenceNumber:'),
+        #     '%-25s{}'.format(ipfix_observationDomain) %
+        #         ('ipfix_observationDomain:'),
+        #     '%-25s{}'.format(ipfix_setID) % ('ipfix_setID:'),
+        #     '%-25s{}'.format(ipfix_setLength) % ('ipfix_setLength:'),
+        #     '%-25s{}'.format(flow_id) % ('flow_id:'),
+        #     '%-25s{}'.format(ttl) % ('ttl:'),
+        #     '%-25s{} μs'.format(ingress_tstamp) % ('ingress_tstamp:'),
+        #     '%-25s{} μs'.format(egress_tstamp) % ('egress_tstamp:'),
+        #     '%-25s{} packets'.format(enq_qdepth) % ('enq_qdepth:'),
+        #     '%-25s{} packets'.format(deq_qdepth) % ('deq_qdepth:'),
+        #     '%-25s{} '.format(ingress_interface) % (
+        #                                           'ingress_interface:'),
+        #     '%-25s{} '.format(egress_interface) % (
+        #                                            'egress_interface:'),
+        #     '%-25s{}'.format(export_time) % ('export_time:'),
+        #     '%-25s{}'.format(sw_id) % ('sw_id:'),
+        #     '%-25s{}'.format(seq_num) % ('seq_num:'),
+        #
+        #     '\n', '---- end ----\n', sep='\n')
 
 def handle_pkt_on_thread(pkt,write_api):
     t = Thread(target=handle_pkt, args=(pkt,write_api))
@@ -146,7 +163,8 @@ def handle_pkt(pkt,write_api):
                                             "in_port": in_port,
                                             "out_port": ex_port,
                                             "latency": latency },
-                                "time": datetime.utcnow() + timedelta(microseconds = arrival_delay) })
+                                "time": datetime.utcnow() +
+                                    timedelta(microseconds = arrival_delay) })
         write_api.write(bucket, org, points)
             # ii = 0
             # for item in points:
@@ -180,7 +198,7 @@ def correlate_on_thread():
 
 
 def main(write_api):
-    ifaces = [i for i in os.listdir('/sys/class/net/') if 'enp0s31f6' in i]
+    ifaces = [i for i in os.listdir('/sys/class/net/') if 'eth100' in i]
     iface = ifaces[0]
     print(("sniffing on %s" % iface))
     sys.stdout.flush()

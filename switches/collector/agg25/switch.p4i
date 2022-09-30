@@ -947,7 +947,7 @@ const bit<8> UDP_HEADER_LEN = 8;
 //////// ################## //////
 
 
-header int_xd_t {
+header int_xd_in_t {
     bit<32> switch_id;
     bit<32> flow_id;
     bit<8> ttl;
@@ -958,6 +958,8 @@ header int_xd_t {
     bit<9> ingress_port;
     bit<9> egress_port;
 }
+
+
 
 
 
@@ -1033,7 +1035,7 @@ parser PacketParser(
         state parse_ipv4{
             packet.extract(hdr.ipv4);
             transition select( hdr.ipv4.dstAddr, hdr.ipv4.protocol){
-                {0x0a1e02ad, 8w17}: parse_postcard_udp;
+                {0xc0a86464, 8w17}: parse_postcard_udp;
                 default: accept;
                 // IP_PROTO_TCP: parse_tcp;
             }
@@ -1056,7 +1058,7 @@ parser PacketParser(
             // a flag to trigger the processing of
             // the postcard later in the pipline
             local_metadata.is_postcard = 1;
-            packet.extract(hdr.int_xd);
+            packet.extract(hdr.postcard);
             transition accept;
         }
 }

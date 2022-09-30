@@ -84,19 +84,19 @@ class MyTopo(Topo):
 
         h1 = self.addHost('h1',
                             ip = "10.0.11.10/24",
-                            mac = 'AB:CD:10:00:11:10',
+                            mac = '56:1E:10:00:11:10',
                             commands = ["route add default gw 10.0.11.1 dev eth0",
-                            "arp -i eth0 -s 10.0.11.1 AB:CD:10:00:11:01"])
+                            "arp -i eth0 -s 10.0.11.1 56:1E:10:00:11:01"])
         h2 = self.addHost('h2',
                             ip = '10.0.12.10/24',
-                            mac = 'AB:CD:10:00:12:10',
+                            mac = '56:1E:10:00:12:10',
                             commands = ["route add default gw 10.0.12.1 dev eth0",
-                            "arp -i eth0 -s 10.0.12.1 AB:CD:10:00:12:01"])
+                            "arp -i eth0 -s 10.0.12.1 56:1E:10:00:12:01"])
         h3 = self.addHost('h3',
                             ip = "10.0.31.10/24",
-                            mac = 'AB:CD:10:00:31:10',
+                            mac = '56:1E:10:00:31:10',
                             commands = ["route add default gw 10.0.31.1 dev eth0",
-                            "arp -i eth0 -s 10.0.31.1 AB:CD:10:00:31:01"])
+                            "arp -i eth0 -s 10.0.31.1 56:1E:10:00:31:01"])
 
 
         self.addLink(s0, s1, 1, 1)
@@ -132,9 +132,9 @@ def main():
     #net.addNAT().configDefault()
     net.start()
     s0 = net.get('s0')
-    s0.setMAC('AB:CD:10:10:00:01', intf = 's0-eth1')
-    s0.setMAC('AB:CD:10:20:00:01', intf = 's0-eth2')
-    s0.setMAC('AB:CD:10:30:00:01', intf = 's0-eth3')
+    s0.setMAC('56:1E:10:10:00:01', intf = 's0-eth1')
+    s0.setMAC('56:1E:10:20:00:01', intf = 's0-eth2')
+    s0.setMAC('56:1E:10:30:00:01', intf = 's0-eth3')
     #s0.setMAC('20:1a:06:4e:99:fb', intf = 'enp1s0f0')
 
     s0.setIP('10.10.0.1/30', intf='s0-eth1')
@@ -143,10 +143,10 @@ def main():
     #s0.setIP('10.30.2.173/32', intf='enp1s0f0')
 
     s1 = net.get('s1')
-    s1.setMAC('AB:CD:10:10:00:02', intf = 's1-eth1')
-    s1.setMAC('AB:CD:10:12:00:01', intf = 's1-eth2')
-    s1.setMAC('AB:CD:10:00:11:01', intf = 's1-eth3')
-    s1.setMAC('AB:CD:10:00:12:01', intf = 's1-eth4')
+    s1.setMAC('56:1E:10:10:00:02', intf = 's1-eth1')
+    s1.setMAC('56:1E:10:12:00:01', intf = 's1-eth2')
+    s1.setMAC('56:1E:10:00:11:01', intf = 's1-eth3')
+    s1.setMAC('56:1E:10:00:12:01', intf = 's1-eth4')
 
     s1.setIP('10.10.0.2/30', intf = 's1-eth1')
     s1.setIP('10.12.0.1/30', intf = 's1-eth2')
@@ -154,35 +154,35 @@ def main():
     s1.setIP('10.0.12.1/24', intf = 's1-eth4')
 
     s2 = net.get('s2')
-    s2.setMAC('AB:CD:10:20:00:02', intf = 's2-eth1')
-    s2.setMAC('AB:CD:10:12:00:02', intf = 's2-eth2')
-    s2.setMAC('AB:CD:10:23:00:01', intf = 's2-eth3')
+    s2.setMAC('56:1E:10:20:00:02', intf = 's2-eth1')
+    s2.setMAC('56:1E:10:12:00:02', intf = 's2-eth2')
+    s2.setMAC('56:1E:10:23:00:01', intf = 's2-eth3')
 
     s2.setIP('10.20.0.2/30', intf = 's2-eth1')
     s2.setIP('10.12.0.2/30', intf = 's2-eth2')
     s2.setIP('10.23.0.1/30', intf = 's2-eth3')
 
     s3 = net.get('s3')
-    s3.setMAC('AB:CD:10:30:00:02', intf = 's3-eth1')
-    s3.setMAC('AB:CD:10:23:00:02', intf = 's3-eth2')
-    s3.setMAC('AB:CD:10:00:31:01', intf = 's3-eth3')
+    s3.setMAC('56:1E:10:30:00:02', intf = 's3-eth1')
+    s3.setMAC('56:1E:10:23:00:02', intf = 's3-eth2')
+    s3.setMAC('56:1E:10:00:31:01', intf = 's3-eth3')
 
     s3.setIP('10.30.0.2/30', intf = 's3-eth1')
     s3.setIP('10.23.0.2/30', intf = 's3-eth2')
     s3.setIP('10.0.31.1/24', intf = 's3-eth3')
 
     h1 = net.get('h1')
-    h1.setARP('10.0.11.1', 'AB:CD:10:00:11:01')
+    h1.setARP('10.0.11.1', '56:1E:10:00:11:01')
     h1.setDefaultRoute("dev eth0 via %s" % '10.0.11.1')
     h1.describe()
 
     h2 = net.get('h2')
-    h2.setARP('10.0.12.1', 'AB:CD:10:00:12:01')
+    h2.setARP('10.0.12.1', '56:1E:10:00:12:01')
     h2.setDefaultRoute("dev eth0 via %s" % '10.0.12.1')
     h2.describe()
 
     h3 = net.get('h3')
-    h3.setARP('10.0.31.1', 'AB:CD:10:00:31:01')
+    h3.setARP('10.0.31.1', '56:1E:10:00:31:01')
     h3.setDefaultRoute("dev eth0 via %s" % '10.0.31.1')
     h3.describe()
 

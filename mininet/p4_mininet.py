@@ -121,7 +121,7 @@ class P4Switch(Switch):
             communication with external hosts """
         if self.device_id == 0:
             print('ID: {}, SW: {}'.format(self.device_id, self.name))
-            args.extend(['-i', str(10) + "@" + "enxd45d64626aa4"])
+            args.extend(['-i', str(10) + "@" + "eth100"])
 
         if self.pcap_dump:
             args.append("--pcap")

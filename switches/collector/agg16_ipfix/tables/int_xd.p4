@@ -38,8 +38,8 @@ control ExportData(inout headers_t hdr,
         hdr.ipv4.identification = 0;
         hdr.ipv4.flags = 0;
         hdr.ipv4.fragOffset = 0;
-        hdr.ipv4.srcAddr = 0x0a00000b;
-        hdr.ipv4.dstAddr = srv_ip; // collector address
+        hdr.ipv4.src_addr = 0x0a00000b;
+        hdr.ipv4.dst_addr = srv_ip; // collector address
         hdr.ipv4.ttl = 64; // new time to live
         hdr.ipv4.protocol = IP_PROTO_UDP;
 
